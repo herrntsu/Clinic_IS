@@ -6,6 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    hi nerd
+    <link rel="stylesheet" href="style.css">
+<div class="container">
+    <div class="item item-1">Item 1</div>
+    <div class="item item-2">Item 2</div>
+    <div class="item item-3">Item 3</div>
+    <div class="item item-1">Item 1</div>
+    <div class="item item-2">Item 2</div>
+    <div class="item item-3">Item 3</div>
+    <div class="item item-1">Item 1</div>
+    <div class="item item-2">Item 2</div>
+    <div class="item item-3">Item 3</div>
+    <div class="item item-1">Item 1</div>
+    <div class="item item-2">Item 2</div>
+    <div class="item item-3">Item 3</div>
+  </div>
 </body>
 </html>
