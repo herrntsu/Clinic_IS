@@ -1,4 +1,4 @@
-/* BASE STYLES */
+/*BASE STYLES
 :root {
     --clr-dark: #0f172a;
     --clr-light: #f1f5f9;
@@ -44,8 +44,8 @@
     border-radius: 10px;
   }
   
-  /* END OF BASE STYLES */
+   END OF BASE STYLES
 .container{
     display: flex;
     flex-wrap: wrap;
-}
+}*/
