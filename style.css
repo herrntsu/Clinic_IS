@@ -26,11 +26,37 @@ body {
   margin: 0 auto;
   border: 5px solid var(--clr-bder);
   border-radius: 80px;
+  font-family: Montserrat;
 }
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+
 
 /* END OF BASE STYLES */
 .container{
-  display: flexbox;
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px 100px 100px 100px ;
   align-items: center;
   justify-content: center;
+}
+
+.container p{
+  grid-area: 2/ 4/ 5/ 7;
+}
+
+.container formgroup{
+  grid-area: 4/4/4/6;
+  display: grid;
+}
+
+.container img{
+  max-width: 150%;
+  grid-area: 2/5/2/5;
 }
