@@ -20,24 +20,29 @@
             <h2>Login to AnchorMed Clinic.</h2>
             <div class="form-group">
                 <label>E-mail Address:</label>
-                <input type="email" name="email" id="user-email" placeholder="E-mail"required/>
-                
+                <input type="email" name="email" id="user-email" placeholder="E-mail" required />
+
                 <label>Password:</label>
                 <input type="password" name="password" class="user-password" placeholder="Password" required>
                 <input type="submit" name="submit" class="submit-btn" value="Sign in">
-                <p>By clicking sign in, you are agreeing to the <a href="terms&conditions.php">Terms & Conditions</a></p>
+                <p>By clicking sign in, you are agreeing to the <a href="terms&conditions.php">Terms & Conditions</a>
+                </p>
                 <style></style>
             </div>
         </form>
-        
+
         <!-- end of form-group -->
-        
+
     </div>
     <!-- end of container class -->
 
 
-    <div class="redbl">
-        <!-- <img src="Blue Block.png" alt=""> -->
+    <div class="center">
+    </div>
+    <!-- <div class="img1">
+        <img src="hand-drawn-doctor-character-in-flat-style-vector.jpg" alt="">
+    </div> -->
+    <div class="center2">
     </div>
     <!-- start of footer class -->
     <div class="footer">

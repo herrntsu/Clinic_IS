@@ -19,7 +19,7 @@
 
 }
 
-@keyframes fadeIn {
+@keyframes fadeInTranslate {
   0% {
     opacity: 0;
     transform: translateY(100%);
@@ -30,7 +30,15 @@
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
 
+  100% {
+    opacity: 1;
+  }
+}
 
 body {
   margin: 0;
@@ -48,12 +56,12 @@ body {
 }
 
 .container {
+  background-color: white;
   width: 1000px;
   height: 700px;
   margin: 0 auto;
-  border: 4px solid var(--clr-bder);
-  border-radius: 80px;
   font-family: Montserrat;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .montserrat {
@@ -68,7 +76,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn 2s;
+  animation: fadeInTranslate 1.2s;
 
   & h2 {
     font-size: 22px;
@@ -117,7 +125,7 @@ body {
     text-align: center;
     cursor: pointer;
     font-size: 16px;
-    
+
   }
 }
 
@@ -140,9 +148,40 @@ body {
   max-width: 900px;
   position: absolute;
 }
-/* .form-group,
-label,
-input[type="text"],
-input[type="submit"] {
-  width: 100%;
+
+
+.center {
+  background: #CC2936;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  z-index: -1;
+  top: 600px;
+  left: 200px;
+  animation: fadeIn 2s;
+  overflow: hidden;
+}
+
+.center2 {
+  background: #08415C;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  z-index: -1;
+  top: -70px;
+  left: 1200px;
+  animation: fadeIn 4s;
+  overflow: hidden;
+}
+
+/* .img1{
+  width: 30%;
+  height: 30%;
+  position:absolute;
+  left: 1200px;
+  top: 600px;
 } */
