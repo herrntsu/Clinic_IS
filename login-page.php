@@ -14,6 +14,7 @@
 <body>
     <div class="container">
         <p>Please fill in your email and password.</p>
+        <img src = "logo.jpg">
         <form action="" method="post" class = "form-group">
             <div class="formgroup">
                 <label>Email Address:</label>
@@ -27,7 +28,7 @@
                 <input type="submit" name="submit" class="submit-btn" value="Submit">
             </div>
 
-            <img src = "logo.jpg">
+            
     </div>
 </body>
 
