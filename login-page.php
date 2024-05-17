@@ -24,7 +24,8 @@
                 <input type="password" name="password" class="user-password" placeholder="Password" required>
                 <input type="submit" name="submit" class="submit-btn" value="Sign in">
                 <p>Don't have an account? <a href="registration-page.php"> Register here.</a> </p>
-                <p>By clicking sign in, you are agreeing to the <a href="terms&conditions.php">Terms & Conditions</a>
+                <p>By clicking sign in, you are agreeing to the <a href="terms&conditions.php">Terms &
+                        Conditions</a>
                 </p>
             </div>
         </form>
