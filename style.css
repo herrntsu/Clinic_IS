@@ -35,8 +35,11 @@
     opacity: 0;
   }
 
-  100% {
+  70%{
     opacity: 1;
+  }
+  100% {
+    opacity: 40%;
   }
 }
 
@@ -51,8 +54,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-
-  overflow: hidden;
 }
 
 .container {
@@ -96,9 +97,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
   width: calc(100% - 320px);
   min-width: 320px;
+  z-index: 1;
 
   & img {
     max-width: 30%;
@@ -136,8 +139,12 @@ body {
     font-family: 'Montserrat';
   }
 
-  &p>a:hover {
+  & p>a:hover {
     color: #f44336;
+  }
+
+  & p>a:active {
+    color: #9e2921;
   }
 }
 
@@ -174,11 +181,11 @@ body {
   z-index: -1;
   top: 600px;
   left: 200px;
-  animation: fadeIn 2s;
+  animation: fadeIn 2s forwards;
   overflow: hidden;
 }
 
-.center2 {
+.center1 {
   background: #08415C;
   width: 500px;
   height: 500px;
@@ -188,23 +195,10 @@ body {
   z-index: -1;
   top: -100px;
   left: 1184px;
-  animation: fadeIn 4s;
+  animation: fadeIn 2s forwards;
   overflow: hidden;
 }
 
-.center {
-  background: #CC2936;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  position: absolute;
-  display: flex;
-  z-index: -1;
-  top: 600px;
-  left: 200px;
-  animation: fadeIn 2s;
-  overflow: hidden;
-}
 
 
 @keyframe repos1 {
@@ -223,7 +217,7 @@ body {
   z-index: -1;
   top: -100px;
   left: 1184px;
-  animation: fadeIn 4s;
+  animation: fadeIn 3s;
   overflow: hidden;
 }
 
@@ -237,8 +231,13 @@ body {
   z-index: -1;
   top: 600px;
   left: 200px;
-  animation: fadeIn 2s;
+  animation: fadeIn 3s;
   overflow: hidden;
+}
+
+.center-reg1,
+.center-reg2 {
+  opacity: 50%;
 }
 
 /* .img1{

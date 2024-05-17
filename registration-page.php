@@ -7,6 +7,7 @@
 </head>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+<link rel="icon" type="png" href="logo-removebg-preview.png">
 
 <body>
     <div class="container">
@@ -88,7 +89,7 @@ if (!$con) {
                     }
                 }
             } else {
-                echo "<script> functionAlert() </script>";
+                echo "<script> alert('Passwords does not match.') </script>";
             }
         } else {
         }
