@@ -30,18 +30,7 @@
   }
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
 
-  70%{
-    opacity: 1;
-  }
-  100% {
-    opacity: 40%;
-  }
-}
 
 body {
   margin: 0;
@@ -170,6 +159,27 @@ body {
   position: absolute;
 }
 
+@keyframes fadeInRed {
+  0% {
+    transform: translateY(-700px);
+    opacity: 40%;
+  }
+
+  100% {
+    opacity: 40%;
+  }
+}
+
+@keyframes fadeInBlue {
+  0% {
+    transform: translateY(700px);
+    opacity: 40%;
+  }
+
+  100% {
+    opacity: 40%;
+  }
+}
 
 .center {
   background: #CC2936;
@@ -181,7 +191,7 @@ body {
   z-index: -1;
   top: 600px;
   left: 200px;
-  animation: fadeIn 2s forwards;
+  animation: fadeInRed 2s forwards;
   overflow: hidden;
 }
 
@@ -195,14 +205,24 @@ body {
   z-index: -1;
   top: -100px;
   left: 1184px;
-  animation: fadeIn 2s forwards;
+  animation: fadeInBlue 2s forwards;
   overflow: hidden;
 }
 
 
 
-@keyframe repos1 {
-  0% {}
+@keyframes reposred {
+  0% {
+    transform: translateY(720px);
+  }
+
+  100% {}
+}
+
+@keyframes reposblue {
+  0% {
+    transform: translateY(-720px);
+  }
 
   100% {}
 }
@@ -215,9 +235,9 @@ body {
   position: absolute;
   display: flex;
   z-index: -1;
-  top: -100px;
+  top: 600px;
   left: 1184px;
-  animation: fadeIn 3s;
+  animation: reposblue 3s;
   overflow: hidden;
 }
 
@@ -229,15 +249,17 @@ body {
   position: absolute;
   display: flex;
   z-index: -1;
-  top: 600px;
+  top: -100px;
   left: 200px;
-  animation: fadeIn 3s;
+  animation: reposred 3s forwards;
   overflow: hidden;
 }
 
 .center-reg1,
+center,
+center1,
 .center-reg2 {
-  opacity: 50%;
+  opacity: 40%;
 }
 
 /* .img1{
