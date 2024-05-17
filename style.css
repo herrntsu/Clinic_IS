@@ -62,7 +62,7 @@ body {
   margin: 0 auto;
   font-family: Montserrat;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5% ;
+  border-radius: 5%;
 }
 
 .montserrat {
@@ -130,9 +130,10 @@ body {
 
   }
 
-  & p{
+  & p {
     align-self: start;
     margin: 0;
+    font-family: 'Montserrat';
   }
 }
 
@@ -185,6 +186,11 @@ body {
   overflow: hidden;
 }
 
+
+.container-reg{
+  align-items: start;
+  font-family: 'Montserrat';
+}
 /* .img1{
   width: 30%;
   height: 30%;

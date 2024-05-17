@@ -6,14 +6,16 @@
     <title>Sign Up</title>
 </head>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
 
 <body>
     <div class="container">
         <form action="" method="post" class="form-group">
-            <h2>Create an Account.</h2>
+            
 
             <div class="form-group">
-                <h2>Please fill this form to create an account.</h2>
+                <img src="logo.jpg">
+                <h2>Create an Account.</h2>
                 <label>Full Name:</label>
                 <input type="text" name="fullname" id="full-name" placeholder="Full Name" required />
                 <label>Email Address:</label>
