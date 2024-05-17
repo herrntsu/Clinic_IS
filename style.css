@@ -135,7 +135,13 @@ body {
     margin: 0;
     font-family: 'Montserrat';
   }
+
+  &p>a:hover {
+    color: #f44336;
+  }
 }
+
+
 
 .submit-btn:hover {
   background-color: #157eaf;
@@ -201,14 +207,12 @@ body {
 }
 
 
-@keyframe repos1{
-  0%{
-    
-  }
-  100%{
+@keyframe repos1 {
+  0% {}
 
-  }
+  100% {}
 }
+
 .center-reg1 {
   background: #08415C;
   width: 500px;

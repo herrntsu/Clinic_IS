@@ -27,9 +27,9 @@
                 <input type="password" name="user-cpassword-reg" class="user-cpassword-reg"
                     placeholder="Confirm password" required>
                 <input type="submit" name="submit" class="submit-btn" value="Sign in">
-                <p>Already have an account? <a href="login-page.php">Login here</a>.</p>
-                <p>By creating an account, you are agreeing to the <a href="terms&conditions.php">Terms &
-                        Conditions</a>
+                <p>Already have an account? <a class="hyperlink" href="login-page.php">Login here</a>.</p>
+                <p>By creating an account, you are agreeing to the <a class="hyperlink"
+                        href="terms&conditions.php">Terms & Conditions</a>
                 </p>
             </div>
         </form>
