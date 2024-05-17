@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <form action="" method="post" class="form-group">
-            
+
 
             <div class="form-group">
                 <img src="logo.jpg">
@@ -34,6 +34,20 @@
             </div>
         </form>
     </div>
+
+
+    <div class="center-reg1">
+    </div>
+    <!-- <div class="img1">
+        <img src="hand-drawn-doctor-character-in-flat-style-vector.jpg" alt="">
+    </div> -->
+    <div class="center-reg2">
+    </div>
+    <!-- start of footer class -->
+    <div class="footer">
+        <div class="item1"></div>
+    </div>
+</body>
 </body>
 
 

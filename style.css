@@ -186,11 +186,57 @@ body {
   overflow: hidden;
 }
 
-
-.container-reg{
-  align-items: start;
-  font-family: 'Montserrat';
+.center {
+  background: #CC2936;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  z-index: -1;
+  top: 600px;
+  left: 200px;
+  animation: fadeIn 2s;
+  overflow: hidden;
 }
+
+
+@keyframe repos1{
+  0%{
+    
+  }
+  100%{
+
+  }
+}
+.center-reg1 {
+  background: #08415C;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  z-index: -1;
+  top: -100px;
+  left: 1184px;
+  animation: fadeIn 4s;
+  overflow: hidden;
+}
+
+.center-reg2 {
+  background: #CC2936;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  z-index: -1;
+  top: 600px;
+  left: 200px;
+  animation: fadeIn 2s;
+  overflow: hidden;
+}
+
 /* .img1{
   width: 30%;
   height: 30%;
