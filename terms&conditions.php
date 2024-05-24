@@ -450,7 +450,7 @@
     to him by the Provider.
     <br>
     11.9 In case of any discrepancies between Slovak and English version of GTC, the Slovak version will prevail.
-    </>
-    </body>
+</div>
+</body>
 
 </html>
