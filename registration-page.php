@@ -79,7 +79,7 @@ if (!$con) {
                 if (mysqli_num_rows($result) > 0) {
                     echo "<script>alert('An account with this email already exists.');</script>";
                 } else {
-                    $sql = "INSERT INTO users (fullname, email, passw, usertype) VALUES ('$funame', '$em', '$pw' , 'user')";
+                    $sql = "INSERT INTO users (fullname, email, passw) VALUES ('$funame', '$em', '$pw')";
 
                     if (mysqli_query($con, $sql)) {
                         echo "<script>alert('Registration successful.');</script>";

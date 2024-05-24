@@ -55,10 +55,10 @@
 </html>
 
 <?php
-$servername = "localhost"; // your database server
-$username = "root"; // your database username
-$password = ""; // your database password
-$database = "clinic_website"; // your database name
+$servername = "localhost"; //database server
+$username = "root"; //database username
+$password = ""; //database password
+$database = "clinic_website"; //database name
 
 $con = mysqli_connect($servername, $username, $password, $database);
 
@@ -66,22 +66,31 @@ if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 } else {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $em = mysqli_real_escape_string($con, $_POST['email']);
-        $pw = mysqli_real_escape_string($con, $_POST['password']);
-    }
+        //checks if fields are filled
+        if (isset($_POST['email']) && isset($_POST['password'])) {
+            //initialize variables for queries and post method
+            $em = mysqli_real_escape_string($con, $_POST['email']);
+            $pw = mysqli_real_escape_string($con, $_POST['password']);
+            $userEmailQuery = "SELECT email FROM users WHERE email = '$em'";
+            $userPasswordQuery = "SELECT passw FROM users WHERE email = '$em'";
+            $result = mysqli_query($con, $userEmailQuery);
 
-    if (!empty($em) && !empty($pw)) {
-
-        //duplicate email checker
-        $checkEmailQuery = "SELECT id FROM users WHERE email = '$em'";
-        $result = mysqli_query($con, $checkEmailQuery);
-
-        if (mysqli_num_rows($result) == 0) {
-            echo "<script>alert('An account with this email doesn't exist.');</script>";
+            //check if the email exists in the database
+            if (mysqli_num_rows($result) > 0) {
+                $passwordResult = mysqli_query($con, $userPasswordQuery);
+                $row = mysqli_fetch_assoc($passwordResult);
+                if (password_verify($pw, $row['passw'])) {
+                    //passw is correct
+                    header("Location: welcome-page.php");
+                } else {
+                    //passw is incorrect
+                    echo "<script>alert('Incorrect password');</script>";
+                }
+            } else {
+                //email not present in db
+                echo "<script>alert('An account with this email doesn\'t exist');</script>";
+            }
         }
     }
 }
-
-// Close the connection
-mysqli_close($con);
 ?>
