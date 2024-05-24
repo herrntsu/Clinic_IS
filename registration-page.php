@@ -15,7 +15,7 @@
 
 
             <div class="form-group">
-                <img src="logo.jpg">
+                <img src="images\logo-removebg-preview.png">
                 <h2>Create an Account.</h2>
                 <label>Full Name:</label>
                 <input type="text" name="fullname" id="full-name" placeholder="Full Name" required />
@@ -79,8 +79,7 @@ if (!$con) {
                 if (mysqli_num_rows($result) > 0) {
                     echo "<script>alert('An account with this email already exists.');</script>";
                 } else {
-                    // Insert query without using prepared statements
-                    $sql = "INSERT INTO users (fullname, email, passw) VALUES ('$funame', '$em', '$pw')";
+                    $sql = "INSERT INTO users (fullname, email, passw, usertype) VALUES ('$funame', '$em', '$pw' , 'user')";
 
                     if (mysqli_query($con, $sql)) {
                         echo "<script>alert('Registration successful.');</script>";

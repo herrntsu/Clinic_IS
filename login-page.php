@@ -16,7 +16,7 @@
 
         <!-- start of form-group -->
         <form action="" method="post" class="form-group">
-            <img src="logo-removebg-preview.png">
+            <img src="images\logo-removebg-preview.png">
 
             <div class="form-group">
                 <h2>Login to AnchorMed Clinic.</h2>
@@ -53,7 +53,8 @@
 </body>
 
 </html>
-<!-- <?php
+
+<?php
 $servername = "localhost"; // your database server
 $username = "root"; // your database username
 $password = ""; // your database password
@@ -65,16 +66,22 @@ if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 } else {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $em = mysqli_real_escape_string($con, $_POST['user-email']);
-        $pw = mysqli_real_escape_string($con, $_POST['user-password']);
+        $em = mysqli_real_escape_string($con, $_POST['email']);
+        $pw = mysqli_real_escape_string($con, $_POST['password']);
+    }
 
+    if (!empty($em) && !empty($pw)) {
 
-        if (!empty($funame) && !empty($em)) { //start of checking for input
-            echo "SELECT FROM users WHERE email = $em";
-        }//end of checking for input
+        //duplicate email checker
+        $checkEmailQuery = "SELECT id FROM users WHERE email = '$em'";
+        $result = mysqli_query($con, $checkEmailQuery);
+
+        if (mysqli_num_rows($result) == 0) {
+            echo "<script>alert('An account with this email doesn't exist.');</script>";
+        }
     }
 }
 
 // Close the connection
 mysqli_close($con);
-?> -->
+?>
