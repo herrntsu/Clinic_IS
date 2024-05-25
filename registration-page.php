@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
 <link rel="icon" type="png" href="logo-removebg-preview.png">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <body>
     <div class="container">
         <form action="" method="post" class="form-group">
-
-
             <div class="form-group">
                 <img src="images\logo-removebg-preview.png">
                 <h2>Create an Account.</h2>
@@ -79,7 +79,8 @@ if (!$con) {
                 if (mysqli_num_rows($result) > 0) {
                     echo "<script>alert('An account with this email already exists.');</script>";
                 } else {
-                    $sql = "INSERT INTO users (fullname, email, passw) VALUES ('$funame', '$em', '$pw')";
+                    $pww = password_hash($pw, PASSWORD_DEFAULT); //hashed password
+                    $sql = "INSERT INTO users (fullname, email, passw, type) VALUES ('$funame', '$em', '$pww', 'customer')";
 
                     if (mysqli_query($con, $sql)) {
                         echo "<script>alert('Registration successful.');</script>";

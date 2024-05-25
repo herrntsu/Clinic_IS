@@ -55,6 +55,7 @@
 </html>
 
 <?php
+
 $servername = "localhost"; //database server
 $username = "root"; //database username
 $password = ""; //database password
@@ -69,15 +70,14 @@ if (!$con) {
         //checks if fields are filled
         if (isset($_POST['email']) && isset($_POST['password'])) {
             //initialize variables for queries and post method
-            $em = mysqli_real_escape_string($con, $_POST['email']);
-            $pw = mysqli_real_escape_string($con, $_POST['password']);
-            $userEmailQuery = "SELECT email FROM users WHERE email = '$em'";
-            $userPasswordQuery = "SELECT passw FROM users WHERE email = '$em'";
-            $result = mysqli_query($con, $userEmailQuery);
+            $em = mysqli_real_escape_string($con, $_POST['email']); //cleans email text
+            $pw = mysqli_real_escape_string($con, $_POST['password']); //cleans password text
+            $userQuery = "SELECT * FROM users WHERE email = '$em'";
+            $result = mysqli_query($con, $userQuery);
 
             //check if the email exists in the database
-            if (mysqli_num_rows($result) > 0) {
-                $passwordResult = mysqli_query($con, $userPasswordQuery);
+            if (mysqli_num_rows($result) > 0) { //check if query has a result
+                $passwordResult = mysqli_query($con, $userQuery);
                 $row = mysqli_fetch_assoc($passwordResult);
                 if (password_verify($pw, $row['passw'])) {
                     //passw is correct
