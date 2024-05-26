@@ -1,4 +1,5 @@
-<!-- <!DOCTYPE html>
+<!-- Dyan 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,4 +26,35 @@
     </script>
 </body>
 
-</html> -->
+</html>
+-->
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "clinic_website";
+
+$con = mysqli_connect($servername, $username, $password, $database);
+if (!$con) {
+    die("Connection Failed: " . mysqli_connect_error());
+} else {
+    $sql = "SELECT AdminID, AccountName, AccountType FROM Admin";
+    $result = mysqli_query($con,$sql);
+    if ($result->num_rows > 0) {
+        // Display admin data in a table
+        echo "<table>";
+        echo "<tr><th>Admin ID</th><th>Name</th><th>Role</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["AdminID"] . "</td>";
+            echo "<td>" . $row["AccountName"] . "</td>";
+            echo "<td>" . $row["AccountType"] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No admin data found.";
+    }
+}
+?>    
