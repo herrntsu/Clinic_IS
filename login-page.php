@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
-    <link rel="icon" type="png" href="logo-removebg-preview.png">
+    <link rel="icon" type="png" href="images\logo-removebg-preview.png">
     <title>Login</title>
 </head>
 
@@ -72,16 +72,25 @@ if (!$con) {
             //initialize variables for queries and post method
             $em = mysqli_real_escape_string($con, $_POST['email']); //cleans email text
             $pw = mysqli_real_escape_string($con, $_POST['password']); //cleans password text
-            $userQuery = "SELECT * FROM users WHERE email = '$em'";
+            $userQuery = "SELECT * FROM accounts WHERE Account_Email = '$em'";
             $result = mysqli_query($con, $userQuery);
 
             //check if the email exists in the database
             if (mysqli_num_rows($result) > 0) { //check if query has a result
                 $passwordResult = mysqli_query($con, $userQuery);
                 $row = mysqli_fetch_assoc($passwordResult);
-                if (password_verify($pw, $row['passw'])) {
+                if (password_verify($pw, $row['Account_Password'])) {
                     //passw is correct
-                    header("Location: welcome-page.php");
+                    if ($row["Account_Type"] == "customer") {
+                        header("Location: welcome-page.php");
+                    }
+                    if ($row["Account_Type"] == "admin") {
+                        header("Location: admin-page.php");
+                    }
+                    if ($row["Account_Type"] == "employee") {
+                        header("Location: employee-page.php");
+                    }
+
                 } else {
                     //passw is incorrect
                     echo "<script>alert('Incorrect password');</script>";

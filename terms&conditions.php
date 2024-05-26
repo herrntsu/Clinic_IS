@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
 <div class="container-reg">
@@ -567,8 +568,11 @@
         to him by the Provider.
         <br><br>
         11.9 In case of any discrepancies between Slovak and English version of GTC, the Slovak version will prevail.
+        <button class="btn"><i class="fa-solid fa-less-than"></i></button>
     </div>
+
 </div>
+
 </body>
 
 </html>

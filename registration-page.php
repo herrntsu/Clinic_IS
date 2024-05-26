@@ -7,9 +7,12 @@
 </head>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
-<link rel="icon" type="png" href="logo-removebg-preview.png">
+<link rel="icon" type="png" href="images\logo-removebg-preview.png">
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <body>
     <div class="container">
@@ -27,7 +30,7 @@
                 <label>Confirm Password:</label>
                 <input type="password" name="user-cpassword-reg" class="user-cpassword-reg"
                     placeholder="Confirm password" required>
-                <input type="submit" name="submit" class="submit-btn" value="Sign in">
+                <input type="submit" name="submit" class="submit-btn" value="Register">
                 <p>Already have an account? <a class="hyperlink" href="login-page.php">Login here</a>.</p>
                 <p>By creating an account, you are agreeing to the <a class="hyperlink"
                         href="terms&conditions.php">Terms & Conditions</a>
@@ -73,14 +76,14 @@ if (!$con) {
         if (!empty($funame) && !empty($em) && !empty($pw) && !empty($cpw)) {
             if ($pw === $cpw) {
                 //duplicate email checker
-                $checkEmailQuery = "SELECT id FROM users WHERE email = '$em'";
+                $checkEmailQuery = "SELECT Account_ID FROM accounts WHERE Account_Email = '$em'";
                 $result = mysqli_query($con, $checkEmailQuery);
 
                 if (mysqli_num_rows($result) > 0) {
                     echo "<script>alert('An account with this email already exists.');</script>";
                 } else {
                     $pww = password_hash($pw, PASSWORD_DEFAULT); //hashed password
-                    $sql = "INSERT INTO users (fullname, email, passw, type) VALUES ('$funame', '$em', '$pww', 'customer')";
+                    $sql = "INSERT INTO accounts (fullname, Account_Email, Account_Password, Account_Type) VALUES ('$funame', '$em', '$pww', 'admin')";
 
                     if (mysqli_query($con, $sql)) {
                         echo "<script>alert('Registration successful.');</script>";
