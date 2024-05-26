@@ -75,29 +75,57 @@ if (!$con) {
 
         if (!empty($funame) && !empty($em) && !empty($pw) && !empty($cpw)) {
             if ($pw === $cpw) {
-                //duplicate email checker
-                $checkEmailQuery = "SELECT Account_ID FROM accounts WHERE Account_Email = '$em'";
+                // Check if email already exists
+                $checkEmailQuery = "SELECT AccountID FROM AccData WHERE AccountEmail = '$em'";
                 $result = mysqli_query($con, $checkEmailQuery);
 
                 if (mysqli_num_rows($result) > 0) {
                     echo "<script>alert('An account with this email already exists.');</script>";
                 } else {
-                    $pww = password_hash($pw, PASSWORD_DEFAULT); //hashed password
-                    $sql = "INSERT INTO accounts (fullname, Account_Email, Account_Password, Account_Type) VALUES ('$funame', '$em', '$pww', 'admin')";
+                    // Hash the password
+                    $pww = password_hash($pw, PASSWORD_DEFAULT);
 
-                    if (mysqli_query($con, $sql)) {
-                        echo "<script>alert('Registration successful.');</script>";
-                    } else {
-                        echo "Error: " . mysqli_error($con);
+                    // Begin transaction
+                    mysqli_begin_transaction($con);
+
+                    try {
+                        // Insert into Accounts table
+                        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$funame', 'admin')";
+                        if (mysqli_query($con, $sql_accounts)) {
+                            // Get the last inserted ID
+                            $last_id = mysqli_insert_id($con);
+
+                            // Insert into AccData table
+                            $sql_accdata = "INSERT INTO AccData (AccountID, AccountName, AccountEmail, AccountPass) VALUES ('$last_id', '$funame', '$em', '$pww')";
+                            if (mysqli_query($con, $sql_accdata)) {
+                                // Commit transaction
+                                mysqli_commit($con);
+                                echo "<script>alert('Registration successful.');</script>";
+                            } else {
+                                // Rollback transaction if insert into AccData fails
+                                mysqli_rollback($con);
+                                echo "Error: " . mysqli_error($con);
+                            }
+                        } else {
+                            // Rollback transaction if insert into Accounts fails
+                            mysqli_rollback($con);
+                            echo "Error: " . mysqli_error($con);
+                        }
+                    } catch (Exception $e) {
+                        // Rollback transaction in case of an exception
+                        mysqli_rollback($con);
+                        echo "Error: " . $e->getMessage();
                     }
                 }
             } else {
-                echo "<script> alert('Passwords does not match.') </script>";
+                echo "<script>alert('Passwords do not match.');</script>";
             }
         } else {
+            echo "<script>alert('Please fill in all the fields.');</script>";
         }
     }
 }
+
 
 // Close the connection
 mysqli_close($con);

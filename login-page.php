@@ -67,39 +67,47 @@ if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 } else {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //checks if fields are filled
+        // Check if fields are filled
         if (isset($_POST['email']) && isset($_POST['password'])) {
-            //initialize variables for queries and post method
-            $em = mysqli_real_escape_string($con, $_POST['email']); //cleans email text
-            $pw = mysqli_real_escape_string($con, $_POST['password']); //cleans password text
-            $userQuery = "SELECT * FROM accounts WHERE Account_Email = '$em'";
+            // Initialize variables for queries and POST method
+            $em = mysqli_real_escape_string($con, $_POST['email']); // Clean email text
+            $pw = mysqli_real_escape_string($con, $_POST['password']); // Clean password text
+
+            // Check if the email exists in the database
+            $userQuery = "SELECT accounts.AccountID, accounts.AccountName, accounts.AccountType, AccData.AccountEmail, AccData.AccountPass
+                          FROM accounts
+                          JOIN AccData ON accounts.AccountID = AccData.AccountID
+                          WHERE AccData.AccountEmail = '$em'";
+
             $result = mysqli_query($con, $userQuery);
 
-            //check if the email exists in the database
-            if (mysqli_num_rows($result) > 0) { //check if query has a result
-                $passwordResult = mysqli_query($con, $userQuery);
-                $row = mysqli_fetch_assoc($passwordResult);
-                if (password_verify($pw, $row['Account_Password'])) {
-                    //passw is correct
-                    if ($row["Account_Type"] == "customer") {
+            // Check if the query has a result
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                if (password_verify($pw, $row['AccountPass'])) {
+                    // Password is correct
+                    if ($row["AccountType"] == "customer") {
                         header("Location: welcome-page.php");
-                    }
-                    if ($row["Account_Type"] == "admin") {
+                    } elseif ($row["AccountType"] == "admin") {
                         header("Location: admin-page.php");
-                    }
-                    if ($row["Account_Type"] == "employee") {
+                    } elseif ($row["AccountType"] == "employee") {
                         header("Location: employee-page.php");
                     }
-
                 } else {
-                    //passw is incorrect
+                    // Password is incorrect
                     echo "<script>alert('Incorrect password');</script>";
                 }
             } else {
-                //email not present in db
+                // Email not present in the database
                 echo "<script>alert('An account with this email doesn\'t exist');</script>";
             }
+        } else {
+            // Fields are not filled
+            echo "<script>alert('Please fill in all the fields.');</script>";
         }
     }
 }
+
+// Close the connection
+mysqli_close($con);
 ?>
