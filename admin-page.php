@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,7 +17,6 @@
 </button>
 
     </div>  
-    <!-- end of dashboard div -->
 
     <script>
         document.getElementById('view-employees-button').addEventListener('click', function () {
@@ -26,4 +25,4 @@
     </script>
 </body>
 
-</html>
+</html> -->
