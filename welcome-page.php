@@ -38,10 +38,10 @@
             </div>
         </div>
         <div class="header">
-            <h2>Lorem Ipsum</h2>
+            <h2>Welcome, </h2>
             <div class="inner-section">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                <button>oten</button>
+                <p>(Here are the lists of doctors) //placeholder</p>
+                <button>View Doctors</button>
             </div>
         </div>
     </section>
