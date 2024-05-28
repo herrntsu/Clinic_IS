@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
-    <link rel="icon" type="png" href="images\logo-removebg-preview.png">
+    <link rel="icon" type="png" href="media\logo-removebg-preview.png">
     <title>Login</title>
 </head>
 
@@ -16,7 +16,7 @@
 
         <!-- start of form-group -->
         <form action="" method="post" class="form-group">
-            <img src="images\logo-removebg-preview.png">
+            <img src="media\logo-removebg-preview.png">
 
             <div class="form-group">
                 <h2>Login to AnchorMed Clinic.</h2>

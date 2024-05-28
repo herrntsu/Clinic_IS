@@ -7,7 +7,7 @@
 </head>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
-<link rel="icon" type="png" href="images\logo-removebg-preview.png">
+<link rel="icon" type="png" href="media\logo-removebg-preview.png">
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
@@ -18,7 +18,7 @@
     <div class="container">
         <form action="" method="post" class="form-group">
             <div class="form-group">
-                <img src="images\logo-removebg-preview.png">
+                <img src="media\logo-removebg-preview.png">
                 <h2>Create an Account.</h2>
                 <label>Full Name:</label>
                 <input type="text" name="fullname" id="full-name" placeholder="Full Name" required />
