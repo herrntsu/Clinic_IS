@@ -15,33 +15,64 @@ if (!$con) {
     } else {
         echo "Error creating database: " . mysqli_error($con);
     }*/
-    $sql_users = "CREATE TABLE users (
-     id INT(10) AUTO_INCREMENT,
-     fullname VARCHAR(100) NOT NULL,
-     email VARCHAR(50) NOT NULL,
-     passw VARCHAR(200) NOT NULL
+    $sql_acc = "CREATE TABLE Accounts (
+     AccountID INT(10) AUTO_INCREMENT PRIMARY KEY,
+     AccountName VARCHAR(100) NOT NULL,
+     AccountType VARCHAR(50) NOT NULL,
+     UNIQUE (AccountID, AccountName, AccountType)
     )"; 
 
-    $sql_employees = "CREATE TABLE clinic_admin (
-    admin_id INT(10) AUTO_INCREMENT PRIMARY KEY,
-    admin_fullname VARCHAR(100) NOT NULL,
-    admin_email VARCHAR(50) NOT NULL,
-    admin_passw VARCHAR(200) NOT NULL
+    $sql_accdata = "CREATE TABLE AccData (
+    AccountID INT(10) PRIMARY KEY,
+    AccountName VARCHAR(100) NOT NULL,
+    AccountEmail VARCHAR(100) NOT NULL,
+    AccountPass VARCHAR(100) NOT NULL,
+    FOREIGN KEY (AccountID, AccountName) REFERENCES Accounts (AccountID, AccountName)
     )"; 
 
-    $sql_admins = "CREATE TABLE sql_admins (
-    employee_id INT(10) AUTO_INCREMENT PRIMARY KEY,
-    employee_fullname VARCHAR(100) NOT NULL,
-    employee_email VARCHAR(50) NOT NULL,
-    employee_passw VARCHAR(200) NOT NULL
-    )"; 
 
-    if (mysqli_query($con, $sql_users) && mysqli_query($con, $sql_admins) && mysqli_query($con, $sql_employees)) {
-        echo "Tables for users, employees, and admin successfully created";
+    if (mysqli_query($con, $sql_acc) && mysqli_query($con, $sql_accdata)) {
+        echo "Tables for Accounts and AccountData";
+    } else {
+        echo "Error creating table: " . mysqli_error($con);
+    }
+
+    $sql_admin = "CREATE TABLE Admins (
+        AdminID INT(10) PRIMARY KEY,
+        AccountID INT(10),
+        AccountName VARCHAR(100) NOT NULL,
+        AccountType VARCHAR(50) NOT NULL,
+        FOREIGN KEY (AccountID, AccountName, AccountType) REFERENCES Accounts(AccountID, AccountName, AccountType)
+       /* FOREIGN KEY (AccountName) REFERENCES Accounts(AccountName),
+        FOREIGN KEY (AccountType) REFERENCES Accounts(AccountType) */
+    )";
+    
+    $sql_employee = "CREATE TABLE Employee (
+        EmployeeID INT(10) PRIMARY KEY,
+        AccountID INT(10),
+        AccountName VARCHAR(100) NOT NULL,
+        AccountType VARCHAR(50) NOT NULL,
+        FOREIGN KEY (AccountID, AccountName, AccountType) REFERENCES Accounts(AccountID, AccountName, AccountType)
+        /*FOREIGN KEY (AccountName) REFERENCES Accounts(AccountName),
+        FOREIGN KEY (AccountType) REFERENCES Accounts(AccountType)*/
+    )";
+    
+    $sql_customer = "CREATE TABLE Customer (
+        CustomerID INT(10) PRIMARY KEY,
+        AccountID INT(10),
+        AccountName VARCHAR(100) NOT NULL,
+        AccountType VARCHAR(50) NOT NULL,
+        FOREIGN KEY (AccountID, AccountName, AccountType) REFERENCES Accounts(AccountID, AccountName, AccountType)
+        /*FOREIGN KEY (AccountName) REFERENCES Accounts(AccountName),
+        FOREIGN KEY (AccountType) REFERENCES Accounts(AccountType)*/
+    )";
+    
+    if (mysqli_query($con, $sql_admin) && mysqli_query($con, $sql_employee) && mysqli_query($con, $sql_customer)) {
+        echo "Tables for Admins, Employee, and Customer successfully created";
     } else {
         echo "Error creating table: " . mysqli_error($con);
     }
 }
-
+//hindi pa tapos
 mysqli_close($con);
 ?>
