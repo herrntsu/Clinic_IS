@@ -232,106 +232,115 @@ h3 {
     pointer-events: none;
     /* Allows interaction with elements below the gradient */
   }
-
+  h2{
+    font-size: xxx-large;
+    margin-bottom: 1rem;
+  }
 
 
   .header {
     margin: 5.5rem 6rem;
-    position: relative;
+    position: relative; 
+    
 
     .inner-section {
       z-index: 2;
       display: flex;
       gap: 1rem;
       align-items: center;
+
+
       
-      & p{
-        a {
-          color: #fff;
-          text-transform: uppercase;
-          text-decoration: none;
-          letter-spacing: 0.15em;
-          
-          display: inline-block;
-          padding: 15px 20px;
-          position: relative;
-        }
-        a:after {    
-          background: none repeat scroll 0 0 transparent;
-          bottom: 0;
-          content: "";
-          display: block;
-          height: 2px;
-          left: 50%;
-          position: absolute;
-          background: #fff;
-          transition: width 0.3s ease 0s, left 0.3s ease 0s;
-          width: 0;
-        }
-        a:hover:after { 
-          width: 100%; 
-          left: 0; 
-        }
-        @media screen and (max-height: 300px) {
-          ul {
-            margin-top: 40px;
-          }
-        }
-        
-      }
-      button {
-        background-color: rgba(0, 0, 0, 0);
-        border: 2px solid white;
-        border-radius: 50rem;
-        transition: background-size 1s ease;
-        /* Smooth transition for background size change */
-        background-size: 0% 100%;
-        /* Initial background size, fully filled vertically */
 
-        &:hover {
-          color: black;
-          background-color: white;
-          background-size: 100% 100%;
-          /* Fully filled background */
+      & a {
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        font-family: Playfair Display;
+        font-weight: 500;
+        display: inline-block;
+        position: relative;
+      }
+
+      a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #fff;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+      }
+
+      a:hover:after {
+        width: 100%;
+        left: 0;
+      }
+
+      @media screen and (max-height: 300px) {
+        ul {
+          margin-top: 40px;
         }
       }
 
+    h2{
+        font-size: xxx-large;
+      }
 
+    button {
+      background-color: rgba(0, 0, 0, 0);
+      border: 2px solid white;
+      border-radius: 50rem;
+      transition: background-size 1s ease;
+      /* Smooth transition for background size change */
+      background-size: 0% 100%;
+      /* Initial background size, fully filled vertically */
 
-      p {
-        margin: 0;
-        font-family: "Playfair Display", serif;
+      &:hover {
+        color: black;
+        background-color: white;
+        background-size: 100% 100%;
+        /* Fully filled background */
       }
     }
 
-    h2 {
-      margin: 1.5rem 0;
-      font-family: "Playfair Display", serif;
-      font-weight: lighter;
-      letter-spacing: 2px;
-    }
   }
 
-  .about {
-    color: black;
+  h2 {
+    margin: 1.5rem 0;
+    font-family: "Playfair Display", serif;
+    font-weight: lighter;
+    letter-spacing: 2px;
   }
 }
 
+.about {
+  color: black;
+}
+}
 
-.logo-text{
+
+.logo-text {
   display: grid;
   grid-template-columns: repeat(8, 100px);
-  
-  img{
+
+  img {
     max-width: 95%;
     grid-column-start: 3;
     grid-column-end: 4;
   }
 
-  h3{
+  h3 {
     grid-column-start: 4;
     grid-column-end: 7;
     align-self: center;
   }
 }
 
+footer{
+  color: black;
+}
