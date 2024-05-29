@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Sign Up</title>
 </head>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="regis-style.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
 <link rel="icon" type="png" href="media\logo-removebg-preview.png">
 <link rel="stylesheet"
@@ -20,6 +20,8 @@
             <div class="form-group">
                 <img src="media\logo-removebg-preview.png">
                 <h2>Create an Account.</h2>
+                <label>Username:</label>
+                <input type="text" name="username" id="user-name" placeholder="Username" required />
                 <label>Full Name:</label>
                 <input type="text" name="fullname" id="full-name" placeholder="Full Name" required />
                 <label>Email Address:</label>
@@ -68,6 +70,7 @@ if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 } else {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $uname = mysqli_real_escape_string($con, $_POST['username']);
         $funame = mysqli_real_escape_string($con, $_POST['fullname']);
         $em = mysqli_real_escape_string($con, $_POST['email']);
         $pw = mysqli_real_escape_string($con, $_POST['user-password-reg']);
@@ -90,13 +93,13 @@ if (!$con) {
 
                     try {
                         // Insert into Accounts table
-                        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$funame', 'admin')";
+                        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$funame', 'customer')";
                         if (mysqli_query($con, $sql_accounts)) {
                             // Get the last inserted ID
                             $last_id = mysqli_insert_id($con);
 
                             // Insert into AccData table
-                            $sql_accdata = "INSERT INTO AccData (AccountID, AccountName, AccountEmail, AccountPass) VALUES ('$last_id', '$funame', '$em', '$pww')";
+                            $sql_accdata = "INSERT INTO AccData (AccountID, PatientUser , AccountName, AccountEmail, AccountPass) VALUES ('$last_id', '$uname', '$funame', '$em', '$pww')";
                             if (mysqli_query($con, $sql_accdata)) {
                                 // Commit transaction
                                 mysqli_commit($con);

@@ -49,7 +49,7 @@ body {
 .container {
   background-color: white;
   width: 1000px;
-  height: 700px;
+  height: 850px;
   margin: 0 auto;
   font-family: Montserrat;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -69,6 +69,7 @@ body {
   align-items: center;
   justify-content: center;
   animation: fadeInTranslate 0.7s;
+
 
   & h2 {
     font-size: 20px;

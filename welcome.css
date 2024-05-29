@@ -146,9 +146,6 @@ code {
   box-shadow: 0 4px 70px 10px rgba(0, 0, 0, 0.2), 0 6px 40px 10px rgba(0, 0, 0, 0.19);
 }
 
-.logo {
-  max-width: 8%;
-}
 
 h3 {
   color: black;
@@ -166,6 +163,7 @@ h3 {
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 
@@ -284,6 +282,21 @@ h3 {
   }
 }
 
-img {
-  max-width: 68%;
+
+.logo-text{
+  display: grid;
+  grid-template-columns: repeat(8, 100px);
+  
+  img{
+    max-width: 95%;
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+
+  h3{
+    grid-column-start: 4;
+    grid-column-end: 7;
+    align-self: center;
+  }
 }
+

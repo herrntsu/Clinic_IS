@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +18,15 @@
 
 <body>
     <div class="navigation-bar">
-        <div class="logo">
-            <img src="media\logo-removebg-preview.png" alt="">
-
+        <div class="logo-text">
+            <img class="website-logo" src="media\logo-removebg-preview.png" alt="">
+            <h3>AnchorMed</h3>
         </div>
-        <h3>AnchorMed Clinic</h3>
         <div class="topnav">
-            <a href="contact.html">CONTACT</a>
-            <a href="about.html">ABOUT</a>
             <a class="active" href="welcome-page.php">HOME</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">Profile</a>
+
         </div>
     </div>
 
@@ -34,11 +38,10 @@
                 </video>
             </div>
             <div class="gradient">
-                asd
             </div>
         </div>
         <div class="header">
-            <h2>Welcome, </h2>
+            <h2>Welcome, <?php echo ($_SESSION['username']); ?></h2>
             <div class="inner-section">
                 <p>(Here are the lists of doctors) //placeholder</p>
                 <button>View Doctors</button>

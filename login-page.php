@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +24,8 @@
 
             <div class="form-group">
                 <h2>Login to AnchorMed Clinic.</h2>
-                <label>E-mail Address:</label>
-                <input type="email" name="email" id="user-email" placeholder="E-mail" required />
+                <label>Username:</label>
+                <input type="text" name="username" id="user-name" placeholder="Username" required />
 
                 <label>Password:</label>
                 <input type="password" name="password" class="user-password" placeholder="Password" required>
@@ -68,22 +72,22 @@ if (!$con) {
 } else {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if fields are filled
-        if (isset($_POST['email']) && isset($_POST['password'])) {
+        if (isset($_POST['username']) && isset($_POST['password'])) {
             // Initialize variables for queries and POST method
-            $em = mysqli_real_escape_string($con, $_POST['email']); // Clean email text
+            $un = mysqli_real_escape_string($con, $_POST['username']); // Clean email text
             $pw = mysqli_real_escape_string($con, $_POST['password']); // Clean password text
 
             // Check if the email exists in the database
-            $userQuery = "SELECT accounts.AccountID, accounts.AccountName, accounts.AccountType, AccData.AccountEmail, AccData.AccountPass
+            $userQuery = "SELECT accounts.AccountID, accounts.AccountName, accounts.AccountType, AccData.PatientUser, AccData.AccountEmail, AccData.AccountPass
                           FROM accounts
                           JOIN AccData ON accounts.AccountID = AccData.AccountID
-                          WHERE AccData.AccountEmail = '$em'";
-
+                          WHERE AccData.PatientUser = '$un'";
             $result = mysqli_query($con, $userQuery);
-
+            
             // Check if the query has a result
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
+                $_SESSION ["username"] = $row["PatientUser"];
                 if (password_verify($pw, $row['AccountPass'])) {
                     // Password is correct
                     if ($row["AccountType"] == "customer") {
@@ -99,7 +103,7 @@ if (!$con) {
                 }
             } else {
                 // Email not present in the database
-                echo "<script>alert('An account with this email doesn\'t exist');</script>";
+                echo "<script>alert('An account with this username doesn\'t exist');</script>";
             }
         } else {
             // Fields are not filled
