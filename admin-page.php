@@ -55,10 +55,10 @@
 
 
 <?php
-$servername = "localhost"; // your database server
-$username = "root"; // your database username
-$password = ""; // your database password
-$database = "clinic_website"; // your database name
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$database = "clinic_website"; 
 
 $con = mysqli_connect($servername, $username, $password, $database);
 
@@ -94,22 +94,22 @@ if (!$con) {
 //functions
 //AddDoctors
 function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password) {
-    // First, insert into Accounts table to get the AccountID
+    
     $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
     if (mysqli_query($con, $sql_accounts)) {
-        // Get the last inserted AccountID
+       
         $accountID = mysqli_insert_id($con);
 
-        // Insert into Employee table to generate EmployeeID
+     
         $sql_employee = "INSERT INTO Employee (AccountID, AccountName, AccountType) VALUES ('$accountID', '$accountName', 'employee')";
         if (mysqli_query($con, $sql_employee)) {
-            // Get the last inserted EmployeeID
+           
             $employeeID = mysqli_insert_id($con);
 
-            // Now, insert into Employee_Details table using the obtained EmployeeID
+            
             $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
             if (mysqli_query($con, $sql_employee_details)) {
-                // Insert into AccData table
+               
                 $sql_accdata = "INSERT INTO AccData (AccountID, AccountName, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$accountName', '$email', '$employee_username', '$employee_password')";
                 if (mysqli_query($con, $sql_accdata)) {
                     echo "New doctor added successfully";
