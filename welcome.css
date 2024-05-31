@@ -92,10 +92,6 @@ h1 {
   font-size: 2.5rem;
 }
 
-h2 {
-  font-size: 2rem;
-}
-
 h3 {
   font-size: 1.75rem;
 }
@@ -156,11 +152,14 @@ h3 {
   font-family: 'Montserrat';
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Add consistent gap between elements */
+  gap: 1.5rem;
+  /* Add consistent gap between elements */
 }
 
-.nav-element, .dropbtn {
-  margin: 0 0.75rem; /* Add consistent margin to elements */
+.nav-element,
+.dropbtn {
+  margin: 0 0.75rem;
+  /* Add consistent margin to elements */
 }
 
 .dropbtn {
@@ -287,8 +286,15 @@ footer {
 }
 
 .header {
-  margin: 3rem 6rem;
+  margin: 5rem 10rem;
   position: relative;
+  gap: 5rem;
+
+  h2 {
+    font-size: 76px;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .inner-section {
@@ -296,6 +302,7 @@ footer {
   display: flex;
   gap: 1rem;
   align-items: center;
+  margin-left: 0.5rem;
 }
 
 .inner-section p {
@@ -320,7 +327,7 @@ footer {
   display: block;
   height: 2px;
   left: 50%;
-  position: absolute;
+  position: abzlute;
   background: #fff;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
@@ -331,11 +338,6 @@ footer {
   left: 0;
 }
 
-@media screen and (max-height: 300px) {
-  ul {
-    margin-top: 40px;
-  }
-}
 
 button {
   background-color: rgba(0, 0, 0, 0);
@@ -371,5 +373,78 @@ button:hover {
 footer {
   color: black;
   max-width: 100
+}
 
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+.logo-text {
+  display: flex;
+  align-items: center;
+}
+
+.website-logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-text h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profile-btn .material-symbols-outlined {
+  font-size: 36px;
+  color: black;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  border: 0.2px solid black;
+}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navigation-bar .dropdown {
+  margin-left: auto;
+  margin-right: 20px;
 }

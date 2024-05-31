@@ -17,7 +17,7 @@
     <h2>Add Doctor</h2>
     <form method="post" action="admin-page.php">
         <input type="text" name="accountName" placeholder="Account Name" required>
-        <input type="email" name="employee_email" placeholder="Email" required>
+        <input type="email" name="employee_email" placeholder="Email" required> 
         <input type="text" name="employee_username" placeholder="Username" required>
         <input type="password" name="employee_password" placeholder="Password" required>
         <input type="text" name="specialty" placeholder="Specialty" required>

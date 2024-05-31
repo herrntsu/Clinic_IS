@@ -142,8 +142,52 @@ code {
   display: flex;
   align-items: center;
   /* Center items vertically */
-  justify-content: start;
+  justify-content: space-between;
   box-shadow: 0 4px 70px 10px rgba(0, 0, 0, 0.2), 0 6px 40px 10px rgba(0, 0, 0, 0.19);
+
+  .user-section {
+    z-index: 2;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: black;
+    margin-right: 1.5rem;
+
+    & a {
+      color: #000000;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      font-family: Playfair Display;
+      font-weight: 500;
+      display: inline-block;
+      position: relative;
+    }
+
+    a:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: #000000;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+
+    a:hover:after {
+      width: 100%;
+      left: 0;
+    }
+
+    @media screen and (max-height: 300px) {
+      ul {
+        margin-top: 40px;
+      }
+    }
+  }
 }
 
 h3 {
@@ -228,90 +272,27 @@ h3 {
     pointer-events: none;
     /* Allows interaction with elements below the gradient */
   }
-  h2{
+
+  h2 {
     font-size: xxx-large;
     margin-bottom: 1rem;
   }
 
   .header {
     margin: 5.5rem 6rem;
-    position: relative; 
+    position: relative;
 
-    .inner-section {
-      z-index: 2;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-
-      & a {
-        color: #fff;
-        text-transform: uppercase;
-        text-decoration: none;
-        letter-spacing: 0.15em;
-        font-family: Playfair Display;
-        font-weight: 500;
-        display: inline-block;
-        position: relative;
-      }
-
-      a:after {
-        background: none repeat scroll 0 0 transparent;
-        bottom: 0;
-        content: "";
-        display: block;
-        height: 2px;
-        left: 50%;
-        position: absolute;
-        background: #fff;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-      }
-
-      a:hover:after {
-        width: 100%;
-        left: 0;
-      }
-
-      @media screen and (max-height: 300px) {
-        ul {
-          margin-top: 40px;
-        }
-      }
-
-    h2{
-        font-size: xxx-large;
-      }
-
-    button {
-      background-color: rgba(0, 0, 0, 0);
-      border: 2px solid white;
-      border-radius: 50rem;
-      transition: background-size 1s ease;
-      /* Smooth transition for background size change */
-      background-size: 0% 100%;
-      /* Initial background size, fully filled vertically */
-
-      &:hover {
-        color: black;
-        background-color: white;
-        background-size: 100% 100%;
-        /* Fully filled background */
-      }
+    h2 {
+      margin: 1.5rem 0;
+      font-family: "Playfair Display", serif;
+      font-weight: lighter;
+      letter-spacing: 2px;
     }
-
   }
 
-  h2 {
-    margin: 1.5rem 0;
-    font-family: "Playfair Display", serif;
-    font-weight: lighter;
-    letter-spacing: 2px;
+  .about {
+    color: black;
   }
-}
-
-.about {
-  color: black;
-}
 }
 
 .logo-text {
@@ -331,74 +312,62 @@ h3 {
   }
 }
 
-footer{
+footer {
   color: black;
 }
 
 /* Add styles for input fields and labels */
-input[type="text"], input[type="password"] {
-    border: none;
-    border-bottom: 2px solid blue;
-    outline: none;
-    width: 100%;
-    font-size: 16px;
-    padding: 8px 0;
-    color: blue;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
+input[type="text"],
+input[type="password"] {
+  border: none;
+  border-bottom: 2px solid blue;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 0;
+  color: blue;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
-    border-bottom: 2px solid blue;
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-bottom: 2px solid blue;
 }
 
 label {
-    font-family: 'Montserrat', sans-serif;
-    color: blue;
-    font-weight: 400;
-    display: block;
-    margin-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+  color: blue;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 5px;
 }
 
 /* Container for the form group to add some padding */
 .form-group {
-    margin: 20px;
+  margin: 20px;
 }
 
 /* Style for the submit button */
 .submit-btn {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .submit-btn:hover {
-    background-color: darkblue;
+  background-color: darkblue;
 }
 
 /* Additional styles for the form */
 form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-}
-
-h2 {
-    color: blue;
-    text-align: center;
-}
-
-p {
-    text-align: center;
-    color: blue;
-}
-
-a {
-    color: blue;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }
