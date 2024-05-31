@@ -1,4 +1,4 @@
-<!-- Dyan 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +12,31 @@
 </head>
 
 <body>
-    <div class="dashboard">
+<h1>Admin Page</h1>
+
+    <h2>Add Doctor</h2>
+    <form method="post" action="admin-page.php">
+        <input type="text" name="accountName" placeholder="Account Name" required>
+        <input type="email" name="employee_email" placeholder="Email" required>
+        <input type="text" name="employee_username" placeholder="Username" required>
+        <input type="password" name="employee_password" placeholder="Password" required>
+        <input type="text" name="specialty" placeholder="Specialty" required>
+        <input type="number" name="roomNumber" placeholder="Room Number" required>
+        <input type="submit" name="addDoctor" value="Add Doctor">
+    </form>
+
+    <h2>Delete Doctor</h2>
+    <form method="post" action="admin-page.php">
+        <input type="number" name="employeeID" placeholder="Employee ID" required>
+        <input type="submit" name="deleteDoctor" value="Delete Doctor">
+    </form>
+
+    <h2>Track Working Hours</h2>
+    <form method="post" action="admin-page.php">
+        <input type="number" name="employeeID" placeholder="Employee ID" required>
+        <input type="submit" name="trackHours" value="Track Working Hours">
+    </form>
+<!--=<div class="dashboard">
     <button id = "view-employees-button" class="button">
         View Employees
 </button>
@@ -24,37 +48,107 @@
             window.location.href = 'employees-list.php';
         });
     </script>
+-->
 </body>
 
 </html>
--->
+
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "clinic_website";
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$database = "clinic_website"; 
 
 $con = mysqli_connect($servername, $username, $password, $database);
+
 if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 } else {
-    $sql = "SELECT AdminID, AccountName, AccountType FROM Admin";
-    $result = mysqli_query($con,$sql);
-    if ($result->num_rows > 0) {
-        // Display admin data in a table
-        echo "<table>";
-        echo "<tr><th>Admin ID</th><th>Name</th><th>Role</th></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["AdminID"] . "</td>";
-            echo "<td>" . $row["AccountName"] . "</td>";
-            echo "<td>" . $row["AccountType"] . "</td>";
-            echo "</tr>";
+
+    if (isset($_POST['addDoctor'])) {
+        $accountName = $_POST['accountName'];
+        $specialty = $_POST['specialty'];
+        $roomNumber = $_POST['roomNumber'];
+        $email = $_POST['employee_email'];
+        $employee_username = $_POST['employee_username'];
+        $employee_password = $_POST['employee_password']; 
+        addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password);
+    }
+
+    if (isset($_POST['deleteDoctor'])) {
+        $employeeID = $_POST['employeeID'];
+        deleteDoctor($con, $employeeID);
+    }
+
+    if (isset($_POST['trackHours'])) {
+        $employeeID = $_POST['employeeID'];
+        trackWorkingHours($con, $employeeID);
+    }
+
+    mysqli_close($con);
+}
+?>
+
+<?php
+//functions
+//AddDoctors
+function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password) {
+    
+    $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
+    if (mysqli_query($con, $sql_accounts)) {
+       
+        $accountID = mysqli_insert_id($con);
+
+     
+        $sql_employee = "INSERT INTO Employee (AccountID, AccountName, AccountType) VALUES ('$accountID', '$accountName', 'employee')";
+        if (mysqli_query($con, $sql_employee)) {
+           
+            $employeeID = mysqli_insert_id($con);
+
+            
+            $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
+            if (mysqli_query($con, $sql_employee_details)) {
+               
+                $sql_accdata = "INSERT INTO AccData (AccountID, AccountName, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$accountName', '$email', '$employee_username', '$employee_password')";
+                if (mysqli_query($con, $sql_accdata)) {
+                    echo "New doctor added successfully";
+                } else {
+                    echo "Error: " . mysqli_error($con);
+                }
+            } else {
+                echo "Error: " . mysqli_error($con);
+            }
+        } else {
+            echo "Error: " . mysqli_error($con);
         }
-        echo "</table>";
     } else {
-        echo "No admin data found.";
+        echo "Error: " . mysqli_error($con);
     }
 }
-?>    
+
+//DeleteDoctors
+function deleteDoctor($con, $employeeID) {
+    $sql = "DELETE FROM Employee WHERE EmployeeID = $employeeID";
+    if (mysqli_query($con, $sql)) {
+        echo "Doctor deleted successfully";
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+}
+
+//check working hours
+function trackWorkingHours($con, $employeeID) {
+    $sql = "SELECT EmployeeID, DayofWeek, TIMEDIFF(EndTime, StartTime) AS HoursWorked 
+            FROM Employee_Schedule 
+            WHERE EmployeeID = $employeeID";
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "Day: " . $row["DayofWeek"]. " - Hours Worked: " . $row["HoursWorked"]. "<br>";
+        }
+    } else {
+        echo "No records found";
+    }
+}
+?>
