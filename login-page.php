@@ -78,16 +78,16 @@ if (!$con) {
             $pw = mysqli_real_escape_string($con, $_POST['password']); // Clean password text
 
             // Check if the email exists in the database
-            $userQuery = "SELECT accounts.AccountID, accounts.AccountName, accounts.AccountType, AccData.PatientUser, AccData.AccountEmail, AccData.AccountPass
+            $userQuery = "SELECT accounts.AccountID, accounts.AccountName, accounts.AccountType, AccData.AccountUsername, AccData.AccountEmail, AccData.AccountPass
                           FROM accounts
                           JOIN AccData ON accounts.AccountID = AccData.AccountID
-                          WHERE AccData.PatientUser = '$un'";
+                          WHERE AccData.AccountUsername = '$un'";
             $result = mysqli_query($con, $userQuery);
             
             // Check if the query has a result
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
-                $_SESSION ["username"] = $row["PatientUser"];
+                $_SESSION ["username"] = $row["AccountUsername"];
                 if (password_verify($pw, $row['AccountPass'])) {
                     // Password is correct
                     if ($row["AccountType"] == "customer") {
