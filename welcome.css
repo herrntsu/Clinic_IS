@@ -552,6 +552,17 @@ button:hover {
     align-self: center;
     margin: 0;
     font-family: "Raleway Display", serif;
-     
+
   }
 }
+
+.learn-more {
+  background-color: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.wrapper .textv

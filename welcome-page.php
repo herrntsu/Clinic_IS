@@ -59,7 +59,7 @@ if (!isset($_SESSION['username'])) {//redirect
         </div>
     </div>
 
-    <section class="hero-section">
+        <s\tion class="hero-section">
         <div class="video-section">
             <div class="vid-with-gradient">
                 <video autoplay loop muted plays-inline class="bg-video">
@@ -76,9 +76,19 @@ if (!isset($_SESSION['username'])) {//redirect
                 <p> Start your journey in living a good health</p>
                 <button onclick="scrollFunction()">Learn how</button>
             </div>
-            
+
         </div>
-    </section>
+    </stion>
+
+    <div id="learn-more">
+        <div class="col-space">
+
+        </div>
+
+        <div class="col-space">
+
+        </div>
+    </div>
     <div id="locations" class="location-header">
         <h1> Branches </h1>
         <div class="wrapper">
