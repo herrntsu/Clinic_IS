@@ -99,7 +99,8 @@ if (!$con) {
                             $last_id = mysqli_insert_id($con);
 
                             // Insert into AccData table
-                            $sql_accdata = "INSERT INTO AccData (AccountID, PatientUser , AccountName, AccountEmail, AccountPass) VALUES ('$last_id', '$uname', '$funame', '$em', '$pww')";
+                            $sql_accdata = "INSERT INTO AccData (AccountID, AccountUsername , AccountName, AccountEmail, AccountPass) 
+                            VALUES ('$last_id', '$uname', '$funame', '$em', '$pww')";
                             if (mysqli_query($con, $sql_accdata)) {
                                 // Commit transaction
                                 mysqli_commit($con);
