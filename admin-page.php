@@ -6,113 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin.css">
     <link rel="icon" type="png" href="images/logo-removebg-preview.png">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Admin</title>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function() {
+                var addCustomerModal = document.getElementById("addCustomerModal");
+                var addCustomerBtn = document.getElementById("addCustomerBtn");
+                var addCustomerSpan = addCustomerModal.querySelector(".close");
 
-            var addModal = document.getElementById("addDoctorModal");
-            var addBtn = document.getElementById("addDoctorBtn");
-            var addSpan = document.getElementsByClassName("close")[0];
+                addCustomerBtn.onclick = function() {
+                    addCustomerModal.style.display = "block";
+                };
 
-            addBtn.onclick = function() {
-                addModal.style.display = "block";
-            }
+                addCustomerSpan.onclick = function() {
+                    addCustomerModal.style.display = "none";
+                };
 
-            addSpan.onclick = function() {
-                addModal.style.display = "none";
-            }
+                var addDoctorModal = document.getElementById("addDoctorModal");
+                var addDoctorBtn = document.getElementById("addDoctorBtn");
+                var addDoctorSpan = addDoctorModal.querySelector(".close");
 
-            window.onclick = function(event) {
-                if (event.target == addModal) {
-                    addModal.style.display = "none";
+                addDoctorBtn.onclick = function() {
+                    addDoctorModal.style.display = "block";
+                };
+
+                addDoctorSpan.onclick = function() {
+                    addDoctorModal.style.display = "none";
+                };
+
+                var editAccModal = document.getElementById("editAccModal");
+                var editAccSpan = editAccModal.querySelector(".close");
+                var editBtns = document.querySelectorAll(".editBtn");
+
+                for (var i = 0; i < editBtns.length; i++) {
+                    editBtns[i].onclick = function() {
+                        var accountID = this.getAttribute("data-id");
+                        var accountName = this.getAttribute("data-name");
+                        var accountType = this.getAttribute("data-type");
+                        var accountEmail = this.getAttribute("data-email");
+                        var accountUsername = this.getAttribute("data-username");
+                        var accountPassword = this.getAttribute("data-password");
+
+                        document.getElementById("editAccountID").value = accountID;
+                        document.getElementById("editAccountName").value = accountName;
+                        document.getElementById("editAccountType").value = accountType;
+                        document.getElementById("editAccountEmail").value = accountEmail;
+                        document.getElementById("editAccountUsername").value = accountUsername;
+                        document.getElementById("editAccountPassword").value = accountPassword;
+
+                        editAccModal.style.display = "block";
+                    }
                 }
-            }
-        });
 
-        document.addEventListener("DOMContentLoaded", function() {
-            var editModal = document.getElementById("editAccModal");
-            var editSpan = document.getElementsByClassName("close")[1];
-            var editBtns = document.getElementsByClassName("editBtn");
+                editAccSpan.onclick = function() {
+                    editAccModal.style.display = "none";
+                };
 
-            for (var i = 0; i < editBtns.length; i++) {
-                editBtns[i].onclick = function() {
-                    var accountID = this.getAttribute("data-id");
-                    var accountName = this.getAttribute("data-name");
-                    var accountType = this.getAttribute("data-type");
-                    var accountEmail = this.getAttribute("data-email");
-                    var accountUsername = this.getAttribute("data-username");
-                    var accountPassword = this.getAttribute("data-password");
+                window.onclick = function(event) {
+                    if (event.target == addCustomerModal) {
+                        addCustomerModal.style.display = "none";
+                    }
+                    if (event.target == addDoctorModal) {
+                        addDoctorModal.style.display = "none";
+                    }
+                    if (event.target == editAccModal) {
+                        editAccModal.style.display = "none";
+                    }
+                };
 
-                    document.getElementById("editAccountID").value = accountID;
-                    document.getElementById("editAccountName").value = accountName;
-                    document.getElementById("editAccountType").value = accountType;
-                    document.getElementById("editAccountEmail").value = accountEmail;
-                    document.getElementById("editAccountUsername").value = accountUsername;
-                    document.getElementById("editAccountPassword").value = accountPassword;
-
-                    editModal.style.display = "block";
+                var delBtns = document.querySelectorAll(".delAccBtn");
+                for (var i = 0; i < delBtns.length; i++) {
+                    delBtns[i].onclick = function() {
+                        var accountID = this.getAttribute("data-id");
+                        if (confirm("Are you sure you want to delete this account?")) {
+                            var form = document.createElement("form");
+                            form.method = "post";
+                            form.action = "admin-page.php";
+                            
+                            var input = document.createElement("input");
+                            input.type = "hidden";
+                            input.name = "deleteAccountID";
+                            input.value = accountID;
+                            form.appendChild(input);
+                            
+                            document.body.appendChild(form);
+                            form.submit();
+                        }
+                    }
                 }
-            }
+            });
+</script>
 
-    editSpan.onclick = function() {
-        editModal.style.display = "none";
-    }
 
-    window.onclick = function(event) {
-        if (event.target == editModal) {
-            editModal.style.display = "none";
-        }
-    }
-});
-    </script>
 </head>
 
 <body>
     <h1>Admin Page</h1>
+    
+    <div class = "container">
+    <div class = "table-container">
     <h2>All Accounts</h2>
-    <table border="1">
-        <tr>
-            <th>Account ID</th>
-            <th>Account Name</th>
-            <th>Account Type</th>
-            <th>Account Email</th>
-            <th>Account Username</th>
-            <th>Account Password</th>
-            <th>Actions</th>
-        </tr>
-        <?php
-        $con = mysqli_connect("localhost", "root", "", "clinic_website");
-        if (!$con) {
-            die("Connection Failed: " . mysqli_connect_error());
-        }
-
-        $result = getAllAccounts($con);
-        if ($result && mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['AccountID'] . "</td>";
-                echo "<td>" . $row['AccountName'] . "</td>";
-                echo "<td>" . $row['AccountType'] . "</td>";
-                echo "<td>" . $row['AccountEmail'] . "</td>";
-                echo "<td>" . $row['AccountUsername'] . "</td>";
-                echo "<td>" . $row['AccountPass'] . "</td>";
-                echo "<td><button class ='editBtn' data-id='" . $row['AccountID'] . "' data-name='" . $row['AccountName'] . "' data-type='" . $row['AccountType'] . "' data-email='" . $row['AccountEmail'] .  "' data-username='" . $row['AccountUsername'] . "' data-password='" . $row['AccountPass'] ."'>Edit</button>
-                        <button class = 'delAccBtn'>Delete</button>
-                        </td>";
-                echo "</tr>";
+        <table border="1">
+            <tr>
+                <th>Account ID</th>
+                <th>Account Name</th>
+                <th>Account Type</th>
+                <th>Account Email</th>
+                <th>Account Username</th>
+                <th>Account Password</th>
+                <th>Actions</th>
+            </tr>
+            <?php
+            $con = mysqli_connect("localhost", "root", "", "clinic_website");
+            if (!$con) {
+                die("Connection Failed: " . mysqli_connect_error());
             }
-        } else {
-            echo "<tr><td colspan='4'>No accounts found</td></tr>";
-        }
 
-        mysqli_close($con);
-        ?>
-    </table>
+            $result = getAllAccounts($con);
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['AccountID'] . "</td>";
+                    echo "<td>" . $row['AccountName'] . "</td>";
+                    echo "<td>" . $row['AccountType'] . "</td>";
+                    echo "<td>" . $row['AccountEmail'] . "</td>";
+                    echo "<td>" . $row['AccountUsername'] . "</td>";
+                    echo "<td>" . $row['AccountPass'] . "</td>";
+                    echo "<td><button class ='editBtn' data-id='" . $row['AccountID'] . "' data-name='" . $row['AccountName'] . "' data-type='" . $row['AccountType'] . "' data-email='" . $row['AccountEmail'] .  "' data-username='" . $row['AccountUsername'] . "' data-password='" . $row['AccountPass'] ."'>Edit</button>
+                    <button class='delAccBtn' data-id='" . $row['AccountID'] . "'>Delete</button>
+                            </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='7'>No accounts found</td></tr>";
+            }
 
-    <!-- Button to open the Add Doctor modal form -->
-    <button id="addDoctorBtn" style="position: fixed; bottom: 10px; right: 10px;">Add Doctor</button>
-
+            mysqli_close($con);
+            ?>
+        </table>
+    
+    <div class="button-container">
+        <button id="addCustomerBtn">Add Customer</button>
+        <button id="addDoctorBtn">Add Doctor</button>
+    </div>
+</div>
+</div>
     <!-- Edit Account Modal -->
     <div id="editAccModal" class="modal">
     <div class="modal-content">
@@ -121,7 +161,7 @@
         <form method="post" action="admin-page.php">
             <input type="hidden" name="accountID" id="editAccountID">
             <input type="text" name="accountName" id="editAccountName" placeholder="Account Name" required>
-            <input type="text" name="accountType" id="editAccountType" placeholder="Account Type" required>
+            <input type="hidden" name="accountType" id="editAccountType" placeholder="Account Type" required>
             <input type="email" name="accountEmail" id="editAccountEmail" placeholder="Account Email" required>
             <input type="text" name="accountUsername" id="editAccountUsername" placeholder="Account Username" required>
             <input type="text" name="accountPassword" id="editAccountPassword" placeholder="Account Password" required>
@@ -129,6 +169,21 @@
         </form>
     </div>
 </div>
+
+    <!-- Add Customer Modal -->
+    <div id="addCustomerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Customer</h2>
+            <form method="post" action="admin-page.php">
+                <input type="text" name="customerName" placeholder="Customer Name" required>
+                <input type="email" name="customerEmail" placeholder="Customer Email" required>
+                <input type="text" name="customerUsername" placeholder="Customer Username" required>
+                <input type="password" name="customerPassword" placeholder="Customer Password" required>
+                <input type="submit" name="addCustomer" value="Add Customer">
+            </form>
+        </div>
+    </div>
 
     <!-- Add Doctor Modal -->
     <div id="addDoctorModal" class="modal">
@@ -154,6 +209,29 @@
             die("Connection Failed: " . mysqli_connect_error());
         }
 
+        if (isset($_POST['addCustomer'])) {
+            $customerName = $_POST['customerName'];
+            $customerEmail = $_POST['customerEmail'];
+            $customerUsername = $_POST['customerUsername'];
+            $customerPassword = $_POST['customerPassword'];
+        
+            // Insert into Accounts table
+            $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$customerName', 'customer')";
+            if (mysqli_query($con, $sql_accounts)) {
+                $accountID = mysqli_insert_id($con);
+        
+                // Insert into AccData table
+                $sql_accdata = "INSERT INTO AccData (AccountID, AccountName, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$customerName', '$customerEmail', '$customerUsername', '$customerPassword')";
+                if (mysqli_query($con, $sql_accdata)) {
+                    echo "New customer added successfully";
+                } else {
+                    echo "Error: " . mysqli_error($con);
+                }
+            } else {
+                echo "Error: " . mysqli_error($con);
+            }
+        }
+
         if (isset($_POST['addDoctor'])) {
             $accountName = $_POST['accountName'];
             $specialty = $_POST['specialty'];
@@ -174,9 +252,9 @@
             editAccount($con, $accountID, $accountName, $accountType, $accountEmail, $accountUsername, $accountPassword);
         }
 
-        if (isset($_POST['deleteDoctor'])) {
-            $employeeID = $_POST['employeeID'];
-            deleteDoctor($con, $employeeID);
+        if (isset($_POST['deleteAccountID'])) {
+            $accountID = $_POST['deleteAccountID'];
+            deleteAccount($con, $accountID);
         }
 
         if (isset($_POST['trackHours'])) {
@@ -184,8 +262,11 @@
             trackWorkingHours($con, $employeeID);
         }
 
-        mysqli_close($con);
+         mysqli_close($con);
+
     }
+
+    
 
     function getAllAccounts($con) {
         $sql = "SELECT Accounts.AccountID, Accounts.AccountName, Accounts.AccountType, AccData.AccountEmail, AccData.AccountUsername, AccData.AccountPass 
@@ -194,7 +275,7 @@
         $result = mysqli_query($con, $sql);
         return $result;
     }
-
+    
     function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password) {
         $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
         if (mysqli_query($con, $sql_accounts)) {
@@ -221,12 +302,37 @@
         }
     }
 
-    function deleteDoctor($con, $employeeID) {
-        $sql = "DELETE FROM Employee WHERE EmployeeID = $employeeID";
-        if (mysqli_query($con, $sql)) {
-            echo "Doctor deleted successfully";
-        } else {
-            echo "Error: " . mysqli_error($con);
+    function deleteAccount($con, $accountID) {
+        
+        mysqli_begin_transaction($con);
+    
+        try {
+            // Check if the account is associated with an employee
+            $sql = "SELECT COUNT(*) AS EmployeeCount FROM Employee WHERE AccountID = $accountID";
+            $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $employeeCount = $row['EmployeeCount'];
+    
+            if ($employeeCount > 0) {
+                
+                $sql = "DELETE FROM Employee_Details WHERE EmployeeID IN (SELECT EmployeeID FROM Employee WHERE AccountID = $accountID)";
+                mysqli_query($con, $sql);
+    
+                $sql = "DELETE FROM Employee WHERE AccountID = $accountID";
+                mysqli_query($con, $sql);
+            }
+    
+            $sql = "DELETE FROM AccData WHERE AccountID = $accountID";
+            mysqli_query($con, $sql);
+    
+            $sql = "DELETE FROM Accounts WHERE AccountID = $accountID";
+            mysqli_query($con, $sql);
+    
+            mysqli_commit($con);
+            echo "Account deleted successfully";
+        } catch (mysqli_sql_exception $exception) {
+            mysqli_rollback($con);
+            echo "Error: " . $exception->getMessage();
         }
     }
 
@@ -258,6 +364,7 @@
             echo "No records found";
         }
     }
+
     ?>
 </body>
 
