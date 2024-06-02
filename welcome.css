@@ -469,24 +469,6 @@ button:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
   margin-top: 5rem;
-
-
-  & :hover {
-    transform: sca;
-  }
-}
-
-.box:hover {
-  transform: scale(1.05);
-}
-
-.box a::after {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 0;
-  background: #000;
-  transition: width 0.3s ease;
 }
 
 .box {
@@ -498,7 +480,6 @@ button:hover {
   grid-template-rows: subgrid;
   grid-row: span 3;
 
-
   .img2 {
     margin-top: 4rem;
   }
@@ -508,7 +489,7 @@ button:hover {
     text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 0.15em;
-    font-family: "Raleway Display", serif;
+    font-family: Playfair Display;
     font-weight: 500;
     display: inline-block;
     position: relative;
@@ -531,7 +512,7 @@ button:hover {
     width: 40%;
     left: 0;
     transform: scaleX(1);
-    transform-origin: center;
+    transform-origin: left;
   }
 
   @media screen and (max-height: 300px) {
@@ -546,23 +527,4 @@ button:hover {
     max-width: 70%;
     border-radius: 10px;
   }
-
-  & p {
-    color: black;
-    align-self: center;
-    margin: 0;
-    font-family: "Raleway Display", serif;
-
-  }
 }
-
-.learn-more {
-  background-color: 100%;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.wrapper .textv
