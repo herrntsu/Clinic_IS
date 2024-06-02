@@ -22,6 +22,11 @@ session_start();
             <img class="website-logo" src="media/logo-removebg-preview.png" alt="">
             <h3>AnchorMed</h3>
         </div>
+
+        <div class="user-section">
+            <a href="registration-page.php">Sign-up now</a>|
+            <a href="login-page.php">Sign-in</a>
+        </div>
     </div>
 
     <section class="hero-section">
@@ -35,11 +40,6 @@ session_start();
         </div>
         <div class="header">
             <h2>Higher standards of care every day.</h2>
-            <div class="inner-section">
-                <a href="registration-page.php">Sign-up now</a>
-                |
-                <a href="login-page.php">Sign-in</a>
-            </div>
         </div>
     </section>
 

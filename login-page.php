@@ -83,11 +83,11 @@ if (!$con) {
                           JOIN AccData ON accounts.AccountID = AccData.AccountID
                           WHERE AccData.AccountUsername = '$un'";
             $result = mysqli_query($con, $userQuery);
-            
+
             // Check if the query has a result
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
-                $_SESSION ["username"] = $row["AccountUsername"];
+                $_SESSION["username"] = $row["AccountUsername"];
                 if (password_verify($pw, $row['AccountPass'])) {
                     // Password is correct
                     if ($row["AccountType"] == "customer") {
