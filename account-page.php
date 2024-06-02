@@ -17,7 +17,13 @@ session_start();
 </head>
 
 <body>
+    <div class="return">
+        <a onclick="history.back()"> <span class="material-symbols-outlined">
+                arrow_back_ios
+            </span>Go Back</a>
+    </div>
     <div class="container">
+
         <form id="account-form" action="" method="post" class="form-group">
             <div class="form-group">
                 <span class="material-symbols-outlined">

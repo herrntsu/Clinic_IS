@@ -53,7 +53,7 @@ if (!isset($_SESSION['username'])) {//redirect
                 </button>
                 <div class="dropdown-content">
                     <a href="/CLINIC_IS/account-page.php">Account</a>
-                    <a href="logout.php">Logout</a>
+                    <a href="/CLINIC_IS/logout.php">Logout</a>
                 </div>
             </div>
         </div>

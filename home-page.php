@@ -1,6 +1,6 @@
-    <?php
-    session_start();
-    ?>
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
     </style>
-    <link rel=stylesheet href="home.css">
+    <link rel=stylesheet href="/CLINIC_IS/Styles/home.css">
     <link rel="icon" type="png" href="media/logo-removebg-preview.png">
     <title>Home</title>
 </head>
@@ -19,7 +19,7 @@
 <body>
     <div class="navigation-bar">
         <div class="logo-text">
-            <img class="website-logo" src="media/logo-removebg-preview.png" alt="">
+            <img class="website-logo" src="/CLINIC_IS/media/logo-removebg-preview.png" alt="">
             <h3>AnchorMed</h3>
         </div>
 
@@ -33,7 +33,7 @@
         <div class="video-section">
             <div class="vid-with-gradient">
                 <video autoplay loop muted plays-inline class="bg-video">
-                    <source src="media/bg-video-loop.mp4">
+                    <source src="/CLINIC_IS/media/bg-video-loop.mp4">
                 </video>
             </div>
             <div class="gradient"></div>

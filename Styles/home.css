@@ -36,6 +36,7 @@ body {
   color: inherit;
   min-height: 100vh;
   scroll-behavior: smooth;
+  overflow: scroll;
 }
 
 video,
