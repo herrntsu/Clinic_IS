@@ -342,12 +342,13 @@ body {
   cursor: pointer;
 }
 
-
 .return {
   display: grid;
   align-items: center;
   gap: 1rem;
   justify-self: start;
+  animation: fadeInTranslate 0.7s forwards;
+  margin-top: 2rem;
 
   & span {
     align-self: center;

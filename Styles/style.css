@@ -255,7 +255,7 @@ body {
   display: flex;
   overflow: scroll;
   padding: 50px;
-
+  animation: fadeInTranslate 0.7s forwards;
 
 }
 
@@ -264,6 +264,7 @@ body {
   align-items: center;
   flex-direction: row;
   gap: 1rem;
+  animation: fadeInTranslate 0.7s forwards;
 
   & span {
     align-self: center;
