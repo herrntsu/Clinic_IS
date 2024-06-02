@@ -255,4 +255,32 @@ body {
   display: flex;
   overflow: scroll;
   padding: 50px;
+
+
+}
+
+.return {
+  display: grid;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+
+  & span {
+    align-self: center;
+    max-height: 100%;
+    max-width: 100%;
+    font-size: 20px;
+    top: 10px;
+  }
+
+  & a {
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    align-self: center;
+    max-height: 100%;
+    max-width: 100%;
+    font-size: 20px;
+  }
+
 }
