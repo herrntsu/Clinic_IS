@@ -68,25 +68,42 @@ session_start();
             if (editButton.value === 'Edit') {
                 editButton.value = 'Done';
             } else {
+                // Show the modal
                 document.getElementById('myModal').style.display = "block";
             }
         }
+
+        // Get the modal
         var modal = document.getElementById('myModal');
+        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName('close')[0];
+        // Get the confirm and cancel buttons
         var confirmBtn = document.getElementById('confirm-btn');
         var cancelBtn = document.getElementById('cancel-btn');
+
+        // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = 'none';
+            document.getElementById('edit-btn').value = 'Edit';
         }
+
+        // When the user clicks on the cancel button, close the modal
         cancelBtn.onclick = function () {
             modal.style.display = 'none';
+            document.getElementById('edit-btn').value = 'Edit';
         }
+
+        // When the user clicks on the confirm button, submit the form
         confirmBtn.onclick = function () {
+            modal.style.display = 'none';
             document.getElementById('account-form').submit();
         }
+
+        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
+                document.getElementById('edit-btn').value = 'Edit';
             }
         }
     </script>
@@ -121,27 +138,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             JOIN AccData ON accounts.AccountID = AccData.AccountID
             WHERE AccData.AccountUsername = '$uname'";
             $result = mysqli_query($con, $userQuery);
-            try {
-                $sql_accounts = "UPDATE Accounts SET AccountName = '$funame' WHERE AccountID = " . $_SESSION['user_id'];
-                $sql_accdata = "UPDATE accdata SET AccountUsername = '$uname', AccountName = '$funame', AccountEmail = '$em', AccountPass = '$pw' WHERE AccountID = " . $_SESSION['user_id'];
 
-                if (mysqli_query($con, $sql_accounts) && mysqli_query($con, $sql_accdata)) {
-                    mysqli_commit($con);
-                    echo "<script>alert('Update successful.');</script>";
-                } else {
+            if ($result) {
+                try {
+                    mysqli_begin_transaction($con);
+                    $sql_accounts = "UPDATE Accounts SET AccountName = '$funame' WHERE AccountID = " . $_SESSION['user_id'];
+                    $sql_accdata = "UPDATE AccData SET AccountUsername = '$uname', AccountName = '$funame', AccountEmail = '$em', AccountPass = '$pw' WHERE AccountID = " . $_SESSION['user_id'];
+
+                    if (mysqli_query($con, $sql_accounts) && mysqli_query($con, $sql_accdata)) {
+                        mysqli_commit($con);
+                        echo "<script>alert('Update successful.');</script>";
+                    } else {
+                        mysqli_rollback($con);
+                        echo "<script>alert('Error: " . mysqli_error($con) . "');</script>";
+                    }
+                } catch (Exception $e) {
                     mysqli_rollback($con);
-                    echo "Error: " . mysqli_error($con);
+                    echo "<script>alert('Error: " . $e->getMessage() . "');</script>";
                 }
-            } catch (Exception $e) {
-                mysqli_rollback($con);
-                echo "Error: " . $e->getMessage();
+            } else {
+                echo "<script>alert('Error: " . mysqli_error($con) . "');</script>";
             }
+        } else {
+            echo "<script>alert('Passwords do not match.');</script>";
         }
     } else {
-        echo "<script>alert('Passwords do not match.');</script>";
+        echo "<script>alert('All fields are required.');</script>";
     }
-} else {
-    echo "<script>alert('Please fill in all the fields.');</script>";
 }
+
+// Close the connection
 mysqli_close($con);
 ?>
