@@ -50,7 +50,7 @@ session_start();
         </form>
     </div>
 
-    <!-- The Modal -->
+    <!-- modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -74,38 +74,33 @@ session_start();
             if (editButton.value === 'Edit') {
                 editButton.value = 'Done';
             } else {
-                // Show the modal
                 document.getElementById('myModal').style.display = "block";
             }
         }
 
-        // Get the modal
         var modal = document.getElementById('myModal');
-        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName('close')[0];
-        // Get the confirm and cancel buttons
         var confirmBtn = document.getElementById('confirm-btn');
         var cancelBtn = document.getElementById('cancel-btn');
 
-        // When the user clicks on <span> (x), close the modal
+
         span.onclick = function () {
             modal.style.display = 'none';
             document.getElementById('edit-btn').value = 'Edit';
         }
 
-        // When the user clicks on the cancel button, close the modal
+
         cancelBtn.onclick = function () {
             modal.style.display = 'none';
             document.getElementById('edit-btn').value = 'Edit';
         }
 
-        // When the user clicks on the confirm button, submit the form
+
         confirmBtn.onclick = function () {
             modal.style.display = 'none';
             document.getElementById('account-form').submit();
         }
 
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
