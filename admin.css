@@ -2,6 +2,76 @@ body {
     font-family: Raleway;
 }
 
+.navigation-bar {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    /* Center items vertically */
+    justify-content: space-between;
+    box-shadow: 0 4px 70px 10px rgba(0, 0, 0, 0.2), 0 6px 40px 10px rgba(0, 0, 0, 0.19);
+  
+    .user-section {
+      z-index: 2;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      color: black;
+      margin-right: 2.5rem;
+  
+      & a {
+        color: #000000;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        font-family: Playfair Display;
+        font-weight: 500;
+        display: inline-block;
+        position: relative;
+      }
+  
+      a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #000000;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+      }
+  
+      a:hover:after {
+        width: 100%;
+        left: 0;
+      }
+  
+      @media screen and (max-height: 300px) {
+        ul {
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+
+  .logo-text {
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+  
+    img {
+      max-width: 95%;
+      grid-column-start: 3;
+      grid-column-end: 4;
+    }
+  
+    h3 {
+      grid-column-start: 4;
+      grid-column-end: 7;
+      align-self: center;
+    }
+  }
+
 .container {
     display: flex;
     justify-content: center; 

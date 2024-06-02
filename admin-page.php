@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin.css">
-    <link rel="icon" type="png" href="images/logo-removebg-preview.png">
+    <link rel="icon" type="png" href="media\logo-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -103,6 +107,14 @@
 </head>
 
 <body>
+    <div class="navigation-bar">
+            <div class="logo-text">
+                <img class="website-logo" src="media/logo-removebg-preview.png" alt="">
+                <h3>AnchorMed</h3>
+            </div>
+
+        </div>
+
     <h1>Admin Page</h1>
     
     <div class = "container">
