@@ -229,22 +229,8 @@ session_start();
             $customerEmail = $_POST['customerEmail'];
             $customerUsername = $_POST['customerUsername'];
             $customerPassword = $_POST['customerPassword'];
+            addCustomer ($con, $customerName, $customerEmail, $customerUsername, $customerPassword);
 
-            // Insert into Accounts table
-            $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$customerName', 'customer')";
-            if (mysqli_query($con, $sql_accounts)) {
-                $accountID = mysqli_insert_id($con);
-
-                // Insert into AccData table
-                $sql_accdata = "INSERT INTO AccData (AccountID, AccountName, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$customerName', '$customerEmail', '$customerUsername', '$customerPassword')";
-                if (mysqli_query($con, $sql_accdata)) {
-                    echo "New customer added successfully";
-                } else {
-                    echo "Error: " . mysqli_error($con);
-                }
-            } else {
-                echo "Error: " . mysqli_error($con);
-            }
         }
 
         if (isset($_POST['addDoctor'])) {
@@ -292,22 +278,40 @@ session_start();
         return $result;
     }
 
+    function addCustomer($con, $customerName, $customerEmail, $customerUsername, $customerPassword) {
+        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$customerName', 'customer')";
+            if (mysqli_query($con, $sql_accounts)) {
+                $accountID = mysqli_insert_id($con);
+                $sql_customer = "INSERT INTO Customer (AccountID) VALUES ($accountID)";
+                if (mysqli_query($con, $sql_customer)) {
+                // Insert into AccData table
+                $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$customerEmail', '$customerUsername', '$customerPassword')";
+                if (mysqli_query($con, $sql_accdata)) {
+                    echo "New customer added successfully";
+                } else {
+                    echo "Error: " . mysqli_error($con);
+                }
+            } else {
+                echo "Error: " . mysqli_error($con);
+            }
+        } else {
+            echo "Error: " . mysqli_error($con); 
+        }
+    }
     function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password)
-    {
-        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
-        if (mysqli_query($con, $sql_accounts)) {
-            $accountID = mysqli_insert_id($con);
-            $sql_employee = "INSERT INTO Employee (AccountID, AccountName, AccountType) VALUES ('$accountID', '$accountName', 'employee')";
-            if (mysqli_query($con, $sql_employee)) {
-                $employeeID = mysqli_insert_id($con);
-                $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
-                if (mysqli_query($con, $sql_employee_details)) {
-                    $sql_accdata = "INSERT INTO AccData (AccountID, AccountName, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$accountName', '$email', '$employee_username', '$employee_password')";
-                    if (mysqli_query($con, $sql_accdata)) {
-                        echo "New doctor added successfully";
-                    } else {
-                        echo "Error: " . mysqli_error($con);
-                    }
+{
+    $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
+    if (mysqli_query($con, $sql_accounts)) {
+        $accountID = mysqli_insert_id($con);
+        $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
+        if (mysqli_query($con, $sql_employee)) {
+            $employeeID = mysqli_insert_id($con);
+            // Insert into Employee_Details table
+            $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
+            if (mysqli_query($con, $sql_employee_details)) {
+                $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
+                if (mysqli_query($con, $sql_accdata)) {
+                    echo "New doctor added successfully";
                 } else {
                     echo "Error: " . mysqli_error($con);
                 }
@@ -317,7 +321,10 @@ session_start();
         } else {
             echo "Error: " . mysqli_error($con);
         }
+    } else {
+        echo "Error: " . mysqli_error($con);
     }
+}
 
     function deleteAccount($con, $accountID)
     {
