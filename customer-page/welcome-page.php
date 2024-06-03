@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['username'])) {//redirect
     header("Location: home-page.php");
     exit();
+
 }
 ?>
 
@@ -22,14 +23,14 @@ if (!isset($_SESSION['username'])) {//redirect
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
-    <title>Home</title>
+    <title>Welcome to AnchorMed</title>
 </head>
 
 <body>
     <div class="navigation-bar">
         <div class="logo-text">
             <img class="website-logo" src="/CLINIC_IS/media/logo-removebg-preview.png" alt="">
-            <p>AnchorMed</p>
+            <h3>AnchorMed</h3>
         </div>
         <div class="user-side">
             <div class="dropdown">
@@ -47,6 +48,7 @@ if (!isset($_SESSION['username'])) {//redirect
                 </div>
             </div>
             <button class="dropbtn">Book Appointment</button>
+            <button class="dropbtn">Donate</button>
             <div class="dropdown">
                 <button class="profile-btn">
                     <span class="material-symbols-outlined">account_circle</span>

@@ -145,6 +145,7 @@ code {
   /* Center items vertically */
   justify-content: space-between;
   box-shadow: 0 4px 70px 10px rgba(0, 0, 0, 0.2), 0 6px 40px 10px rgba(0, 0, 0, 0.19);
+  height: 100px;
 
   .user-section {
     z-index: 2;
@@ -159,7 +160,7 @@ code {
       text-transform: uppercase;
       text-decoration: none;
       letter-spacing: 0.15em;
-      font-family: Playfair Display;
+      font-family: Raleway;
       font-weight: 500;
       display: inline-block;
       position: relative;
@@ -193,7 +194,7 @@ code {
 
 h3 {
   color: black;
-  font-family: 'Playfair Display', serif;
+  font-family: 'raleway Display', serif;
   font-weight: bold;
 }
 
@@ -203,7 +204,7 @@ h3 {
   padding: 20px 20px;
   text-decoration: none;
   font-size: 23px;
-  font-family: 'Montserrat';
+  font-family: 'Raleway', sans-serif;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -280,12 +281,13 @@ h3 {
   }
 
   .header {
-    margin: 5.5rem 6rem;
+    margin: 7rem 10rem;
     position: relative;
 
     h2 {
       margin: 1.5rem 0;
-      font-family: "Playfair Display", serif;
+      font-family: "raleway Display", serif;
+      font-size: 50px;
       font-weight: lighter;
       letter-spacing: 2px;
     }
@@ -298,19 +300,24 @@ h3 {
 
 .logo-text {
   display: grid;
-  grid-template-columns: repeat(8, 100px);
+  grid-template-columns: repeat(6, 100px);
+}
 
-  img {
-    max-width: 95%;
-    grid-column-start: 3;
-    grid-column-end: 4;
-  }
+.logo-text h3 {
+  grid-column-start: 4;
+  grid-column-end: 7;
+  align-self: center;
+  font-family: "Raleway", serif;
+  font-size: 35px;
+  color: black;
+  margin: 0;
+}
 
-  h3 {
-    grid-column-start: 4;
-    grid-column-end: 7;
-    align-self: center;
-  }
+
+.logo-text img {
+  max-width: 95%;
+  grid-column-start: 3;
+  margin: 0;
 }
 
 footer {

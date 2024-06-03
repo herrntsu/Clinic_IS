@@ -16,7 +16,7 @@
 
 
 .Raleway-display-extralight {
-  font-family: "Raleway Display", serif;
+  font-family: "Raleway", serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -160,7 +160,7 @@ code {
 
 h3 {
   color: black;
-  font-family: 'Raleway Display', serif;
+  font-family: 'Raleway', serif;
   font-weight: bold;
 }
 
@@ -170,7 +170,7 @@ h3 {
   padding: 20px;
   text-decoration: none;
   font-size: 23px;
-  font-family: 'Raleway Display', serif;
+  font-family: 'Raleway', serif;
   display: flex;
   align-items: center;
   gap: 1.5rem;/
@@ -184,8 +184,8 @@ h3 {
 .dropbtn {
   background: none;
   border: none;
-  font-family: 'Raleway Display', serif;
-  font-size: 23px;
+  font-family: 'Raleway', serif;
+  font-size: 16px;
   color: black;
   margin: 0;
   padding: 20px;
@@ -226,14 +226,15 @@ h3 {
 }
 
 
-.logo-text p {
+.logo-text h3 {
   grid-column-start: 4;
   grid-column-end: 7;
   align-self: center;
-  font-family: "Raleway Display", serif;
+  font-family: "Raleway", serif;
   font-size: 35px;
   color: black;
   margin: 0;
+
 }
 
 footer {
@@ -305,7 +306,7 @@ footer {
 }
 
 .header {
-  margin: 5rem 10rem;
+  margin: 24px 10rem;
   position: relative;
   gap: 5rem;
 
@@ -327,7 +328,7 @@ footer {
 
 .inner-section p {
   margin: 0;
-  font-family: "Raleway Display", serif;
+  font-family: "Raleway", serif;
 }
 
 .inner-section p a {
@@ -353,6 +354,8 @@ footer {
   width: 0;
 }
 
+
+
 .inner-section p a:hover:after {
   width: 100%;
   left: 0;
@@ -376,18 +379,15 @@ button:hover {
 .logo-text {
   display: grid;
   grid-template-columns: repeat(6, 100px);
+
+
+
 }
 
 .logo-text img {
   max-width: 95%;
   grid-column-start: 3;
   grid-column-end: 4;
-}
-
-.logo-text h3 {
-  grid-column-start: 4;
-  grid-column-end: 7;
-  align-self: center;
 }
 
 
@@ -451,8 +451,8 @@ button:hover {
 .dropbtn {
   background: none;
   border: none;
-  font-family: 'Raleway Display', serif;
-  font-size: 23px;
+  font-family: 'Raleway', serif;
+  font-size: 20px;
   color: black;
   padding: 20px;
   cursor: pointer;
@@ -471,7 +471,7 @@ hr {
   & h1 {
     margin-top: 5rem;
     color: black;
-    font-family: "Raleway Display", sans-serif;
+    font-family: "Raleway", sans-serif;
     justify-self: center;
   }
 }
@@ -503,7 +503,7 @@ hr {
     /* text-transform: uppercase; */
     text-decoration: none;
     letter-spacing: 0.15em;
-    font-family: Playfair Display;
+    font-family: "Raleway", sans-serif;
     font-weight: 500;
     display: inline-block;
     position: relative;
@@ -539,7 +539,7 @@ hr {
 
   p {
     color: black;
-    font-family: "Raleway Display", sans-serif;
+    font-family: "Raleway", sans-serif;
     margin-top: 1rem;
     margin-bottom: 0;
     font-size: 30px;
@@ -547,7 +547,7 @@ hr {
 }
 
 .pageReset {
-  font-family: Raleway Display;
+  font-family: Raleway;
   display: none;
   position: fixed;
   top: 90%;

@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 try {
                     mysqli_begin_transaction($con);
                     $sql_accounts = "UPDATE Accounts SET AccountName = '$funame' WHERE AccountID = " . $_SESSION['user_id'];
-                    $sql_accdata = "UPDATE AccData SET AccountUsername = '$uname', AccountName = '$funame', AccountEmail = '$em', AccountPass = '$pw' WHERE AccountID = " . $_SESSION['user_id'];
+                    $sql_accdata = "UPDATE AccData SET AccountUsername = '$uname', AccountEmail = '$em', AccountPass = '$pw' WHERE AccountID = " . $_SESSION['user_id'];
 
                     if (mysqli_query($con, $sql_accounts) && mysqli_query($con, $sql_accdata)) {
                         mysqli_commit($con);

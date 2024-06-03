@@ -102,12 +102,22 @@ if (!$con) {
                             $last_id = mysqli_insert_id($con);
 
                             // Insert into AccData table
-                            $sql_accdata = "INSERT INTO AccData (AccountID, AccountUsername , AccountName, AccountEmail, AccountPass) 
-                            VALUES ('$last_id', '$uname', '$funame', '$em', '$pw')";
+                            $sql_accdata = "INSERT INTO AccData (AccountID, AccountUsername , AccountEmail, AccountPass) 
+                            VALUES ('$last_id', '$uname', '$em', '$pw')";
+
                             if (mysqli_query($con, $sql_accdata)) {
-                                // Commit transaction
-                                mysqli_commit($con);
-                                echo "<script>alert('Registration successful.');</script>";
+                                // Insert into Customers table
+                                $sql_acccustomers = "INSERT INTO customer (CustomerID, AccountID) 
+                                                    VALUES ('$last_id', '$last_id')";
+                                if (mysqli_query($con, $sql_acccustomers)) {
+                                    // Commit transaction if all inserts succeed
+                                    mysqli_commit($con);
+                                    echo "<script>alert('Registration successful.');</script>";
+                                } else {
+                                    // Rollback transaction if insert into customers fails
+                                    mysqli_rollback($con);
+                                    echo "Error: " . mysqli_error($con);
+                                }
                             } else {
                                 // Rollback transaction if insert into AccData fails
                                 mysqli_rollback($con);
@@ -132,7 +142,6 @@ if (!$con) {
         }
     }
 }
-
 
 // Close the connection
 mysqli_close($con);

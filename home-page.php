@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (isset($_SESSION['username'])) {//redirect
+    header("Location: customer-page/welcome-page.php");
+    exit();
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +16,11 @@ session_start();
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel=stylesheet href="/CLINIC_IS/Styles/home.css">
     <link rel="icon" type="png" href="media/logo-removebg-preview.png">
     <title>Home</title>
