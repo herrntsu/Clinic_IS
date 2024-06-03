@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Sign Up</title>
 </head>
-<link rel="stylesheet" href="regis-style.css">
+<link rel="stylesheet" href="/CLINIC_IS/Styles/regis-style.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
 <link rel="icon" type="png" href="media\logo-removebg-preview.png">
 <link rel="stylesheet"
@@ -33,10 +33,16 @@
                 <input type="password" name="user-cpassword-reg" class="user-cpassword-reg"
                     placeholder="Confirm password" required>
                 <input type="submit" name="submit" class="submit-btn" value="Register">
-                <p>Already have an account? <a class="hyperlink" href="login-page.php">Login here</a>.</p>
-                <p>By creating an account, you are agreeing to the <a class="hyperlink"
-                        href="terms&conditions.php">Terms & Conditions</a>
-                </p>
+
+                <div class="checkboxdirection">
+                    <input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" required>
+                    <label for="terms-and-conditions" span=2fr>I agree to the
+                        <a href="/CLINIC_IS/terms&conditions.php">terms and conditions</a>
+                    </label>
+                </div>
+                <div class=>
+                    <p>Already have an account? <a class="hyperlink" href="login-page.php">Login here</a>.</p>
+                </div>
             </div>
         </form>
     </div>
@@ -85,9 +91,6 @@ if (!$con) {
                 if (mysqli_num_rows($result) > 0) {
                     echo "<script>alert('An account with this email already exists.');</script>";
                 } else {
-                    // Hash the password
-                    $pww = password_hash($pw, PASSWORD_DEFAULT);
-
                     // Begin transaction
                     mysqli_begin_transaction($con);
 
@@ -100,7 +103,7 @@ if (!$con) {
 
                             // Insert into AccData table
                             $sql_accdata = "INSERT INTO AccData (AccountID, AccountUsername , AccountName, AccountEmail, AccountPass) 
-                            VALUES ('$last_id', '$uname', '$funame', '$em', '$pww')";
+                            VALUES ('$last_id', '$uname', '$funame', '$em', '$pw')";
                             if (mysqli_query($con, $sql_accdata)) {
                                 // Commit transaction
                                 mysqli_commit($con);

@@ -8,9 +8,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/CLINIC_IS/Styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
-    <link rel="icon" type="png" href="media\logo-removebg-preview.png">
+    <link rel="icon" type="png" href="/CLINIC_IS/media/logo-removebg-preview.png">
     <title>Login</title>
 </head>
 
@@ -59,7 +59,6 @@ session_start();
 </html>
 
 <?php
-
 $servername = "localhost"; //database server
 $username = "root"; //database username
 $password = ""; //database password
@@ -88,14 +87,19 @@ if (!$con) {
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION["username"] = $row["AccountUsername"];
-                if (password_verify($pw, $row['AccountPass'])) {
+                $_SESSION["password"] = $row["AccountPass"];
+                $_SESSION["fullname"] = $row["AccountName"];
+                $_SESSION["emailaddress"] = $row["AccountEmail"];
+                $_SESSION["user_id"] = $row["AccountID"];
+
+                if ($row['AccountPass'] == $pw) {
                     // Password is correct
                     if ($row["AccountType"] == "customer") {
-                        header("Location: welcome-page.php");
+                        header("Location: /CLINIC_IS/customer-page/welcome-page.php");
                     } elseif ($row["AccountType"] == "admin") {
-                        header("Location: admin-page.php");
+                        header("Location: /CLINIC_IS/admin-page/admin-page.php");
                     } elseif ($row["AccountType"] == "employee") {
-                        header("Location: employee-page.php");
+                        header("Location: /CLINIC_IS/employees-page/employee-page.php");
                     }
                 } else {
                     // Password is incorrect

@@ -5,7 +5,13 @@
 #448FA3
 #68C5DB
 */
-
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
 
 
 
@@ -146,7 +152,10 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 70px 10px rgba(0, 0, 0, 0.2), 0 6px 40px 10px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 70px 10px rgba(0, 0, 0, 0.2), 0 6px 10px 2px rgba(0, 0, 0, 0.19);
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 h3 {
@@ -232,7 +241,7 @@ footer {
   max-width: 100%;
   height: 400px;
   margin-top: 5rem;
-  background-color: #02182B;
+  background-color: rgb(1, 45, 97)
 }
 
 /* Scrollbar */
@@ -449,6 +458,11 @@ button:hover {
   cursor: pointer;
 }
 
+hr {
+  width: 90%;
+  justify-self: center;
+  margin-top: 2.5rem;
+}
 
 .location-header {
   display: grid;
@@ -457,7 +471,7 @@ button:hover {
   & h1 {
     margin-top: 5rem;
     color: black;
-    font-family: Raleway Display;
+    font-family: "Raleway Display", sans-serif;
     justify-self: center;
   }
 }
@@ -473,7 +487,7 @@ button:hover {
 
 .box {
   border: 1px solid #ccc;
-  border-radius: 50px;
+  border-radius: 80px;
   padding: 2rem;
   text-align: center;
   display: grid;
@@ -486,13 +500,14 @@ button:hover {
 
   & a {
     color: #000000;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     text-decoration: none;
     letter-spacing: 0.15em;
     font-family: Playfair Display;
     font-weight: 500;
     display: inline-block;
     position: relative;
+    font-size: 18.5px;
   }
 
   a:after {
@@ -506,19 +521,13 @@ button:hover {
     background: #000000;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
+    top: 1.5rem;
   }
 
   a:hover:after {
-    width: 40%;
-    left: 0;
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+    left: 36%;
+    width: 25.5%;
 
-  @media screen and (max-height: 300px) {
-    ul {
-      margin-top: 40px;
-    }
   }
 
   & img {
@@ -527,4 +536,35 @@ button:hover {
     max-width: 70%;
     border-radius: 10px;
   }
+
+  p {
+    color: black;
+    font-family: "Raleway Display", sans-serif;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-size: 30px;
+  }
+}
+
+.pageReset {
+  font-family: Raleway Display;
+  display: none;
+  position: fixed;
+  top: 90%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #1363a8;
+  color: white;
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 100px;
+  font-size: 15px;
+}
+
+.pageReset:hover {
+  color: white;
+  background-color: #0197F6;
 }
