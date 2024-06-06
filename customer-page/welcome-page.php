@@ -23,6 +23,7 @@ if (!isset($_SESSION['username'])) {//redirect
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
+    <link rel="stylesheet" href="/CLINIC_IS/Styles/utility.min.css">
     <title>Welcome to AnchorMed</title>
 </head>
 
@@ -81,6 +82,25 @@ if (!isset($_SESSION['username'])) {//redirect
 
         </div>
     </section>
+    <div class="info">
+        <img class="img1" src="/CLINIC_IS/media/doctor-with-patient.jpg" alt="">
+        <div class="info-wrapper">
+            <h1>Start your healing journey now.</h1>
+            <p>At AnchorMed, we prioritize both expert medical care and patient-centered service. Our dedicated team of
+                healthcare professionals is committed to providing comprehensive and compassionate care for all your
+                health needs. From routine check-ups
+                to specialized treatments, we are here to support you every step of the way. Schedule an appointment
+                today and experience the highest standard of medical care in a welcoming and supportive environment.</p>
+        </div>
+        <div class="info-wrapper">
+            <h1>
+                World-class care for global patients
+            </h1>
+            <p>We make it easy for patients around the world to get care from AnchorMed</p>
+        </div>
+        <img class="img1" src="/CLINIC_IS/media/world-class-care.avif" alt="">
+
+    </div>
     <div id="locations" class="location-header">
         <hr>
         <h1> Branches </h1>
@@ -116,14 +136,41 @@ if (!isset($_SESSION['username'])) {//redirect
             </div>
         </div>
     </div>
-    <footer>
-        <div id="footer">
-            <p>Author: Hege Refsnes</p>
-            <p><a href="mailto:doctorname@gmail.com">doctorname@gmail.com</a></p>
-        </div>
+    <footer class="container-fluid">
+        <div class="footer-header color-white flex justify-space-between align-items-center gap-10">
+            <div class="footer-img flex justify-space-between">
+                <img class="website-logo" src="/CLINIC_IS/media/logo-removebg-preview.png" alt="">
+            </div>
+            <div class="footer-body color-white flex justify-space-between align-items-center">
+                <div class="site-map flex">
+                    <div class="company flex flex-column gap-3">
+                        <h6 class="font-bold">Company</h6>
+                        <a href="#" class="link">About Us</a>
+                        <a href="#" class="link">Contact Us</a>
+                        <a href="#" class="link">Careers</a>
+                        <a href="#" class="link">Press</a>
+                    </div>
+                    <div class="support flex flex-column gap-3">
+                        <h6 class="font-bold">Support</h6>
+                        <a href="mailto:moovemberdev@gmail.com" class="link">support@anchormed.com</a>
+                        <a href="tel:" class="link">+1 800-123-4567</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-footer color-white flex justify-space-between ">
+                <div class="social-media flex gap-10">
+                    <a href="#" class="link">Facebook</a>
+                    <a href="#" class="link">Twitter</a>
+                    <a href="#" class="link">Instagram</a>
+                    <a href="#" class="link">Youtube</a>
+                </div>
+                <div class="copy-right">
+                    <p>&copy; 2024 AnchorMed. All rights reserved.</p>
+                </div>
+            </div>
     </footer>
     </script>
-    <!-- Back to Top Button -->
+
     <button onclick="topFunction()" class="pageReset" id="backToTopBtn" title="Go to top"><span
             class="material-symbols-outlined">
             stat_1

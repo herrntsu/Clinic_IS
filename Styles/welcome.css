@@ -466,7 +466,6 @@ hr {
 
 .location-header {
   display: grid;
-  flex-direction: column;
 
   & h1 {
     margin-top: 5rem;
@@ -476,12 +475,48 @@ hr {
   }
 }
 
+.info {
+  display: grid;
+  margin: 10rem;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2rem;
+
+  & h1 {
+    color: black;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    grid-area: 1/2/1/2;
+  }
+
+}
+
+.info .img1 {
+  border-radius: 80px;
+  width: 80%;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.info-wrapper {
+  color: black;
+  grid-template-rows: subgrid;
+  gap: 2rem;
+  grid-row: span 2;
+
+  & p {
+    font-size: larger;
+    margin-top: 1rem;
+  }
+}
+
 .wrapper {
   margin-inline: auto;
   width: 90%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
+  gap: 7rem;
   margin-top: 5rem;
 }
 
@@ -567,4 +602,43 @@ hr {
 .pageReset:hover {
   color: white;
   background-color: #0197F6;
+}
+
+.container-fluid {
+  font-family: "Raleway", sans-serif;
+  background-color: rgb(1, 45, 97);
+  display: flex;
+  flex-direction: column;
+  gap: 3.75rem;
+
+  & .footer-header {
+    margin-left: 7rem;
+    margin-right: 7rem;
+
+  }
+
+  & .footer-img {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & .company {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: white;
+  }
+
+  & .support {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: white;
+  }
+
+  & .social-media {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+  }
 }
