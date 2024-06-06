@@ -23,7 +23,6 @@ session_start();
             </span>Go Back</a>
     </div>
     <div class="container">
-
         <form id="account-form" action="" method="post" class="form-group">
             <div class="form-group">
                 <span class="material-symbols-outlined">
@@ -139,6 +138,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             JOIN AccData ON accounts.AccountID = AccData.AccountID
             WHERE AccData.AccountUsername = '$uname'";
             $result = mysqli_query($con, $userQuery);
+            $row = mysqli_fetch_assoc($result);
+            $_SESSION["username"] = $row["AccountUsername"];
+            $_SESSION["password"] = $row["AccountPass"];
+            $_SESSION["fullname"] = $row["AccountName"];
+            $_SESSION["emailaddress"] = $row["AccountEmail"];
+            $_SESSION["user_id"] = $row["AccountID"];
 
             if ($result) {
                 try {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {//redirect
-    header("Location: home-page.php");
+    header("Location: /CLINIC_IS/home-page.php");
     exit();
 
 }
@@ -23,7 +23,8 @@ if (!isset($_SESSION['username'])) {//redirect
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
-    <link rel="stylesheet" href="/CLINIC_IS/Styles/utility.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="app.js"></script>
     <title>Welcome to AnchorMed</title>
 </head>
 
@@ -77,30 +78,34 @@ if (!isset($_SESSION['username'])) {//redirect
             <h2>Welcome, <?php echo ($_SESSION['username']); ?></h2>
             <div class="inner-section">
                 <p> Start your journey in living a good health</p>
-                <button onclick="scrollFunction()">Learn how</button>
+                <button onclick="scrollFunctionInfo()">Learn how</button>
             </div>
 
         </div>
     </section>
-    <div class="info">
-        <img class="img1" src="/CLINIC_IS/media/doctor-with-patient.jpg" alt="">
-        <div class="info-wrapper">
-            <h1>Start your healing journey now.</h1>
-            <p>At AnchorMed, we prioritize both expert medical care and patient-centered service. Our dedicated team of
-                healthcare professionals is committed to providing comprehensive and compassionate care for all your
-                health needs. From routine check-ups
-                to specialized treatments, we are here to support you every step of the way. Schedule an appointment
-                today and experience the highest standard of medical care in a welcoming and supportive environment.</p>
+    <section class="info-section">
+        <div class="info" id="info">
+            <img class="img1" src="/CLINIC_IS/media/doctor-with-patient.jpg" alt="">
+            <div class="info-wrapper">
+                <h1>Start your healing journey now.</h1>
+                <p>At AnchorMed, we prioritize both expert medical care and patient-centered service. Our dedicated team
+                    of
+                    healthcare professionals is committed to providing comprehensive and compassionate care for all your
+                    health needs. From routine check-ups
+                    to specialized treatments, we are here to support you every step of the way. Schedule an appointment
+                    today and experience the highest standard of medical care in a welcoming and supportive environment.
+                </p>
+            </div>
+            <div class="info-wrapper">
+                <h1>
+                    World-class care for global patients
+                </h1>
+                <p>We make it easy for patients around the world to get care from AnchorMed</p>
+                <button onclick="scrollFunctionInfo()">Request Appointment</button>
+            </div>
+            <img class="img2" src="/CLINIC_IS/media/world-class-care.avif" alt="">
         </div>
-        <div class="info-wrapper">
-            <h1>
-                World-class care for global patients
-            </h1>
-            <p>We make it easy for patients around the world to get care from AnchorMed</p>
-        </div>
-        <img class="img1" src="/CLINIC_IS/media/world-class-care.avif" alt="">
-
-    </div>
+    </section>
     <div id="locations" class="location-header">
         <hr>
         <h1> Branches </h1>
@@ -128,48 +133,47 @@ if (!isset($_SESSION['username'])) {//redirect
                     Check Directions ></a>
             </div>
             <div class="box">
-                <p> Locations </p>
-                <img class="img1" src="/CLINIC_IS/media/SM-TRECE-MARTIRES.jpg" alt="" class="location-one-img">
+                <p> District Mall Imus by Ayala Malls </p>
+                <img class="img1" src="/CLINIC_IS/media/district-mall.png" alt="" class="location-one-img">
                 <a
-                    href="https://www.google.com/maps/place/SM+City+Trece+Martires/@14.2815268,120.8632611,17.17z/data=!4m6!3m5!1s0x33bd813bfbee1f1d:0xbb55deff518446ca!8m2!3d14.281569!4d120.8659103!16s%2Fg%2F11bxd8cb4h?entry=ttu">
+                    href="https://www.google.com/maps/place/The+District+Imus+by+Ayala+Malls/@14.3807524,120.9480511,14.17z/data=!4m15!1m8!3m7!1s0x32559173e462e30f:0x9befb54ef959f073!2sMarawi+City,+Lanao+del+Sur!3b1!8m2!3d8.0106213!4d124.297718!16zL20vMDNrOWNi!3m5!1s0x3397d37faef3495b:0x2271700d622a3f58!8m2!3d14.3706045!4d120.939236!16s%2Fg%2F11f405bsr5?entry=ttu">
                     Check Directions ></a>
             </div>
         </div>
     </div>
     <footer class="container-fluid">
-        <div class="footer-header color-white flex justify-space-between align-items-center gap-10">
-            <div class="footer-img flex justify-space-between">
+        <div class="footer-header">
+            <div class="footer-img">
                 <img class="website-logo" src="/CLINIC_IS/media/logo-removebg-preview.png" alt="">
             </div>
-            <div class="footer-body color-white flex justify-space-between align-items-center">
-                <div class="site-map flex">
-                    <div class="company flex flex-column gap-3">
+            <div class="footer">
+                <div class="site-map">
+                    <div class="divider ">
                         <h6 class="font-bold">Company</h6>
-                        <a href="#" class="link">About Us</a>
+                        <a href="#" class="link ">About Us</a>
                         <a href="#" class="link">Contact Us</a>
                         <a href="#" class="link">Careers</a>
                         <a href="#" class="link">Press</a>
                     </div>
-                    <div class="support flex flex-column gap-3">
+                    <div class="divider">
                         <h6 class="font-bold">Support</h6>
                         <a href="mailto:moovemberdev@gmail.com" class="link">support@anchormed.com</a>
                         <a href="tel:" class="link">+1 800-123-4567</a>
                     </div>
                 </div>
             </div>
-            <div class="footer-footer color-white flex justify-space-between ">
-                <div class="social-media flex gap-10">
-                    <a href="#" class="link">Facebook</a>
-                    <a href="#" class="link">Twitter</a>
-                    <a href="#" class="link">Instagram</a>
-                    <a href="#" class="link">Youtube</a>
+            <div class="footer">
+                <div class="divider social-media">
+                    <a href="#" class="fa fa-facebook link"></a>
+                    <a href="#" class="fa fa-twitter link"></a>
+                    <a href="#" class="fa fa-instagram link"></a>
+                    <a href="#" class="fa fa-linkedin link"></a>
                 </div>
                 <div class="copy-right">
                     <p>&copy; 2024 AnchorMed. All rights reserved.</p>
                 </div>
             </div>
     </footer>
-    </script>
 
     <button onclick="topFunction()" class="pageReset" id="backToTopBtn" title="Go to top"><span
             class="material-symbols-outlined">
@@ -193,6 +197,10 @@ if (!isset($_SESSION['username'])) {//redirect
             document.documentElement.scrollTop = 0;
         }
 
+        function scrollFunctionInfo() {
+            const element = document.getElementById("info");
+            element.scrollIntoView();
+        }
     </script>
 </body>
 
