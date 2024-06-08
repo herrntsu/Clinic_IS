@@ -593,7 +593,6 @@ hr {
 
   & a {
     color: #000000;
-    /* text-transform: uppercase; */
     text-decoration: none;
     letter-spacing: 0.15em;
     font-family: "Raleway", sans-serif;
@@ -671,7 +670,6 @@ hr {
 .footer-top {
   display: flex;
   justify-content: center;
-  /* Center the logo */
   align-items: center;
 }
 
@@ -683,7 +681,6 @@ hr {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  /* Adjust height as needed */
 }
 
 .footer-bottom {
@@ -692,7 +689,6 @@ hr {
   height: 200px;
   flex-direction: column;
 
-  /* Adjust height as needed */
   & hr {
     place-self: center;
     opacity: 30%;
@@ -709,14 +705,11 @@ hr {
   background-size: cover;
   border-radius: 50%;
   color: white;
-  /* Icon color */
   font-size: 20px;
-  /* Icon size */
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid white;
-  /* Add a border */
 }
 
 .social-icons a.facebook {
@@ -737,10 +730,9 @@ hr {
 
 .social-icons a:hover {
   opacity: 0.7;
-  /* Optional: Hover effect */
 }
 
-/* For icons inside buttons */
+
 .fa {
   padding: 10px;
   width: 40px;
@@ -752,7 +744,6 @@ hr {
   display: inline-block;
   font-size: 20px;
   color: white;
-  /* Icon color */
 }
 
 
@@ -760,13 +751,11 @@ hr {
 .social-media {
   display: flex;
   justify-content: center;
-  /* Center the social media buttons */
   padding: 10px;
 }
 
 .footer-bottom button {
   text-align: center;
-  /* Center the text inside the buttons */
 }
 
 
