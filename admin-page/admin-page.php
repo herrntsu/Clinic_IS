@@ -164,19 +164,7 @@ session_start();
                 }
             }
 
-                    // Attach event listener to the dropdown elements
-            var accountFilter = document.getElementById("accountFilter");
-            accountFilter.addEventListener("change", function () {
-                filterAccounts();
-            });
-
-            var doctorFilter = document.getElementById("doctorFilter");
-            doctorFilter.addEventListener("change", function () {
-                filterAccounts();
-            });
-
-            // Initial filtering on page load
-            filterAccounts();
+           
 
         });
 
