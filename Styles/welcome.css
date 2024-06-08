@@ -538,24 +538,33 @@ hr {
   }
 
   & button {
-    background-color: rgba(0, 0, 0, 0);
-    border: 2px solid rgb(0, 0, 0);
+    background-color: #1363a8;
+    color: #1363a8;
+    border: 2px;
     border-radius: 50rem;
     transition: background-size 1s ease;
     background-size: 0% 100%;
-    color: black;
-    background-color: white;
-    background-size: 100% 100%;
+    color: white;
     max-width: 50%;
     justify-self: center;
   }
 
   & button:hover {
-    background-color: rgba(0, 0, 0, 0);
-    border: 2px solid white;
+    background-color: rgb(23, 133, 230);
+    border: 2px;
+    color: white;
     border-radius: 50rem;
     transition: background-size 1s ease;
     background-size: 0% 100%;
+  }
+
+  & button:active {
+    background-color: rgb(18, 97, 165);
+    border: 2px;
+    color: white;
+    border-radius: 50rem;
+    background-size: 0% 100%;
+    transform: translateY(3px);
   }
 }
 
@@ -654,65 +663,114 @@ hr {
   background-color: #0197F6;
 }
 
-.container-fluid {
+.footer {
+  width: 100%;
   font-family: "Raleway", sans-serif;
-  background-color: rgb(1, 45, 97);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: center;
+  /* Center the logo */
+  align-items: center;
+}
+
+.footer-column {
   display: flex;
   flex-direction: column;
-  gap: 3.75rem;
-
-  & .footer-header {
-    margin-left: 7rem;
-    margin-right: 7rem;
-
-  }
-
-  & .footer-img {
-    display: flex;
-    justify-content: space-between;
-  }
+  width: 32%;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  /* Adjust height as needed */
 }
 
+.footer-bottom {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  flex-direction: column;
 
+  /* Adjust height as needed */
+  & hr {
+    place-self: center;
+    opacity: 30%;
+  }
+
+
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  background-size: cover;
+  border-radius: 50%;
+  color: white;
+  /* Icon color */
+  font-size: 20px;
+  /* Icon size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  /* Add a border */
+}
+
+.social-icons a.facebook {
+  background-color: #D7263D;
+}
+
+.social-icons a.twitter {
+  background-color: #0197F6;
+}
+
+.social-icons a.instagram {
+  background-color: #68C5DB;
+}
+
+.social-icons a.linkedin {
+  background-color: #448FA3;
+}
+
+.social-icons a:hover {
+  opacity: 0.7;
+  /* Optional: Hover effect */
+}
+
+/* For icons inside buttons */
 .fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 50px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
   text-align: center;
   text-decoration: none;
-  margin: 5px 2px;
-}
-
-.fa:hover {
-  opacity: 0.7;
-}
-
-.fa-facebook {
-  background: #3b5998;
+  margin: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 20px;
   color: white;
+  /* Icon color */
 }
 
-.fa-twitter {
-  background: #55acee;
-  color: white;
-}
 
-.fa-google {
-  background: #dd4b39;
-  color: white;
-}
-
-.fa-linkedin {
-  background: #007bb5;
-  color: white;
-}
-
-.fa-instagram {
-  background: #125688;
-  color: white;
-}
 
 .social-media {
+  display: flex;
+  justify-content: center;
+  /* Center the social media buttons */
+  padding: 10px;
+}
+
+.footer-bottom button {
+  text-align: center;
+  /* Center the text inside the buttons */
+}
+
+
+.copy-right {
   display: flex;
   justify-content: center;
   padding: 10px;
