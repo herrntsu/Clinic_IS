@@ -145,6 +145,8 @@ if (!isset($_SESSION['username'])) {
                 <a href="\Clinic_IS\privacy-policy.php" class="link">Privacy Policy</a>
             </div>
             <div class="footer-column">
+                <a href="\Clinic_IS\privacy-policy.php" class="link">FAQs</a>
+                <a href="\Clinic_IS\privacy-policy.php" class="link">About the Programmers</a>
             </div>
         </div>
         <div class="footer-bottom">
