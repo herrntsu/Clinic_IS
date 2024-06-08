@@ -164,29 +164,40 @@ session_start();
                 }
             }
 
-            function filterAccounts() {
-                var accountFilter = document.getElementById("accountFilter");
-                var doctorFilter = document.getElementById("doctorFilter");
-                var allAccountsTable = document.querySelector(".all-accounts");
-                var doctorsTable = document.querySelector(".doctors");
+           
 
-                if (accountFilter.value === "all") {
-                    allAccountsTable.style.display = "block";
-                    doctorsTable.style.display = "none";
-                } else if (accountFilter.value === "doctor") {
-                    allAccountsTable.style.display = "none";
-                    doctorsTable.style.display = "block";
-                }
+        });
 
-                if (doctorFilter.value === "all") {
-                    allAccountsTable.style.display = "block";
-                    doctorsTable.style.display = "none";
-                } else if (doctorFilter.value === "doctor") {
-                    allAccountsTable.style.display = "none";
-                    doctorsTable.style.display = "block";
-                }
-            }
+        function filterAccounts() {
+    var accountFilter = document.getElementById("accountFilter").value;
+    var doctorFilter = document.getElementById("doctorFilter").value;
+    var allAccountsTable = document.querySelector(".all-accounts");
+    var doctorsTable = document.querySelector(".doctors");
 
+    if (accountFilter === "all") {
+        allAccountsTable.style.display = "block";
+    } else {
+        allAccountsTable.style.display = "none";
+    }
+
+    if (accountFilter === "doctor") {
+        doctorsTable.style.display = "block";
+    } else {
+        doctorsTable.style.display = "none";
+    }
+
+    if (doctorFilter === "all") {
+        allAccountsTable.style.display = "block";
+    } else {
+        allAccountsTable.style.display = "none";
+    }
+
+    if (doctorFilter === "doctor") {
+        doctorsTable.style.display = "block";
+    } else {
+        doctorsTable.style.display = "none";
+    }
+}
             // Attach event listener to the dropdown element
             var accountFilter = document.getElementById("accountFilter");
             accountFilter.addEventListener("change", function () {
@@ -197,8 +208,6 @@ session_start();
             doctorFilter.addEventListener("change", function () {
                 filterAccounts();
             });
-
-        });
     </script>
 
 
@@ -262,9 +271,8 @@ session_start();
                 <button id="addCustomerBtn">Add Customer</button>
                 <button id="addDoctorBtn">Add Doctor</button>
                 <select id="accountFilter" class="sort" onchange="filterAccounts()">
-                    <option value="doctor">Doctors</option>
                     <option value="all">All Accounts</option>
-                    
+                    <option value="doctor">Doctors</option>
                 </select>
                 </div>
             </div><!--End of All Accounts table-->
