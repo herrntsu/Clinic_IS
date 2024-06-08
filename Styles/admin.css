@@ -12,7 +12,7 @@ h1 {
     margin-top: 1.5rem;
 }
 
-
+/*navbar*/
 .navigation-bar {
     background-color: white;
     display: flex;
@@ -66,6 +66,8 @@ h1 {
         }
     }
 }
+/*end of navbar*/
+
 
 .logo-text {
     display: grid;
@@ -90,6 +92,7 @@ h1 {
     align-items: flex-start;
 }
 
+
 .table-container {
     margin: 0 auto;
     width: auto;
@@ -113,6 +116,15 @@ table {
     font-size: 1em;
     font-family: 'Raleway', sans-serif;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/*Tables*/
+.doctors{
+    display:none;
+}
+
+.all-accounts {
+    display:block;
 }
 
 table thead tr {
@@ -146,6 +158,8 @@ table tbody tr:last-of-type {
 
 /* Edit and Delete Buttons */
 .editBtn,
+.editDocBtn,
+.delDocBtn,
 .delAccBtn {
     padding: 5px 10px;
     color: #fff;
@@ -154,19 +168,23 @@ table tbody tr:last-of-type {
     cursor: pointer;
 }
 
-.editBtn {
+.editBtn,
+.editDocBtn {
     background-color: #1a4c8a;
 }
 
-.delAccBtn {
+.delAccBtn,
+.delDocBtn {
     background-color: #d9534f;
 }
 
-.editBtn:hover {
+.editBtn:hover,
+.editDocBtn:hover {
     background-color: #133b6f;
 }
 
-.delAccBtn:hover {
+.delAccBtn:hover,
+.delDocBtn:hover {
     background-color: #c9302c;
 }
 

@@ -16,7 +16,10 @@ session_start();
         rel="stylesheet">
     <title>Admin</title>
     <script>
+
+        
         document.addEventListener("DOMContentLoaded", function () {
+            //Add Customer Btns
             var addCustomerModal = document.getElementById("addCustomerModal");
             var addCustomerBtn = document.getElementById("addCustomerBtn");
             var addCustomerSpan = addCustomerModal.querySelector(".close");
@@ -29,6 +32,7 @@ session_start();
                 addCustomerModal.style.display = "none";
             };
 
+            //Add Doctor Btns
             var addDoctorModal = document.getElementById("addDoctorModal");
             var addDoctorBtn = document.getElementById("addDoctorBtn");
             var addDoctorSpan = addDoctorModal.querySelector(".close");
@@ -41,9 +45,14 @@ session_start();
                 addDoctorModal.style.display = "none";
             };
 
+            //Edit Btns
             var editAccModal = document.getElementById("editAccModal");
             var editAccSpan = editAccModal.querySelector(".close");
             var editBtns = document.querySelectorAll(".editBtn");
+
+            var editDocModal = document.getElementById("editDocModal");
+            var editDocSpan = editDocModal.querySelector(".close");
+            var editDocBtns = document.querySelectorAll(".editDocBtn");
 
             for (var i = 0; i < editBtns.length; i++) {
                 editBtns[i].onclick = function () {
@@ -65,8 +74,28 @@ session_start();
                 }
             }
 
+            for (var i = 0; i < editDocBtns.length; i++) {
+                editDocBtns[i].onclick = function () {
+                    var employeeID = this.getAttribute("data-id");
+                    var accountName = this.getAttribute("data-name");
+                    var specialty = this.getAttribute("data-specialty");
+                    var roomNumber = this.getAttribute("data-room");
+
+                    document.getElementById("editEmployeeID").value = employeeID;
+                    document.getElementById("editDoctorName").value = accountName;
+                    document.getElementById("editDoctorSpecialty").value = specialty;
+                    document.getElementById("editDoctorRoomNumber").value = roomNumber;
+
+                    editDocModal.style.display = "block";
+                }
+            }
+
             editAccSpan.onclick = function () {
                 editAccModal.style.display = "none";
+            };
+
+            editDocSpan.onclick = function () {
+                editDocModal.style.display = "none";
             };
 
             window.onclick = function (event) {
@@ -79,9 +108,15 @@ session_start();
                 if (event.target == editAccModal) {
                     editAccModal.style.display = "none";
                 }
+                if (event.target == editDocModal) {
+                    editDocModal.style.display = "none";
+                }
             };
 
+            //Del Btns
             var delBtns = document.querySelectorAll(".delAccBtn");
+            var delDocBtns = document.querySelectorAll(".delDocBtn");
+
             for (var i = 0; i < delBtns.length; i++) {
                 delBtns[i].onclick = function () {
                     var accountID = this.getAttribute("data-id");
@@ -101,6 +136,68 @@ session_start();
                     }
                 }
             }
+
+            for (var i = 0; i < delDocBtns.length; i++) {
+                delDocBtns[i].onclick = function () {
+                    var accountID = this.getAttribute("data-account-id");
+                    var employeeID = this.getAttribute("data-doctor-id");
+                    if (confirm("Are you sure you want to delete this doctor and their account?")) {
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "admin-page.php";
+
+                        var inputAccount = document.createElement("input");
+                        inputAccount.type = "hidden";
+                        inputAccount.name = "deleteAccountID";
+                        inputAccount.value = accountID;
+                        form.appendChild(inputAccount);
+
+                        var inputDoctor = document.createElement("input");
+                        inputDoctor.type = "hidden";
+                        inputDoctor.name = "deleteDoctorID";
+                        inputDoctor.value = employeeID;
+                        form.appendChild(inputDoctor);
+
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                }
+            }
+
+            function filterAccounts() {
+                var accountFilter = document.getElementById("accountFilter");
+                var doctorFilter = document.getElementById("doctorFilter");
+                var allAccountsTable = document.querySelector(".all-accounts");
+                var doctorsTable = document.querySelector(".doctors");
+
+                if (accountFilter.value === "all") {
+                    allAccountsTable.style.display = "block";
+                    doctorsTable.style.display = "none";
+                } else if (accountFilter.value === "doctor") {
+                    allAccountsTable.style.display = "none";
+                    doctorsTable.style.display = "block";
+                }
+
+                if (doctorFilter.value === "all") {
+                    allAccountsTable.style.display = "block";
+                    doctorsTable.style.display = "none";
+                } else if (doctorFilter.value === "doctor") {
+                    allAccountsTable.style.display = "none";
+                    doctorsTable.style.display = "block";
+                }
+            }
+
+            // Attach event listener to the dropdown element
+            var accountFilter = document.getElementById("accountFilter");
+            accountFilter.addEventListener("change", function () {
+                filterAccounts();
+            });
+
+            var doctorFilter = document.getElementById("doctorFilter");
+            doctorFilter.addEventListener("change", function () {
+                filterAccounts();
+            });
+
         });
     </script>
 
@@ -120,6 +217,7 @@ session_start();
 
     <div class="container">
         <div class="table-container">
+            <div class = "all-accounts">
             <h2>All Accounts</h2>
             <table border="1">
                 <tr>
@@ -163,7 +261,60 @@ session_start();
             <div class="button-container">
                 <button id="addCustomerBtn">Add Customer</button>
                 <button id="addDoctorBtn">Add Doctor</button>
-            </div>
+                <select id="accountFilter" class="sort" onchange="filterAccounts()">
+                    <option value="doctor">Doctors</option>
+                    <option value="all">All Accounts</option>
+                    
+                </select>
+                </div>
+            </div><!--End of All Accounts table-->
+
+        <div class = "doctors">
+            <h2>Doctors</h2>
+            <table border="1">
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Doctor Name</th>
+                    <th>Doctor Specialty</th>
+                    <th>Room Number</th>
+                    <th>Actions</th>
+                </tr>
+                <?php
+                $con = mysqli_connect("localhost", "root", "", "clinic_website");
+                if (!$con) {
+                    die("Connection Failed: " . mysqli_connect_error());
+                }
+
+                $result = getDoctors($con);
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $row['EmployeeID'] . "</td>";
+                        echo "<td>" . $row['AccountName'] . "</td>";
+                        echo "<td>" . $row['EmployeeSpecialty'] . "</td>";
+                        echo "<td>" . $row['RoomNumber'] . "</td>";
+                        echo "<td>
+                                <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "'>Edit</button>
+                                <button class='delDocBtn' data-account-id='" . $row['AccountID'] . "' data-doctor-id='" . $row['EmployeeID'] . "'>Delete</button>
+                             </td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7'>No accounts found</td></tr>";
+                }
+
+                mysqli_close($con);
+                ?>
+            </table>
+
+            <div class="button-container">
+                <button id="addDoctorBtn">Add Doctor</button>
+                <select id="doctorFilter" class="sort" onchange="filterAccounts()">
+                    <option value="doctor">Doctors</option>
+                    <option value="all">All Accounts</option>
+                </select>
+                </div>
+            </div><!--End of Doctors table-->
         </div>
     </div>
     <!-- Edit Account Modal -->
@@ -184,6 +335,21 @@ session_start();
             </form>
         </div>
     </div>
+
+    <!-- Edit Doctor Modal -->
+<div id="editDocModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Doctor</h2>
+        <form method="post" action="admin-page.php">
+            <input type="hidden" name="employeeID" id="editEmployeeID">
+            <input type="text" name="accountName" id="editDoctorName" placeholder="Doctor Name" required>
+            <input type="text" name="specialty" id="editDoctorSpecialty" placeholder="Specialty" required>
+            <input type="number" name="roomNumber" id="editDoctorRoomNumber" placeholder="Room Number" required>
+            <input type="submit" name="editDoctor" value="Save Changes">
+        </form>
+    </div>
+</div>
 
     <!-- Add Customer Modal -->
     <div id="addCustomerModal" class="modal">
@@ -253,15 +419,30 @@ session_start();
             editAccount($con, $accountID, $accountName, $accountType, $accountEmail, $accountUsername, $accountPassword);
         }
 
+        if (isset($_POST['editDoctor'])){
+            $employeeID = $_POST['employeeID'];
+            $accountName = $_POST['accountName'];
+            $specialty = $_POST['specialty'];
+            $roomNumber = $_POST['roomNumber'];
+            editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber);
+        }
+
         if (isset($_POST['deleteAccountID'])) {
             $accountID = $_POST['deleteAccountID'];
             deleteAccount($con, $accountID);
+        }
+
+        if (isset($_POST['deleteAccountID']) && isset($_POST['deleteDoctorID'])) {
+            $accountID = $_POST['deleteAccountID'];
+            $employeeID = $_POST['deleteDoctorID'];
+            deleteAccountAndDoctor($con, $accountID, $employeeID);
         }
 
         if (isset($_POST['trackHours'])) {
             $employeeID = $_POST['employeeID'];
             trackWorkingHours($con, $employeeID);
         }
+
 
         mysqli_close($con);
 
@@ -274,6 +455,15 @@ session_start();
         $sql = "SELECT Accounts.AccountID, Accounts.AccountName, Accounts.AccountType, AccData.AccountEmail, AccData.AccountUsername, AccData.AccountPass 
                 FROM Accounts 
                 INNER JOIN AccData ON Accounts.AccountID = AccData.AccountID";
+        $result = mysqli_query($con, $sql);
+        return $result;
+    }
+
+    function getDoctors($con)   {
+        $sql ="SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber
+               FROM Employee
+               INNER JOIN Employee_Details ON Employee.EmployeeID = Employee_Details.EmployeeID
+               INNER JOIN Accounts ON Employee.AccountID = Accounts.AccountID";
         $result = mysqli_query($con, $sql);
         return $result;
     }
@@ -361,6 +551,26 @@ session_start();
         }
     }
 
+    function deleteAccountAndDoctor($con, $accountID, $employeeID)
+    {
+            mysqli_begin_transaction($con);
+
+            try {
+                // Delete the doctor
+                $sql_delete_doctor = "DELETE FROM Employee_Details WHERE EmployeeID = $employeeID";
+                mysqli_query($con, $sql_delete_doctor);
+
+                // Delete the account
+                $sql_delete_account = "DELETE FROM Accounts WHERE AccountID = $accountID";
+                mysqli_query($con, $sql_delete_account);
+
+                mysqli_commit($con);
+            } catch (mysqli_sql_exception $exception) {
+                mysqli_rollback($con);
+                echo "Error: " . $exception->getMessage();
+            }
+        }
+
     function editAccount($con, $accountID, $accountName, $accountType, $accountEmail, $accountUsername, $accountPassword)
     {
         $sql = "UPDATE Accounts SET AccountName='$accountName', AccountType='$accountType' WHERE AccountID='$accountID'";
@@ -376,6 +586,31 @@ session_start();
             echo "Error updating account: " . mysqli_error($con);
         }
     }
+
+    function editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber) {
+        // Update the AccountName in the Accounts table
+        $sql = "UPDATE Accounts 
+                SET AccountName='$accountName' 
+                WHERE AccountID = (SELECT AccountID FROM Employee WHERE EmployeeID='$employeeID')";
+        
+        if (mysqli_query($con, $sql)) {
+            // Update the Employee_Details table
+            $sql_update_employee_details = "UPDATE Employee_Details 
+                                            SET EmployeeSpecialty='$specialty', RoomNumber='$roomNumber' 
+                                            WHERE EmployeeID='$employeeID'";
+            
+            if (mysqli_query($con, $sql_update_employee_details)) {
+                echo "Doctor details updated successfully";
+            } else {
+                echo "Error updating doctor details: " . mysqli_error($con);
+            }
+        } else {
+            echo "Error updating account: " . mysqli_error($con);
+        }
+    }
+
+  
+
 
     function trackWorkingHours($con, $employeeID)
     {
