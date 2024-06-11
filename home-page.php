@@ -34,7 +34,7 @@ if (isset($_SESSION['username'])) {//redirect
         </div>
 
         <div class="user-section">
-            <a href="registration-page.php">Sign-up now</a>|
+            <a href="registration-page.php">Sign-up</a>|
             <a href="login-page.php">Sign-in</a>
         </div>
     </div>
@@ -50,13 +50,44 @@ if (isset($_SESSION['username'])) {//redirect
         </div>
         <div class="header">
             <h2>Higher standards of care every day.</h2>
+            <button onclick="redirect()">Register Now</button>
+
         </div>
     </section>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-column">
+                <a href="#" class="link">About Us</a>
+                <a href="tel:+63 912 345 6789" class="link">Contact Us: +63 912 345 6789</a>
+            </div>
+            <div class="footer-column">
+                <a href="\Clinic_IS\terms&conditions.php" class="link">Terms & Conditions</a>
+                <a href="\Clinic_IS\privacy-policy.php" class="link">Privacy Policy</a>
+            </div>
+            <div class="footer-column">
+                <a href="">FAQs</a>
+                <a href="">About the Programmers</a>
 
-    <footer>
-        <p>Author: Hege Refsnes</p>
-        <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="social-icon">
+                <a href="https://www.facebook.com/zorah.19" class="fa fa-facebook facebook link"></a>
+                <a href="https://x.com/_IUofficial" class="fa fa-twitter twitter link"></a>
+                <a href="https://www.instagram.com/pookie_bear_fanpage_/" class="fa fa-instagram instagram link"></a>
+                <a href="https://www.linkedin.com" class="fa fa-linkedin linkedin link"></a>
+            </div>
+            <hr>
+            <div class="copy-right">
+                <p>&copy; 2024 AnchorMed. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+    <script>
+        function redirect() {
+            window.location.href = 'registration-page.php';
+        }
+    </script>
 </body>
 
 </html>

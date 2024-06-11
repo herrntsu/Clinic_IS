@@ -265,6 +265,8 @@ body {
   flex-direction: row;
   gap: 1rem;
   animation: fadeInTranslate 0.7s forwards;
+  cursor: pointer;
+  ;
 
   & span {
     align-self: center;

@@ -1,4 +1,4 @@
-<?php
+<div?php
 session_start();
 ?>
 
@@ -161,10 +161,9 @@ session_start();
                 }
             }
         }
+    });
 
-});
-
-function filterAccounts() {
+    function filterAccounts() {
     var doctorFilter = document.getElementById("doctorFilter").value;
     var accountFilter = document.getElementById("accountFilter").value;
     var allAccountsTable = document.querySelector(".all-accounts");
@@ -192,7 +191,6 @@ function refreshAllAccountsTable() {
     location.reload(); 
 }
 
-   
 </script>
 
 
@@ -212,7 +210,16 @@ function refreshAllAccountsTable() {
     <div class="container">
         <div class="table-container">
             <div class = "all-accounts">
-            <h2>All Accounts</h2>
+            <div class = "title-container">
+                <h2>All Accounts</h2>
+                    <div class="dropdown-container">
+                        <label for="accountFilter">Filter:</label>
+                        <select id="accountFilter" class="sort" onchange="filterAccounts()">
+                            <option value="all">All Accounts</option>
+                            <option value="doctor">Doctors</option>
+                        </select>
+                    </div>
+            </div>
             <table border="1">
                 <tr>
                     <th>Account ID</th>
@@ -255,15 +262,21 @@ function refreshAllAccountsTable() {
             <div class="button-container">
                 <button id="addCustomerBtn">Add Customer</button>
                 <button id="addDoctorBtn">Add Doctor</button>
-                <select id="accountFilter" class="sort" onchange="filterAccounts()">
-                    <option value="all">All Accounts</option>
-                    <option value="doctor">Doctors</option>
-                </select>
+                
                 </div>
             </div><!--End of All Accounts table-->
 
         <div class = "doctors">
-            <h2>Doctors</h2>
+            <div class = "title-container">
+                <h2>Doctors</h2>
+                    <div class="dropdown-container">
+                    <label for="doctorFilter">Filter:</label>
+                        <select id="doctorFilter" class="sort" onchange="filterAccounts()">
+                                <option value="doctor">Doctors</option>
+                                <option value="all">All Accounts</option>
+                            </select>
+                    </div>
+            </div>
             <table border="1">
                 <tr>
                     <th>Employee ID</th>
@@ -302,10 +315,7 @@ function refreshAllAccountsTable() {
 
             <div class="button-container">
                 <button id="addDoctorBtn">Add Doctor</button>
-                <select id="doctorFilter" class="sort" onchange="filterAccounts()">
-                    <option value="doctor">Doctors</option>
-                    <option value="all">All Accounts</option>
-                </select>
+                
                 </div>
             </div><!--End of Doctors table-->
         </div>
@@ -447,7 +457,8 @@ function refreshAllAccountsTable() {
     {
         $sql = "SELECT Accounts.AccountID, Accounts.AccountName, Accounts.AccountType, AccData.AccountEmail, AccData.AccountUsername, AccData.AccountPass 
                 FROM Accounts 
-                INNER JOIN AccData ON Accounts.AccountID = AccData.AccountID";
+                INNER JOIN AccData ON Accounts.AccountID = AccData.AccountID
+                ORDER BY Accounts.AccountID ASC";
         $result = mysqli_query($con, $sql);
         return $result;
     }
@@ -456,7 +467,8 @@ function refreshAllAccountsTable() {
         $sql ="SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber
                FROM Employee
                INNER JOIN Employee_Details ON Employee.EmployeeID = Employee_Details.EmployeeID
-               INNER JOIN Accounts ON Employee.AccountID = Accounts.AccountID";
+               INNER JOIN Accounts ON Employee.AccountID = Accounts.AccountID
+               ORDER BY Accounts.AccountID ASC";
         $result = mysqli_query($con, $sql);
         return $result;
     }
