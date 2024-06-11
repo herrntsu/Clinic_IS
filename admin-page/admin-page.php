@@ -16,199 +16,184 @@ session_start();
         rel="stylesheet">
     <title>Admin</title>
     <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        //Add Customer Btns
+        var addCustomerModal = document.getElementById("addCustomerModal");
+        var addCustomerBtn = document.getElementById("addCustomerBtn");
+        var addCustomerSpan = addCustomerModal.querySelector(".close");
 
-        
-        document.addEventListener("DOMContentLoaded", function () {
-            //Add Customer Btns
-            var addCustomerModal = document.getElementById("addCustomerModal");
-            var addCustomerBtn = document.getElementById("addCustomerBtn");
-            var addCustomerSpan = addCustomerModal.querySelector(".close");
+        addCustomerBtn.onclick = function () {
+            addCustomerModal.style.display = "block";
+        };
 
-            addCustomerBtn.onclick = function () {
-                addCustomerModal.style.display = "block";
-            };
+        addCustomerSpan.onclick = function () {
+            addCustomerModal.style.display = "none";
+        };
 
-            addCustomerSpan.onclick = function () {
+        //Add Doctor Btns
+        var addDoctorModal = document.getElementById("addDoctorModal");
+        var addDoctorBtn = document.getElementById("addDoctorBtn");
+        var addDoctorSpan = addDoctorModal.querySelector(".close");
+
+        addDoctorBtn.onclick = function () {
+            addDoctorModal.style.display = "block";
+        };
+
+        addDoctorSpan.onclick = function () {
+            addDoctorModal.style.display = "none";
+        };
+
+        //Edit Btns
+        var editAccModal = document.getElementById("editAccModal");
+        var editAccSpan = editAccModal.querySelector(".close");
+        var editBtns = document.querySelectorAll(".editBtn");
+
+        var editDocModal = document.getElementById("editDocModal");
+        var editDocSpan = editDocModal.querySelector(".close");
+        var editDocBtns = document.querySelectorAll(".editDocBtn");
+
+        for (var i = 0; i < editBtns.length; i++) {
+            editBtns[i].onclick = function () {
+                var accountID = this.getAttribute("data-id");
+                var accountName = this.getAttribute("data-name");
+                var accountType = this.getAttribute("data-type");
+                var accountEmail = this.getAttribute("data-email");
+                var accountUsername = this.getAttribute("data-username");
+                var accountPassword = this.getAttribute("data-password");
+
+                document.getElementById("editAccountID").value = accountID;
+                document.getElementById("editAccountName").value = accountName;
+                document.getElementById("editAccountType").value = accountType;
+                document.getElementById("editAccountEmail").value = accountEmail;
+                document.getElementById("editAccountUsername").value = accountUsername;
+                document.getElementById("editAccountPassword").value = accountPassword;
+
+                editAccModal.style.display = "block";
+            }
+        }
+
+        for (var i = 0; i < editDocBtns.length; i++) {
+            editDocBtns[i].onclick = function () {
+                var employeeID = this.getAttribute("data-id");
+                var accountName = this.getAttribute("data-name");
+                var specialty = this.getAttribute("data-specialty");
+                var roomNumber = this.getAttribute("data-room");
+
+                document.getElementById("editEmployeeID").value = employeeID;
+                document.getElementById("editDoctorName").value = accountName;
+                document.getElementById("editDoctorSpecialty").value = specialty;
+                document.getElementById("editDoctorRoomNumber").value = roomNumber;
+
+                editDocModal.style.display = "block";
+            }
+        }
+
+        editAccSpan.onclick = function () {
+            editAccModal.style.display = "none";
+        };
+
+        editDocSpan.onclick = function () {
+            editDocModal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target == addCustomerModal) {
                 addCustomerModal.style.display = "none";
-            };
-
-            //Add Doctor Btns
-            var addDoctorModal = document.getElementById("addDoctorModal");
-            var addDoctorBtn = document.getElementById("addDoctorBtn");
-            var addDoctorSpan = addDoctorModal.querySelector(".close");
-
-            addDoctorBtn.onclick = function () {
-                addDoctorModal.style.display = "block";
-            };
-
-            addDoctorSpan.onclick = function () {
+            }
+            if (event.target == addDoctorModal) {
                 addDoctorModal.style.display = "none";
-            };
-
-            //Edit Btns
-            var editAccModal = document.getElementById("editAccModal");
-            var editAccSpan = editAccModal.querySelector(".close");
-            var editBtns = document.querySelectorAll(".editBtn");
-
-            var editDocModal = document.getElementById("editDocModal");
-            var editDocSpan = editDocModal.querySelector(".close");
-            var editDocBtns = document.querySelectorAll(".editDocBtn");
-
-            for (var i = 0; i < editBtns.length; i++) {
-                editBtns[i].onclick = function () {
-                    var accountID = this.getAttribute("data-id");
-                    var accountName = this.getAttribute("data-name");
-                    var accountType = this.getAttribute("data-type");
-                    var accountEmail = this.getAttribute("data-email");
-                    var accountUsername = this.getAttribute("data-username");
-                    var accountPassword = this.getAttribute("data-password");
-
-                    document.getElementById("editAccountID").value = accountID;
-                    document.getElementById("editAccountName").value = accountName;
-                    document.getElementById("editAccountType").value = accountType;
-                    document.getElementById("editAccountEmail").value = accountEmail;
-                    document.getElementById("editAccountUsername").value = accountUsername;
-                    document.getElementById("editAccountPassword").value = accountPassword;
-
-                    editAccModal.style.display = "block";
-                }
             }
-
-            for (var i = 0; i < editDocBtns.length; i++) {
-                editDocBtns[i].onclick = function () {
-                    var employeeID = this.getAttribute("data-id");
-                    var accountName = this.getAttribute("data-name");
-                    var specialty = this.getAttribute("data-specialty");
-                    var roomNumber = this.getAttribute("data-room");
-
-                    document.getElementById("editEmployeeID").value = employeeID;
-                    document.getElementById("editDoctorName").value = accountName;
-                    document.getElementById("editDoctorSpecialty").value = specialty;
-                    document.getElementById("editDoctorRoomNumber").value = roomNumber;
-
-                    editDocModal.style.display = "block";
-                }
-            }
-
-            editAccSpan.onclick = function () {
+            if (event.target == editAccModal) {
                 editAccModal.style.display = "none";
-            };
-
-            editDocSpan.onclick = function () {
+            }
+            if (event.target == editDocModal) {
                 editDocModal.style.display = "none";
-            };
+            }
+        };
 
-            window.onclick = function (event) {
-                if (event.target == addCustomerModal) {
-                    addCustomerModal.style.display = "none";
-                }
-                if (event.target == addDoctorModal) {
-                    addDoctorModal.style.display = "none";
-                }
-                if (event.target == editAccModal) {
-                    editAccModal.style.display = "none";
-                }
-                if (event.target == editDocModal) {
-                    editDocModal.style.display = "none";
-                }
-            };
+        //Del Btns
+        var delBtns = document.querySelectorAll(".delAccBtn");
+        var delDocBtns = document.querySelectorAll(".delDocBtn");
 
-            //Del Btns
-            var delBtns = document.querySelectorAll(".delAccBtn");
-            var delDocBtns = document.querySelectorAll(".delDocBtn");
+        for (var i = 0; i < delBtns.length; i++) {
+            delBtns[i].onclick = function () {
+                var accountID = this.getAttribute("data-id");
+                if (confirm("Are you sure you want to delete this account?")) {
+                    var form = document.createElement("form");
+                    form.method = "post";
+                    form.action = "admin-page.php";
 
-            for (var i = 0; i < delBtns.length; i++) {
-                delBtns[i].onclick = function () {
-                    var accountID = this.getAttribute("data-id");
-                    if (confirm("Are you sure you want to delete this account?")) {
-                        var form = document.createElement("form");
-                        form.method = "post";
-                        form.action = "admin-page.php";
+                    var input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = "deleteAccountID";
+                    input.value = accountID;
+                    form.appendChild(input);
 
-                        var input = document.createElement("input");
-                        input.type = "hidden";
-                        input.name = "deleteAccountID";
-                        input.value = accountID;
-                        form.appendChild(input);
-
-                        document.body.appendChild(form);
-                        form.submit();
-                    }
+                    document.body.appendChild(form);
+                    form.submit();
                 }
             }
+        }
 
-            for (var i = 0; i < delDocBtns.length; i++) {
-                delDocBtns[i].onclick = function () {
-                    var accountID = this.getAttribute("data-account-id");
-                    var employeeID = this.getAttribute("data-doctor-id");
-                    if (confirm("Are you sure you want to delete this doctor and their account?")) {
-                        var form = document.createElement("form");
-                        form.method = "post";
-                        form.action = "admin-page.php";
+        for (var i = 0; i < delDocBtns.length; i++) {
+            delDocBtns[i].onclick = function () {
+                var accountID = this.getAttribute("data-account-id");
+                var employeeID = this.getAttribute("data-doctor-id");
+                if (confirm("Are you sure you want to delete this doctor and their account?")) {
+                    var form = document.createElement("form");
+                    form.method = "post";
+                    form.action = "admin-page.php";
 
-                        var inputAccount = document.createElement("input");
-                        inputAccount.type = "hidden";
-                        inputAccount.name = "deleteAccountID";
-                        inputAccount.value = accountID;
-                        form.appendChild(inputAccount);
+                    var inputAccount = document.createElement("input");
+                    inputAccount.type = "hidden";
+                    inputAccount.name = "deleteAccountID";
+                    inputAccount.value = accountID;
+                    form.appendChild(inputAccount);
 
-                        var inputDoctor = document.createElement("input");
-                        inputDoctor.type = "hidden";
-                        inputDoctor.name = "deleteDoctorID";
-                        inputDoctor.value = employeeID;
-                        form.appendChild(inputDoctor);
+                    var inputDoctor = document.createElement("input");
+                    inputDoctor.type = "hidden";
+                    inputDoctor.name = "deleteDoctorID";
+                    inputDoctor.value = employeeID;
+                    form.appendChild(inputDoctor);
 
-                        document.body.appendChild(form);
-                        form.submit();
-                    }
+                    document.body.appendChild(form);
+                    form.submit();
                 }
             }
+        }
 
-           
+});
 
-        });
-
-        function filterAccounts() {
-    var accountFilter = document.getElementById("accountFilter").value;
+function filterAccounts() {
     var doctorFilter = document.getElementById("doctorFilter").value;
+    var accountFilter = document.getElementById("accountFilter").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
 
-    if (accountFilter === "all") {
+   
+    allAccountsTable.style.display = "none";
+    doctorsTable.style.display = "none";
+
+    if (accountFilter === "all" && doctorFilter === "all") {
         allAccountsTable.style.display = "block";
-    } else {
-        allAccountsTable.style.display = "none";
-    }
-
-    if (accountFilter === "doctor") {
+        refreshAllAccountsTable(); 
+    } else if (accountFilter === "all" && doctorFilter === "doctor") {
         doctorsTable.style.display = "block";
-    } else {
-        doctorsTable.style.display = "none";
-    }
-
-    if (doctorFilter === "all") {
+    } else if (accountFilter === "doctor" && doctorFilter === "all") {
         allAccountsTable.style.display = "block";
-    } else {
-        allAccountsTable.style.display = "none";
-    }
-
-    if (doctorFilter === "doctor") {
+        refreshAllAccountsTable(); 
+    } else if (accountFilter === "doctor" && doctorFilter === "doctor") {
         doctorsTable.style.display = "block";
-    } else {
-        doctorsTable.style.display = "none";
     }
 }
-            // Attach event listener to the dropdown element
-            var accountFilter = document.getElementById("accountFilter");
-            accountFilter.addEventListener("change", function () {
-                filterAccounts();
-            });
 
-            var doctorFilter = document.getElementById("doctorFilter");
-            doctorFilter.addEventListener("change", function () {
-                filterAccounts();
-            });
-    </script>
+function refreshAllAccountsTable() {
+   
+    location.reload(); 
+}
+
+   
+</script>
 
 
 </head>
