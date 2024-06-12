@@ -1,4 +1,4 @@
-<thead?php
+<?php
 session_start();
 ?>
 
@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CLINIC_IS/Styles/admin.css">
+    <link rel="stylesheet" href="/CLINIC_IS/Styles/admin-page.css">
     <link rel="icon" type="png" href="/CLINIC_IS/media/logo-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -168,7 +168,7 @@ session_start();
     });
 
     function filterAccounts() {
-    var accountFilter = document.querySelector(".sort").value;
+    var accountFilter = document.getElementById("all-acc-btn").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
     var customersTable = document.querySelector(".customers");
@@ -192,9 +192,34 @@ session_start();
     }
 }
 
-function refreshAllAccountsTable() {
-   
-    location.reload(); 
+function filterAccountsDoctor() {
+    var accountFilter = document.getElementById("doctor-btn").value;
+    var allAccountsTable = document.querySelector(".all-accounts");
+    var doctorsTable = document.querySelector(".doctors");
+    var customersTable = document.querySelector(".customers");
+
+    allAccountsTable.style.display = "none";
+    doctorsTable.style.display = "none";
+    customersTable.style.display = "none";
+
+    switch (accountFilter) {
+        case "all":
+            allAccountsTable.style.display = "block";
+            break;
+        case "doctor":
+            doctorsTable.style.display = "block";
+            break;
+        case "customer":
+            customersTable.style.display = "block";
+            break;
+        default:
+            break;
+    }
+}
+
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
 }
 
 </script>
@@ -214,17 +239,19 @@ function refreshAllAccountsTable() {
     <div class="container">
         <div class="table-container">
             <div class = "all-accounts">
-            <div class = "title-container">
-                <h2>All Accounts</h2>
+                <div class = "title-container">
+                    <h2>All Accounts</h2>
                     <div class="dropdown-container">
-                        <label for="accountFilter">Filter:</label>
-                        <select id="accountFilter" class="sort" onchange="filterAccounts()">
-                            <option value="all">All Accounts</option>
-                            <option value="doctor">Doctors</option>
-                            <option value="customer">Customers</option>
-                        </select>
+                        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <button id = "all-acc-btn" class = "filterbtn" value = "all-view" disabled>All Accounts</button>
+                            <button id = "doctor-btn" class = "filterbtn" value = "doctor-view" onclick="filterAccountsDoctor()">Doctors</button>
+                            <button id = "customer-btn" class = "filterbtn" value = "customer-view">Customers</button>
+                        </div>
                     </div>
-            </div>
+        </div>
+
+            
             <div class = "scrollable-table">
             <table border="1">
                 <thead>
@@ -282,14 +309,14 @@ function refreshAllAccountsTable() {
         <div class = "doctors">
             <div class = "title-container">
                 <h2>Doctors</h2>
-                    <div class="dropdown-container">
-                    <label for="accountFilter">Filter:</label>
-                        <select class="sort" onchange="filterAccounts()">
+                            <div class="dropdown-container">
+                            <label for="doctorFilter">Filter:</label>
+                            <select id="doctorFilter" class="sort" onchange="filterAccountsDoctor()">
                                 <option value="doctor">Doctors</option>
                                 <option value="all">All Accounts</option>
                                 <option value="customer">Customers</option>
                             </select>
-                    </div>
+</div>
             </div>
             
             <table border="1">
@@ -343,7 +370,7 @@ function refreshAllAccountsTable() {
                 <h2>Customers</h2>
                     <div class="dropdown-container">
                         <label for="customerFilter">Filter:</label>
-                        <select id="customerFilter" class="sort" onchange="filterAccounts()">
+                        <select id="customerFilter" class="sort" onchange="filterAccountsCustomer()">
                                 <option value="customer">Customers</option>
                                 <option value="all">All Accounts</option>
                                 <option value="doctor">Doctors</option>

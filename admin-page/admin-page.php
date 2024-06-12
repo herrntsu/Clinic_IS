@@ -1,5 +1,9 @@
 <?php
 session_start();
+//if (!isset($_SESSION['username'])) {
+   // header("Location: /CLINIC_IS/home-page.php");
+   // exit();
+//}
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +18,14 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="icon" type="image/png" href="/CLINIC_IS/media/logo-removebg-preview.png">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap">
     <title>Admin</title>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -168,7 +180,7 @@ session_start();
     });
 
     function filterAccounts() {
-    var accountFilter = document.getElementById("accountFilter").value;
+    var accountFilter = document.getElementById("all-acc-btn").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
     var customersTable = document.querySelector(".customers");
@@ -180,12 +192,15 @@ session_start();
     switch (accountFilter) {
         case "all":
             allAccountsTable.style.display = "block";
+            document.getElementById("myDropdown").classList.toggle("show");
             break;
         case "doctor":
             doctorsTable.style.display = "block";
+            document.getElementById("myDropdown").classList.toggle("show");
             break;
         case "customer":
             customersTable.style.display = "block";
+            document.getElementById("myDropdown").classList.toggle("show");
             break;
         default:
             break;
@@ -193,7 +208,7 @@ session_start();
 }
 
 function filterAccountsDoctor() {
-    var accountFilter = document.getElementById("doctorFilter").value;
+    var accountFilter = document.getElementById("doctor-btn").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
     var customersTable = document.querySelector(".customers");
@@ -205,12 +220,15 @@ function filterAccountsDoctor() {
     switch (accountFilter) {
         case "all":
             allAccountsTable.style.display = "block";
+            document.getElementById("myDropdownDoctor").classList.toggle("show");
             break;
         case "doctor":
             doctorsTable.style.display = "block";
+            document.getElementById("myDropdownDoctor").classList.toggle("show");
             break;
         case "customer":
             customersTable.style.display = "block";
+            document.getElementById("myDropdownDoctor").classList.toggle("show");
             break;
         default:
             break;
@@ -218,7 +236,7 @@ function filterAccountsDoctor() {
 }
 
 function filterAccountsCustomer() {
-    var accountFilter = document.getElementById("customerFilter").value;
+    var accountFilter = document.getElementById("customer-btn").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
     var customersTable = document.querySelector(".customers");
@@ -230,12 +248,15 @@ function filterAccountsCustomer() {
     switch (accountFilter) {
         case "all":
             allAccountsTable.style.display = "block";
+            document.getElementById("myDropdownCustomer").classList.toggle("show");
             break;
         case "doctor":
             doctorsTable.style.display = "block";
+            document.getElementById("myDropdownCustomer").classList.toggle("show");
             break;
         case "customer":
             customersTable.style.display = "block";
+            document.getElementById("myDropdownCustomer").classList.toggle("show");
             break;
         default:
             break;
@@ -243,9 +264,14 @@ function filterAccountsCustomer() {
 }
 
 
-function refreshAllAccountsTable() {
-   
-    location.reload(); 
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunctionDoctor() {
+  document.getElementById("myDropdownDoctor").classList.toggle("show");
+}
+function myFunctionCustomer() {
+  document.getElementById("myDropdownCustomer").classList.toggle("show");
 }
 
 </script>
@@ -254,29 +280,60 @@ function refreshAllAccountsTable() {
 </head>
 
 <body>
-    <div class="navigation-bar">
-        <div class="logo-text">
-            <img class="website-logo" src="/CLINIC_IS/media/logo-removebg-preview.png" alt="">
-            <h3>AnchorMed</h3>
+<section>
+        <div class="navigation-bar">
+            <div onclick="redirecttoHome()" class="logo-text">
+                <img class="website-logo" src="/CLINIC_IS/media/logo-removebg-preview.png" alt="Logo">
+                <a href="/CLINIC_IS/customer-page/welcome-page.php">AnchorMed</a>
+            </div>
+            <div class="user-side">
+                <button onclick="redirecttoHome()" class="dropbtn solo">Home</button>
+                <div class="dropdown">
+                    <button class="dropbtn">Clinics <span
+                            class="material-symbols-outlined">arrow_drop_down</span></button>
+                    <div class="dropdown-content">
+                        <a href="#locations">Branches</a>
+                        <a href="#footer">Contacts</a>
+                        <a href="#">Info</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Doctors <span
+                            class="material-symbols-outlined">arrow_drop_down</span></button>
+                    <div class="dropdown-content">
+                        <a href="available-doctors.php">View Doctors</a>
+                    </div>
+                </div>
+                <button class="dropbtn solo" onclick="redirectToDonate()">Donate</button>
+                <div class="dropdown">
+                    <button class="profile-btn">
+                        <span class="material-symbols-outlined">account_circle</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/CLINIC_IS/account-page.php">Account</a>
+                        <a href="/CLINIC_IS/logout.php">Logout</a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </div>
+    </section>
 
     <div class="container">
         <div class="table-container">
             <div class = "all-accounts">
-            <div class = "title-container">
-                <h2>All Accounts</h2>
-                <div class="dropdown-container">
-            <label for="accountFilter">Filter:</label>
-            <select id="accountFilter" class="sort" onchange="filterAccounts()">
-                <option value="all">All Accounts</option>
-                <option value="doctor">Doctors</option>
-                <option value="customer">Customers</option>
-            </select>
+                <div class = "title-container">
+                    <h2>All Accounts</h2>
+                    <div class="dropdown-container">
+                        <button onclick="myFunction()" class="dropbtn">Filters</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <button id = "all-acc-btn" class = "filterbtn" value = "all" onclick="filterAccounts()">All Accounts</button>
+                            <button id = "doctor-btn" class = "filterbtn" value = "doctor" onclick="filterAccountsDoctor()">Doctors</button>
+                            <button id = "customer-btn" class = "filterbtn" value = "customer" onclick = "filterAccountsCustomer()">Customers</button>
+                        </div>
+                    </div>
         </div>
 
-            </div>
+            
             <div class = "scrollable-table">
             <table border="1">
                 <thead>
@@ -334,14 +391,14 @@ function refreshAllAccountsTable() {
         <div class = "doctors">
             <div class = "title-container">
                 <h2>Doctors</h2>
-                            <div class="dropdown-container">
-                            <label for="doctorFilter">Filter:</label>
-                            <select id="doctorFilter" class="sort" onchange="filterAccountsDoctor()">
-                                <option value="doctor">Doctors</option>
-                                <option value="all">All Accounts</option>
-                                <option value="customer">Customers</option>
-                            </select>
-</div>
+                <div class="dropdown-container">
+                        <button onclick="myFunctionDoctor()" class="dropbtn">Filters</button>
+                        <div id="myDropdownDoctor" class="dropdown-content">
+                            <button id = "all-acc-btn" class = "filterbtn" value = "all" onclick="filterAccounts()">All Accounts</button>
+                            <button id = "doctor-btn" class = "filterbtn" value = "doctor" onclick="filterAccountsDoctor()">Doctors</button>
+                            <button id = "customer-btn" class = "filterbtn" value = "customer" onclick = "filterAccountsCustomer()">Customers</button>
+                        </div>
+                    </div>
             </div>
             
             <table border="1">
@@ -394,13 +451,13 @@ function refreshAllAccountsTable() {
             <div class = "title-container">
                 <h2>Customers</h2>
                     <div class="dropdown-container">
-                        <label for="customerFilter">Filter:</label>
-                        <select id="customerFilter" class="sort" onchange="filterAccountsCustomer()">
-                                <option value="customer">Customers</option>
-                                <option value="all">All Accounts</option>
-                                <option value="doctor">Doctors</option>
-                        </select>
-                    </div>
+                            <button onclick="myFunctionCustomer()" class="dropbtn">Filters</button>
+                            <div id="myDropdownCustomer" class="dropdown-content">
+                                <button id = "all-acc-btn" class = "filterbtn" value = "all" onclick="filterAccounts()">All Accounts</button>
+                                <button id = "doctor-btn" class = "filterbtn" value = "doctor" onclick="filterAccountsDoctor()">Doctors</button>
+                                <button id = "customer-btn" class = "filterbtn" value = "customer" onclick = "filterAccountsCustomer()">Customers</button>
+                            </div>
+                        </div>
             </div>
             <div class = "scrollable-table">
             <table border="1">

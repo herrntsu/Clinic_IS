@@ -176,7 +176,6 @@ session_start();
     allAccountsTable.style.display = "none";
     doctorsTable.style.display = "none";
     customersTable.style.display = "none";
-    document.getElementById("demo").innerHTML = "You selected: " + accountFilter;
 
     switch (accountFilter) {
         case "all":
@@ -194,7 +193,7 @@ session_start();
 }
 
 function filterAccountsDoctor() {
-    var doctorFilter = document.getElementById("doctorFilter").value;
+    var accountFilter = document.getElementById("doctorFilter").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
     var customersTable = document.querySelector(".customers");
@@ -202,9 +201,8 @@ function filterAccountsDoctor() {
     allAccountsTable.style.display = "none";
     doctorsTable.style.display = "none";
     customersTable.style.display = "none";
-    document.getElementById("demo").innerHTML = "You selected: " + accountFilter;
-    
-    switch (doctorFilter) {
+
+    switch (accountFilter) {
         case "all":
             allAccountsTable.style.display = "block";
             break;
@@ -220,7 +218,7 @@ function filterAccountsDoctor() {
 }
 
 function filterAccountsCustomer() {
-    var customerFilter = document.getElementById("customerFilter").value;
+    var accountFilter = document.getElementById("customerFilter").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
     var customersTable = document.querySelector(".customers");
@@ -228,9 +226,8 @@ function filterAccountsCustomer() {
     allAccountsTable.style.display = "none";
     doctorsTable.style.display = "none";
     customersTable.style.display = "none";
-    document.getElementById("demo").innerHTML = "You selected: " + accountFilter;
-    
-    switch (customerFilter) {
+
+    switch (accountFilter) {
         case "all":
             allAccountsTable.style.display = "block";
             break;
@@ -244,6 +241,7 @@ function filterAccountsCustomer() {
             break;
     }
 }
+
 
 function refreshAllAccountsTable() {
    
@@ -269,14 +267,15 @@ function refreshAllAccountsTable() {
             <div class = "all-accounts">
             <div class = "title-container">
                 <h2>All Accounts</h2>
-                    <div class="dropdown-container">
-                        <label for="accountFilter">Filter:</label>
-                        <select id="accountFilter" class="sort" onchange="filterAccounts()">
-                            <option value="all">All Accounts</option>
-                            <option value="doctor">Doctors</option>
-                            <option value="customer">Customers</option>
-                        </select>
-                    </div>
+                <div class="dropdown-container">
+            <label for="accountFilter">Filter:</label>
+            <select id="accountFilter" class="sort" onchange="filterAccounts()">
+                <option value="all">All Accounts</option>
+                <option value="doctor">Doctors</option>
+                <option value="customer">Customers</option>
+            </select>
+        </div>
+
             </div>
             <div class = "scrollable-table">
             <table border="1">
@@ -335,14 +334,14 @@ function refreshAllAccountsTable() {
         <div class = "doctors">
             <div class = "title-container">
                 <h2>Doctors</h2>
-                    <div class="dropdown-container">
-                    <label for="accountFilter">Filter:</label>
-                        <select id = "customerFilter" class= "sort" onchange="filterAccountsCustomer()">
+                            <div class="dropdown-container">
+                            <label for="doctorFilter">Filter:</label>
+                            <select id="doctorFilter" class="sort" onchange="filterAccountsDoctor()">
                                 <option value="doctor">Doctors</option>
                                 <option value="all">All Accounts</option>
                                 <option value="customer">Customers</option>
                             </select>
-                    </div>
+                </div>
             </div>
             
             <table border="1">
@@ -454,7 +453,6 @@ function refreshAllAccountsTable() {
             </div>
             <!-- End of Customers Table -->
         </div>
-        <p id="demo"></p>
     </div>
 
 

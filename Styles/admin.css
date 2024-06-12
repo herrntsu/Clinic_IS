@@ -123,10 +123,57 @@ h1 {
     display: flex;
     justify-content: flex-start;
     align-self: flex-start;
+    border: 3px solid;
 }
 
+/*testing*/
 .dropdown-container {
-    margin-left: auto; 
+    margin-left: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: #012d61; 
+}
+.dropbtn {
+    background-color: #012d61;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    width: 100%;
+  }
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #1a4c8a;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: inherit;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 3;
+    flex-direction: column;
+  }
+
+  .show {display: flex;}
+  
+  .filterbtn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: #012d61;
 }
 
 .sort {
@@ -151,7 +198,7 @@ table {
     position: sticky;
     top: 0;
     background-color: #34689c;
-    z-index: 2;
+    z-index: 1;
     
 }
 
