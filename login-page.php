@@ -97,7 +97,7 @@ if (!$con) {
                     if ($row["AccountType"] == "customer") {
                         header("Location: /CLINIC_IS/customer-page/welcome-page.php");
                     } elseif ($row["AccountType"] == "admin") {
-                        header("Location: /CLINIC_IS/admin-page/admin-page.php");
+                        header("Location: /CLINIC_IS/admin-page/admin-tableview.php");
                     } elseif ($row["AccountType"] == "employee") {
                         header("Location: /CLINIC_IS/employees-page/employee-page.php");
                     }

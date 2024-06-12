@@ -5,15 +5,14 @@
 #448FA3
 #68C5DB
 */
+
 .material-symbols-outlined {
   font-variation-settings:
     'FILL' 0,
     'wght' 400,
     'GRAD' 0,
-    'opsz' 24
+    'opsz' 24;
 }
-
-
 
 .Raleway-display-extralight {
   font-family: "Raleway", serif;
@@ -127,7 +126,6 @@ h6 {
 
 p {
   margin-bottom: 1.5rem;
-
 }
 
 blockquote {
@@ -173,7 +171,7 @@ h3 {
   font-family: 'Raleway', serif;
   display: flex;
   align-items: center;
-  gap: 1.5rem;/
+  gap: 1.5rem;
 }
 
 .nav-element,
@@ -225,16 +223,15 @@ h3 {
   grid-template-columns: repeat(6, 100px);
 }
 
-
-.logo-text h3 {
+.logo-text a {
   grid-column-start: 4;
   grid-column-end: 7;
   align-self: center;
   font-family: "Raleway", serif;
   font-size: 35px;
+  font-weight: 600;
   color: black;
   margin: 0;
-
 }
 
 footer {
@@ -242,7 +239,7 @@ footer {
   max-width: 100%;
   height: 400px;
   margin-top: 5rem;
-  background-color: rgb(1, 45, 97)
+  background-color: rgb(1, 45, 97);
 }
 
 /* Scrollbar */
@@ -309,13 +306,16 @@ footer {
   margin: 24px 10rem;
   position: relative;
   gap: 5rem;
+}
 
-  & h2 {
-    font-size: 76px;
-    letter-spacing: 0.3rem;
-    margin-bottom: 1rem;
-  }
+.header p {
+  color: white;
+}
 
+.header h2 {
+  font-size: 76px;
+  letter-spacing: 0.3rem;
+  margin-bottom: 1rem;
 }
 
 .inner-section {
@@ -329,6 +329,7 @@ footer {
 .inner-section p {
   margin: 0;
   font-family: "Raleway", serif;
+  font-size: 1rem;
 }
 
 .inner-section p a {
@@ -354,33 +355,28 @@ footer {
   width: 0;
 }
 
-
-
 .inner-section p a:hover:after {
   width: 100%;
   left: 0;
 }
 
-.inner-section {
-  & button {
-    background-color: rgba(0, 0, 0, 0);
-    border: 2px solid white;
-    border-radius: 50rem;
-    transition: background-size 1s ease;
-    background-size: 0% 100%;
-  }
+.inner-section button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid white;
+  border-radius: 50rem;
+  transition: background-size 1s ease;
+  background-size: 0% 100%;
+}
 
-  & button:hover {
-    color: black;
-    background-color: white;
-    background-size: 100% 100%;
-  }
+.inner-section button:hover {
+  color: black;
+  background-color: white;
+  background-size: 100% 100%;
 }
 
 button {
   background-color: rgba(0, 0, 0, 0);
   border: 2px solid white;
-  border-radius: 50rem;
   transition: background-size 1s ease;
   background-size: 0% 100%;
 }
@@ -394,63 +390,114 @@ button:hover {
 .logo-text {
   display: grid;
   grid-template-columns: repeat(6, 100px);
-
-
-
+  cursor: pointer;
 }
 
 .logo-text img {
   max-width: 95%;
   grid-column-start: 3;
   grid-column-end: 4;
+  cursor: pointer;
 }
 
-
+/* Wrapper CSS for Navigation Bar */
 .navigation-bar {
+  background-color: white;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  background-color: #f8f9fa;
-  padding: 0px;
+  box-shadow: 0 4px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px 2px rgba(0, 0, 0, 0.19);
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 2.5rem;
 }
 
-.user-side {
+h3 {
+  color: black;
+  font-family: 'Raleway', serif;
+  font-weight: bold;
+}
+
+.topnav {
+  color: black;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 23px;
+  font-family: 'Raleway', serif;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.navigation-bar .dropdown-content {
+
+.nav-element,
+.dropbtn {
+  margin: 0 0.75rem;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  font-family: 'Raleway', serif;
+  font-size: 16px;
+  color: black;
+  margin: 0;
+  padding: 20px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
   display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 120px;
+  min-width: 160px;
+  /* Adjusted min-width to fit the content */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-10px);
+  left: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
-  text-align: center;
+  /* Adjusted padding to remove extra space */
   text-decoration: none;
   display: block;
+  text-align: left;
 }
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
-  border: 0.2px solid black;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
+}
+
+/* Specific CSS for the logo */
+.logo-text {
+  display: grid;
+  grid-template-columns: repeat(6, 100px);
+  cursor: pointer;
+  font-family: "Raleway", serif;
+}
+
+.logo-text a {
+  grid-column-start: 4;
+  grid-column-end: 7;
+  align-self: center;
+  font-family: 'Raleway', serif;
+  font-size: 35px;
+  color: black;
+  margin: 0;
 }
 
 .website-logo {
@@ -458,9 +505,14 @@ button:hover {
   margin-right: 10px;
 }
 
+/* User profile button */
 .profile-btn .material-symbols-outlined {
   font-size: 48px;
   color: black;
+}
+
+.solo {
+  margin-top: 0.3rem;
 }
 
 .dropbtn {
@@ -473,23 +525,39 @@ button:hover {
   cursor: pointer;
 }
 
-hr {
-  width: 90%;
-  justify-self: center;
-  margin-top: 2.5rem;
+.logo-text img {
+  max-width: 95%;
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
 
-.location-header {
-  display: grid;
+.user-side {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 883.56px;
 
-  & h1 {
-    margin-top: 5rem;
-    color: black;
-    font-family: "Raleway", sans-serif;
-    justify-self: center;
+  & .profile-btn {
+    background-color: white;
   }
 }
 
+.location-header {
+  display: flex;
+  flex-direction: column;
+
+  & hr {
+    width: 80%;
+    place-self: center;
+  }
+}
+
+.location-header h1 {
+  margin-top: 5rem;
+  color: black;
+  font-family: "Raleway", sans-serif;
+  place-self: center;
+}
 
 .info {
   display: grid;
@@ -497,16 +565,13 @@ hr {
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   gap: 2rem;
+}
 
-  & h1 {
-    color: black;
-    font-family: "Raleway", sans-serif;
-    font-weight: bold;
-    grid-area: 1/2/1/2;
-  }
-
-
-
+.info h1 {
+  color: black;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  grid-area: 1/2/1/2;
 }
 
 .info .img1 {
@@ -525,47 +590,47 @@ hr {
   align-self: center;
 }
 
-
 .info-wrapper {
   color: black;
   grid-template-rows: subgrid;
   gap: 2rem;
   grid-row: span 2;
+}
 
-  & p {
-    font-size: larger;
-    margin-top: 1rem;
-  }
+.info-wrapper p {
+  font-size: larger;
+  margin-top: 1rem;
+}
 
-  & button {
-    background-color: #1363a8;
-    color: #1363a8;
-    border: 2px;
-    border-radius: 50rem;
-    transition: background-size 1s ease;
-    background-size: 0% 100%;
-    color: white;
-    max-width: 50%;
-    justify-self: center;
-  }
+.info-wrapper button {
+  background-color: #1363a8;
+  color: #1363a8;
+  border: 2px;
+  border-radius: 50rem;
+  transition: background-size 1s ease;
+  background-size: 0% 100%;
+  color: white;
+  max-width: 50%;
+  justify-self: center;
+  margin-top: 1rem;
+}
 
-  & button:hover {
-    background-color: rgb(23, 133, 230);
-    border: 2px;
-    color: white;
-    border-radius: 50rem;
-    transition: background-size 1s ease;
-    background-size: 0% 100%;
-  }
+.info-wrapper button:hover {
+  background-color: rgb(23, 133, 230);
+  border: 2px;
+  color: white;
+  border-radius: 50rem;
+  transition: background-size 1s ease;
+  background-size: 0% 100%;
+}
 
-  & button:active {
-    background-color: rgb(18, 97, 165);
-    border: 2px;
-    color: white;
-    border-radius: 50rem;
-    background-size: 0% 100%;
-    transform: translateY(3px);
-  }
+.info-wrapper button:active {
+  background-color: rgb(18, 97, 165);
+  border: 2px;
+  color: white;
+  border-radius: 50rem;
+  background-size: 0% 100%;
+  transform: translateY(3px);
 }
 
 .wrapper {
@@ -573,7 +638,7 @@ hr {
   width: 80%;
   height: 70%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 7rem;
   margin-top: 5rem;
 }
@@ -586,57 +651,75 @@ hr {
   display: grid;
   grid-template-rows: subgrid;
   grid-row: span 3;
-
-  .img2 {
-    margin-top: 4rem;
-  }
-
-  & a {
-    color: #000000;
-    text-decoration: none;
-    letter-spacing: 0.15em;
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    display: inline-block;
-    position: relative;
-    font-size: 18.5px;
-  }
-
-  a:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: #000000;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-    top: 1.5rem;
-  }
-
-  a:hover:after {
-    left: 36%;
-    width: 25.5%;
-
-  }
-
-  & img {
-    justify-self: center;
-    display: block;
-    max-width: 70%;
-    border-radius: 10px;
-  }
-
-  p {
-    color: black;
-    font-family: "Raleway", sans-serif;
-    margin-top: 1rem;
-    margin-bottom: 0;
-    font-size: 30px;
-  }
 }
+
+.box a {
+  color: #000000;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  display: inline-block;
+  position: relative;
+  font-size: 18.5px;
+}
+
+.box a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #000000;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+  top: 1.5rem;
+}
+
+.box a:hover:after {
+  left: 33%;
+  width: 32.5%;
+}
+
+.box img {
+  justify-self: center;
+  display: block;
+  max-width: 70%;
+  border-radius: 10px;
+}
+
+.box p {
+  color: black;
+  font-family: "Raleway", sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 30px;
+}
+
+.pageReset {
+  font-family: Raleway;
+  display: none;
+  position: fixed;
+  top: 90%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #1363a8;
+  border-radius: 10px;
+}
+
+p {
+  color: black;
+  font-family: "Raleway", sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 30px;
+}
+
 
 
 .pageReset {
@@ -697,41 +780,6 @@ hr {
 
 }
 
-.social-icons a {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin: 0 5px;
-  background-size: cover;
-  border-radius: 50%;
-  color: white;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid white;
-}
-
-.social-icons a.facebook {
-  background-color: #D7263D;
-}
-
-.social-icons a.twitter {
-  background-color: #0197F6;
-}
-
-.social-icons a.instagram {
-  background-color: #68C5DB;
-}
-
-.social-icons a.linkedin {
-  background-color: #448FA3;
-}
-
-.social-icons a:hover {
-  opacity: 0.7;
-}
-
 
 .fa {
   padding: 10px;
@@ -746,12 +794,22 @@ hr {
   color: white;
 }
 
-
-
 .social-media {
   display: flex;
   justify-content: center;
   padding: 10px;
+}
+
+
+.footer-bottom {
+  & hr {
+    width: 80%;
+  }
+
+  & p {
+    color: white;
+    font-size: 1rem;
+  }
 }
 
 .footer-bottom button {

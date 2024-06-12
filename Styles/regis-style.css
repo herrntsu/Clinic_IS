@@ -302,6 +302,10 @@ body {
   width: 100%;
 }
 
+.checkboxdirection:active {
+  color: #157eaf;
+}
+
 .checkboxdirection input[type="checkbox"] {
   align-self: center;
   /* Adjust the spacing between the checkbox and the label */
