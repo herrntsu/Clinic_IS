@@ -39,6 +39,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="dropdown-content">
                         <a href="#locations">Branches</a>
                         <a href="#footer">Contacts</a>
+                        <a href="#">Info</a>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -48,6 +49,7 @@ if (!isset($_SESSION['username'])) {
                         <a href="available-doctors.php">View Doctors</a>
                     </div>
                 </div>
+                <button class="dropbtn solo">Book Appointment</button>
                 <button class="dropbtn solo" onclick="redirectToDonate()">Donate</button>
                 <div class="dropdown">
                     <button class="profile-btn">
