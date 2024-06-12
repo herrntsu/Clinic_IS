@@ -1,4 +1,4 @@
-<?php
+<thead?php
 session_start();
 ?>
 
@@ -168,7 +168,7 @@ session_start();
     });
 
     function filterAccounts() {
-    var accountFilter = document.getElementById("accountFilter").value;
+    var accountFilter = document.querySelector(".sort").value;
     var allAccountsTable = document.querySelector(".all-accounts");
     var doctorsTable = document.querySelector(".doctors");
     var customersTable = document.querySelector(".customers");
@@ -191,57 +191,6 @@ session_start();
             break;
     }
 }
-
-function filterAccountsDoctor() {
-    var accountFilter = document.getElementById("doctorFilter").value;
-    var allAccountsTable = document.querySelector(".all-accounts");
-    var doctorsTable = document.querySelector(".doctors");
-    var customersTable = document.querySelector(".customers");
-
-    allAccountsTable.style.display = "none";
-    doctorsTable.style.display = "none";
-    customersTable.style.display = "none";
-
-    switch (accountFilter) {
-        case "all":
-            allAccountsTable.style.display = "block";
-            break;
-        case "doctor":
-            doctorsTable.style.display = "block";
-            break;
-        case "customer":
-            customersTable.style.display = "block";
-            break;
-        default:
-            break;
-    }
-}
-
-function filterAccountsCustomer() {
-    var accountFilter = document.getElementById("customerFilter").value;
-    var allAccountsTable = document.querySelector(".all-accounts");
-    var doctorsTable = document.querySelector(".doctors");
-    var customersTable = document.querySelector(".customers");
-
-    allAccountsTable.style.display = "none";
-    doctorsTable.style.display = "none";
-    customersTable.style.display = "none";
-
-    switch (accountFilter) {
-        case "all":
-            allAccountsTable.style.display = "block";
-            break;
-        case "doctor":
-            doctorsTable.style.display = "block";
-            break;
-        case "customer":
-            customersTable.style.display = "block";
-            break;
-        default:
-            break;
-    }
-}
-
 
 function refreshAllAccountsTable() {
    
@@ -267,15 +216,14 @@ function refreshAllAccountsTable() {
             <div class = "all-accounts">
             <div class = "title-container">
                 <h2>All Accounts</h2>
-                <div class="dropdown-container">
-            <label for="accountFilter">Filter:</label>
-            <select id="accountFilter" class="sort" onchange="filterAccounts()">
-                <option value="all">All Accounts</option>
-                <option value="doctor">Doctors</option>
-                <option value="customer">Customers</option>
-            </select>
-        </div>
-
+                    <div class="dropdown-container">
+                        <label for="accountFilter">Filter:</label>
+                        <select id="accountFilter" class="sort" onchange="filterAccounts()">
+                            <option value="all">All Accounts</option>
+                            <option value="doctor">Doctors</option>
+                            <option value="customer">Customers</option>
+                        </select>
+                    </div>
             </div>
             <div class = "scrollable-table">
             <table border="1">
@@ -334,14 +282,14 @@ function refreshAllAccountsTable() {
         <div class = "doctors">
             <div class = "title-container">
                 <h2>Doctors</h2>
-                            <div class="dropdown-container">
-                            <label for="doctorFilter">Filter:</label>
-                            <select id="doctorFilter" class="sort" onchange="filterAccountsDoctor()">
+                    <div class="dropdown-container">
+                    <label for="accountFilter">Filter:</label>
+                        <select class="sort" onchange="filterAccounts()">
                                 <option value="doctor">Doctors</option>
                                 <option value="all">All Accounts</option>
                                 <option value="customer">Customers</option>
                             </select>
-</div>
+                    </div>
             </div>
             
             <table border="1">
@@ -395,7 +343,7 @@ function refreshAllAccountsTable() {
                 <h2>Customers</h2>
                     <div class="dropdown-container">
                         <label for="customerFilter">Filter:</label>
-                        <select id="customerFilter" class="sort" onchange="filterAccountsCustomer()">
+                        <select id="customerFilter" class="sort" onchange="filterAccounts()">
                                 <option value="customer">Customers</option>
                                 <option value="all">All Accounts</option>
                                 <option value="doctor">Doctors</option>
