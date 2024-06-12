@@ -108,6 +108,24 @@ h1 {
     align-self: flex-end;
 }
 
+.title-container {
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+.dropdown-container {
+    margin-left: auto; /* Pushes the dropdown to the left */
+}
+
+#accountFilter,
+#doctorFilter {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: #012d61;
+}
 
 table {
     width: 100%;
