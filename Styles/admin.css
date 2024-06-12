@@ -90,6 +90,9 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    margin: 2.5rem;
+    border: #0000ff solid;
+    overflow-y:auto;
 }
 
 
@@ -100,12 +103,20 @@ h1 {
     flex-direction: column;
     align-items: center;
     position: relative;
+   
+}
+
+.scrollable-table {
+    max-height: 400px; 
+    overflow-y: auto;
+    width: 100%;
 }
 
 .button-container {
     display: flex;
     justify-content: flex-end;
     align-self: flex-end;
+    margin-top: 10px;
 }
 
 .title-container {
@@ -115,11 +126,10 @@ h1 {
 }
 
 .dropdown-container {
-    margin-left: auto; /* Pushes the dropdown to the left */
+    margin-left: auto; 
 }
 
-#accountFilter,
-#doctorFilter {
+.sort {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -137,7 +147,16 @@ table {
 }
 
 /*Tables*/
-.doctors{
+.scrollable-table table th {
+    position: sticky;
+    top: 0;
+    background-color: #34689c;
+    z-index: 2;
+    
+}
+
+.doctors,
+.customers{
     display:none;
 }
 
@@ -150,6 +169,7 @@ table thead tr {
     color: #ffffff;
     text-align: left;
     font-weight: bold;
+    
 }
 
 table th,
@@ -160,10 +180,14 @@ table td {
 
 table tbody tr {
     border-bottom: 1px solid #dddddd;
+    z-index: 1;
+    overflow: hidden;
 }
 
 table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
+    z-index: 1;
+    overflow: hidden;
 }
 
 table tbody tr:hover {
@@ -210,7 +234,7 @@ table tbody tr:last-of-type {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     left: 0;
     top: 0;
     width: 100%;
@@ -219,6 +243,7 @@ table tbody tr:last-of-type {
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
+
 }
 
 .modal-content {
@@ -243,8 +268,8 @@ table tbody tr:last-of-type {
     cursor: pointer;
 }
 
-#addCustomerBtn,
-#addDoctorBtn {
+.addCustomerBtn,
+.addDoctorBtn {
     margin-left: 10px;
     padding: 10px 20px;
     background-color: #012d61;
@@ -254,7 +279,7 @@ table tbody tr:last-of-type {
     cursor: pointer;
 }
 
-#addCustomerBtn:hover,
-#addDoctorBtn:hover {
+.addCustomerBtn:hover,
+.addDoctorBtn:hover {
     background-color: #1a4c8a;
 }
