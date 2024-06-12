@@ -2,10 +2,6 @@
 session_start();
 include 'db_connection.php';
 
-if (!isset($_SESSION['admin'])) {
-    header('Location: admin-login.php');
-    exit();
-}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $section = $_POST['section'];
@@ -237,10 +233,10 @@ while ($row = mysqli_fetch_assoc($result)) {
             </form>
         </div>
     </div>
-    
+
     <section class="admin-section">
         <h2>Admin Dashboard</h2>
-        
+
         <h3>Update Employee Page Content</h3>
         <form method="post" action="">
             <label for="section">Section:</label>
@@ -431,10 +427,10 @@ while ($row = mysqli_fetch_assoc($result)) {
         } else {
             echo "No records found";
         }
-        
+
     }
 
-    
+
     ?>
 </body>
 
