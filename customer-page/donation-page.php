@@ -49,7 +49,6 @@ if (!isset($_SESSION['username'])) {
                         <a href="available-doctors.php">View Doctors</a>
                     </div>
                 </div>
-                <button class="dropbtn solo">Book Appointment</button>
                 <button class="dropbtn solo" onclick="redirectToDonate()">Donate</button>
                 <div class="dropdown">
                     <button class="profile-btn">

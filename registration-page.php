@@ -40,7 +40,7 @@
                         <a href="/CLINIC_IS/terms&conditions.php">terms and conditions</a>
                     </label>
                 </div>
-                <div class=>
+                <div>
                     <p>Already have an account? <a class="hyperlink" href="login-page.php">Login here</a>.</p>
                 </div>
             </div>
@@ -60,8 +60,6 @@
         <div class="item1"></div>
     </div>
 </body>
-</body>
-
 
 </html>
 <?php
@@ -113,6 +111,7 @@ if (!$con) {
                                     // Commit transaction if all inserts succeed
                                     mysqli_commit($con);
                                     echo "<script>alert('Registration successful.');</script>";
+                                    $registrationSuccess = true;
                                 } else {
                                     // Rollback transaction if insert into customers fails
                                     mysqli_rollback($con);
