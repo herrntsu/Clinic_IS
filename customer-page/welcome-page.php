@@ -61,7 +61,7 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>
     </section>
-    <section class="hero-section">
+    <section class="hero-section" id="hero-section">
         <div class="video-section">
             <div class="vid-with-gradient">
                 <video autoplay loop muted plays-inline class="bg-video">
@@ -135,6 +135,9 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>
     </div>
+    <div class="modal-dono">
+
+    </div>
 
     <footer class="footer" id="footer">
         <div class="footer-top">
@@ -164,7 +167,6 @@ if (!isset($_SESSION['username'])) {
                 <p>&copy; 2024 AnchorMed. All rights reserved.</p>
             </div>
         </div>
-
     </footer>
 
     <button onclick="topFunction()" class="pageReset" id="backToTopBtn" title="Go to top">
@@ -202,8 +204,14 @@ if (!isset($_SESSION['username'])) {
         }
 
         function redirectToHome() {
-            window.location.href = "/CLINIC_IS/customer-page/welcome-page.php";
+            const element = document.getElementById("hero-section");
+            element.scrollIntoView();
         }
+
+
+
+        // Modal Script
+
     </script>
 </body>
 
