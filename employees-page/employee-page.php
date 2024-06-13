@@ -15,7 +15,9 @@ if (isset($_POST['update'])) {
 }
 
 // Fetch patient data
-$patientQuery = "SELECT * FROM Patient_Record";
+$patientQuery = "SELECT C.CustomerID, C.CustomerName, PR.CustomerRecord 
+                 FROM Customer C 
+                 LEFT JOIN Patient_Record PR ON C.CustomerID = PR.CustomerID";
 $patientResult = mysqli_query($conn, $patientQuery);
 
 // Fetch schedule data
@@ -40,6 +42,9 @@ $scheduleResult = mysqli_query($conn, $scheduleQuery);
     <link rel="icon" type="image/png" href="../media/logo-removebg-preview.png">
     <title>Employee Dashboard</title>
     <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
         .container {
             padding: 20px;
         }
@@ -82,6 +87,14 @@ $scheduleResult = mysqli_query($conn, $scheduleQuery);
         }
         .update-form button:hover {
             background-color: #45a049;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
     </style>
 </head>
