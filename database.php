@@ -8,20 +8,20 @@ $con = mysqli_connect($servername, $username, $password);
 if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 } else {
-    echo "Connected successfully"; 
-     $sql = "CREATE DATABASE clinic_website";
+    echo "Connected successfully";
+    $sql = "CREATE DATABASE clinic_website";
     if (mysqli_query($con, $sql)) {
         echo "Database created successfully with the name Clinic_IS";
     } else {
         echo "Error creating database: " . mysqli_error($con);
     }
-     $sql_acc = "CREATE TABLE Accounts (
+    $sql_acc = "CREATE TABLE Accounts (
         AccountID INT(10) AUTO_INCREMENT PRIMARY KEY,
         AccountName VARCHAR(100) NOT NULL,
         AccountType VARCHAR(50) NOT NULL,
         UNIQUE (AccountID),
         UNIQUE (AccountName, AccountType)
-    )"; 
+    )";
 
     $sql_accdata = "CREATE TABLE AccData (
         AccountID INT(10) PRIMARY KEY,
@@ -30,7 +30,7 @@ if (!$con) {
         AccountUsername VARCHAR (100) NOT NULL,
         AccountPass VARCHAR(100) NOT NULL,
         FOREIGN KEY (AccountID) REFERENCES Accounts (AccountID)
-    )"; 
+    )";
 
 
     if (mysqli_query($con, $sql_acc) && mysqli_query($con, $sql_accdata)) {
@@ -52,7 +52,7 @@ if (!$con) {
         AccountType VARCHAR(50) NOT NULL,
         FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
     )";
-    
+
     $sql_customer = "CREATE TABLE Customer (
         CustomerID INT(10) AUTO_INCREMENT PRIMARY KEY,
         AccountID INT(10),
@@ -60,7 +60,7 @@ if (!$con) {
         AccountType VARCHAR(50) NOT NULL,
         FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
     )";
-    
+
     if (mysqli_query($con, $sql_admin) && mysqli_query($con, $sql_employee) && mysqli_query($con, $sql_customer)) {
         echo "Tables for Admins, Employee, and Customer successfully created<br>";
     } else {
@@ -88,7 +88,7 @@ if (!$con) {
         EndTime TIME NOT NULL,
         FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
     )";
-    
+
     $sql_employeeworkedminutes = "CREATE TABLE Employee_Worked_Minutes (
         EmployeeID INT(10) PRIMARY KEY,
         Date DATE NOT NULL,

@@ -135,10 +135,6 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>
     </div>
-    <div class="modal-dono">
-
-    </div>
-
     <footer class="footer" id="footer">
         <div class="footer-top">
             <div class="footer-column">
@@ -207,11 +203,6 @@ if (!isset($_SESSION['username'])) {
             const element = document.getElementById("hero-section");
             element.scrollIntoView();
         }
-
-
-
-        // Modal Script
-
     </script>
 </body>
 

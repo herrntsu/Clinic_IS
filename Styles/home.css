@@ -6,9 +6,7 @@ body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  font-family: inherit;
+  font-family: 'Raleway', serif;
   background-color: white;
   color: inherit;
   scroll-behavior: smooth;
@@ -16,9 +14,52 @@ body {
 
 
 
+/*  About the project section */
+.about-the-project {
+  margin: 5rem;
+
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.left-col {
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-family: "raleway", serif;
+  font-weight: 500;
+  width: 50%;
+  flex-direction: column;
+  gap: 1rem;
+
+  & .emphasized-text {
+    color: rgb(1, 45, 97);
+    font-weight: 700;
+  }
+}
+
+
+.left-col h1 {
+  place-self: center;
+  font-weight: 700;
+}
+
+.left-col p {
+  text-align: justify;
+
+}
+
+
 /* Info Section */
 .info-section {
   margin: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .info-header {
@@ -27,7 +68,15 @@ body {
   justify-content: center;
   margin-bottom: 1rem;
   font-family: "raleway", serif;
-  font-weight: 500;
+  font-weight: 700;
+}
+
+.info-section hr {
+  place-self: center;
+  color: black;
+  margin: 2rem;
+  opacity: 40%;
+  width: 80%;
 }
 
 .wrapper {
@@ -47,26 +96,50 @@ body {
   line-height: 150%;
   box-shadow: 0px 10px 20px rgba(80, 80, 80, 0.2);
   transition: box-shadow .3s ease-in-out;
+  z-index: 3;
 }
 
 .card-info {
   position: absolute;
-  bottom: 1em;
+  bottom: 0.3em;
   width: 100%;
   text-align: center;
   font-family: 'Raleway', serif;
-
 }
 
 /* Image */
 .card-img {
-  background: rgb(39, 121, 221);
+
   height: 100%;
   width: 100%;
   position: absolute;
   transition: transform .3s ease-in-out;
-  z-index: 2;
+  z-index: -2;
+
+  &.img1 {
+    background-image: url(../media/Rull.jpg);
+    background-size: contain, cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    height: 721px;
+  }
+
+  &.img2 {
+    background-image: url(../media/joshua.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+  }
+
+  &.img3 {
+    background-image: url(../media/dyan.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+  }
 }
+
+
 
 /* Buttons */
 .social-media {
@@ -120,7 +193,8 @@ body {
 }
 
 .card:hover .card-img {
-  transform: translateY(-5em);
+  /* transform: translateY(-5em); */
+  height: calc(100%-5em);
 }
 
 .card:hover .social-media li {
@@ -128,15 +202,15 @@ body {
   opacity: 1;
 }
 
-.card:hover .social-media li:nth-child(1) {
+.card:hover .social-media a:nth-child(1) {
   transition-delay: 0s;
 }
 
-.card:hover .social-media li:nth-child(2) {
+.card:hover .social-media a:nth-child(2) {
   transition-delay: .1s;
 }
 
-.card:hover .social-media li:nth-child(3) {
+.card:hover .social-media a:nth-child(3) {
   transition-delay: .2s;
 }
 
@@ -355,10 +429,11 @@ code {
   color: #000000;
   text-decoration: none;
   letter-spacing: 0.15em;
-  font-family: Raleway;
+  font-family: 'Raleway', serif;
   font-weight: 500;
   display: inline-block;
   position: relative;
+  font-size: 1.3rem;
 }
 
 .user-section a:after {

@@ -74,17 +74,23 @@
         }
 
         $sql = "SELECT * FROM accounts
-                JOIN employee ON accounts.AccountID = employee.AccountID 
-                JOIN employee_details ON employee.EmployeeID = employee_details.EmployeeID";
+            JOIN employee ON accounts.AccountID = employee.AccountID 
+            JOIN employee_details ON employee.EmployeeID = employee_details.EmployeeID
+            JOIN accdata ON accounts.AccountID = accdata.AccountID;";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '<div class="card">';
-                echo 'Name: </strong>' . $row['AccountName'] . '<br>';
-                echo 'Employee ID: ' . $row['EmployeeID'] . '<br>';
-                echo 'Specialty: ' . $row['EmployeeSpecialty'] . '<br>';
-                echo 'Room Number: ' . $row['RoomNumber'] . '<br>';
+                // echo '<img src = "" alt = "">' . $row['AccountProfile'] . '</img>';
+                echo '<h4> Name: ' . $row['AccountName'] . '</h4>';
+                echo '<p> Employee ID: ' . $row['EmployeeID'] . '</p>';
+                echo '<p>Specialty: ' . $row['EmployeeSpecialty'] . '</p>';
+                echo '<p>Room Number: ' . $row['RoomNumber'] . '</p>';
+
+                // Ensure AccountEmail is echoed inside the anchor tag
+                echo '<a href="mailto:' . $row['AccountEmail'] . '"> Request Appointment </a>';
+
                 // Add other fields as needed
                 echo '</div>';
             }
@@ -94,6 +100,7 @@
 
         $conn->close();
         ?>
+
     </div>
 </body>
 
