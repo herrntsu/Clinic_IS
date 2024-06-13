@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "clinic_is";
+$dbname = "clinic_website";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 
 // Create database if it does not exist
-$sql = "CREATE DATABASE IF NOT EXISTS clinic_is";
+$sql = "CREATE DATABASE IF NOT EXISTS clinic_website";
 if ($conn->query($sql) === TRUE) {
     echo "Database created successfully";
 } else {

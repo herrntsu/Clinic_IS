@@ -170,10 +170,10 @@ h1 {
   .filterbtn {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-radius: 5px;
     cursor: pointer;
-    border: 2px solid;
-    border-color: #012d61;
+    border: 2px solid black;
+    color: white;
+    background-color: #23487d;
 }
 
 .sort {
@@ -202,12 +202,12 @@ table {
     
 }
 
-.doctors,
-.customers{
+#doctors,
+#customers{
     display:none;
 }
 
-.all-accounts {
+.accounts {
     display:block;
 }
 
@@ -327,6 +327,7 @@ table tbody tr:last-of-type {
 }
 
 .addCustomerBtn:hover,
-.addDoctorBtn:hover {
+.addDoctorBtn:hover,
+.filterbtn:hover {
     background-color: #1a4c8a;
 }
