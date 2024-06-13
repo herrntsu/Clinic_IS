@@ -103,7 +103,7 @@
             modal.style.display = 'none';
         }
         btn.onclick = function (event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault();
             if (validateForm()) {
                 modal.style.display = "block";
             }
