@@ -97,6 +97,7 @@
         confirmBtn.onclick = function () {
             modal.style.display = 'none';
             document.getElementById('account-form').submit();
+            alert("Thank you for your donation!");
         }
 
         cancelBtn.onclick = function () {
