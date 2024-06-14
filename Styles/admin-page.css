@@ -127,7 +127,6 @@ h1 {
 /*testing*/
 .dropdown-container {
     margin-left: auto;
-    border-radius: 5px;
     cursor: pointer;
     border: 2px solid;
     border-color: #012d61; 
@@ -169,18 +168,8 @@ h1 {
     padding-top: 10px;
     padding-bottom: 10px;
     cursor: pointer;
-    border: 2px solid black;
-    border-radius: 7px;
     color: white;
     background-color: #23487d;
-}
-
-.sort {
-    padding: 10px 20px;
-    border-radius: 7px;
-    cursor: pointer;
-    border: 2px solid;
-    border-color: #012d61;
 }
 
 table {
