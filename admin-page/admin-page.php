@@ -39,7 +39,7 @@ session_start();
                         <span class="material-symbols-outlined">account_circle</span>
                     </button>
                     <div class="navdropdown-content">
-                        <a href="/CLINIC_IS/account-page.php">Account</a>
+                        <a href="/CLINIC_IS/admin-page/admin-account.php">Account</a>
                         <a href="/CLINIC_IS/logout.php">Logout</a>
                     </div>
                 </div>
@@ -48,7 +48,6 @@ session_start();
     </section>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            //Add Customer Btns
             var addCustomerModal = document.getElementById("addCustomerModal");
             var addCustomerBtn = document.querySelectorAll(".addCustomerBtn");
             var addCustomerSpan = addCustomerModal.querySelector(".close");
@@ -63,7 +62,6 @@ session_start();
                 addCustomerModal.style.display = "none";
             };
 
-            //Add Doctor Btns
             var addDoctorModal = document.getElementById("addDoctorModal");
             var addDoctorBtns = document.querySelectorAll(".addDoctorBtn");
             var addDoctorSpan = addDoctorModal.querySelector(".close");
@@ -77,8 +75,6 @@ session_start();
             addDoctorSpan.onclick = function () {
                 addDoctorModal.style.display = "none";
             };
-
-            //Edit Btns
             var editAccModal = document.getElementById("editAccModal");
             var editAccSpan = editAccModal.querySelector(".close");
             var editBtns = document.querySelectorAll(".editBtn");
