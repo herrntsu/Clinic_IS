@@ -113,11 +113,15 @@ session_start();
                     var accountName = this.getAttribute("data-name");
                     var specialty = this.getAttribute("data-specialty");
                     var roomNumber = this.getAttribute("data-room");
+                    var starttime = this.getAttribute("data-start");
+                    var endtime = this.getAttribute("data-end");
 
                     document.getElementById("editEmployeeID").value = employeeID;
                     document.getElementById("editDoctorName").value = accountName;
                     document.getElementById("editDoctorSpecialty").value = specialty;
                     document.getElementById("editDoctorRoomNumber").value = roomNumber;
+                    document.getElementById("editDoctorStartTime").value = starttime;
+                    document.getElementById("editDoctorEndTime").value = endtime;
 
                     editDocModal.style.display = "block";
                 }
@@ -355,7 +359,7 @@ session_start();
                                         echo "<td>" . $row['StartTime'] . "</td>"; 
                                         echo "<td>" . $row['EndTime'] . "</td>";
                                         echo "<td>
-                                    <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "'>Edit</button>
+                                    <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "' data-start='" . $row['StartTime'] . "' data-end='" . $row['EndTime'] ."'>Edit</button>
                                     <button class='delDocBtn' data-account-id='" . $row['AccountID'] . "' data-doctor-id='" . $row['EmployeeID'] . "'>Delete</button>
                                 </td>";
                                         echo "</tr>";
@@ -466,6 +470,8 @@ session_start();
                 <input type="text" name="accountName" id="editDoctorName" placeholder="Doctor Name" required>
                 <input type="text" name="specialty" id="editDoctorSpecialty" placeholder="Specialty" required>
                 <input type="number" name="roomNumber" id="editDoctorRoomNumber" placeholder="Room Number" required>
+                <input type="text" name="starttime" id="editDoctorStartTime" placeholder="Start Time" required>
+                <input type="text" name="endtime" id="editDoctorEndTime" placeholder="End Time" required>
                 <input type="submit" name="editDoctor" value="Save Changes">
             </form>
         </div>
@@ -495,6 +501,8 @@ session_start();
                 <input type="text" name="accountName" placeholder="Account Name" required>
                 <input type="text" name="specialty" placeholder="Specialty" required>
                 <input type="number" name="roomNumber" placeholder="Room Number" required>
+                <input type="text" name="starttime" placeholder="Start Time" required>
+                <input type="text" name="endtime" placeholder="End Time" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="employee_username" placeholder="Username" required>
                 <input type="password" name="employee_password" placeholder="Password" required>
@@ -523,10 +531,12 @@ session_start();
             $accountName = $_POST['accountName'];
             $specialty = $_POST['specialty'];
             $roomNumber = $_POST['roomNumber'];
+            $startTime = $_POST['starttime'];
+            $endTime = $_POST['endtime'];
             $email = $_POST['email'];
             $employee_username = $_POST['employee_username'];
             $employee_password = $_POST['employee_password'];
-            addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password);
+            addDoctor($con, $accountName, $specialty, $roomNumber, $startTime, $endTime, $email, $employee_username, $employee_password);
         }
 
 
@@ -545,7 +555,9 @@ session_start();
             $accountName = $_POST['accountName'];
             $specialty = $_POST['specialty'];
             $roomNumber = $_POST['roomNumber'];
-            editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber);
+            $startTime = $_POST['starttime'];
+            $endTime = $_POST['endtime'];
+            editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber, $startTime, $endTime);
         }
 
         if (isset($_POST['deleteAccountID'])) {
@@ -621,33 +633,51 @@ session_start();
             echo "Error: " . mysqli_error($con);
         }
     }
-    function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password)
+    function addDoctor($con, $accountName, $specialty, $roomNumber, $startTime, $endTime, $email, $employee_username, $employee_password)
 {
+    // Insert into Accounts table
     $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
     if (mysqli_query($con, $sql_accounts)) {
         $accountID = mysqli_insert_id($con);
+
+        // Insert into Employee table
         $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
         if (mysqli_query($con, $sql_employee)) {
             $employeeID = mysqli_insert_id($con);
+
             // Insert into Employee_Details table
             $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
             if (mysqli_query($con, $sql_employee_details)) {
-                $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
-                if (mysqli_query($con, $sql_accdata)) {
-                    echo "New doctor added successfully";
+
+                // Insert into Employee_Schedule table
+                $sql_employee_schedule = "INSERT INTO Employee_Schedule (EmployeeID, StartTime, EndTime) VALUES ('$employeeID', '$startTime', '$endTime')";
+                if (mysqli_query($con, $sql_employee_schedule)) {
+
+                    // Insert into AccData table
+                    $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
+                    if (mysqli_query($con, $sql_accdata)) {
+                        echo "New doctor added successfully";
+                    } else {
+                        echo "Error inserting AccData: " . mysqli_error($con);
+                    }
+
                 } else {
-                    echo "Error: " . mysqli_error($con);
+                    echo "Error inserting Employee_Schedule: " . mysqli_error($con);
                 }
+
             } else {
-                echo "Error: " . mysqli_error($con);
+                echo "Error inserting Employee_Details: " . mysqli_error($con);
             }
+
         } else {
-            echo "Error: " . mysqli_error($con);
+            echo "Error inserting Employee: " . mysqli_error($con);
         }
+
     } else {
-        echo "Error: " . mysqli_error($con);
+        echo "Error inserting Accounts: " . mysqli_error($con);
     }
 }
+
 
     function deleteAccount($con, $accountID)
     {
@@ -720,21 +750,30 @@ session_start();
         }
     }
 
-    function editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber)
+    function editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber, $startTime, $endTime)
     {
         // Update the AccountName in the Accounts table
-        $sql = "UPDATE Accounts 
-                SET AccountName='$accountName' 
-                WHERE AccountID = (SELECT AccountID FROM Employee WHERE EmployeeID='$employeeID')";
-
-        if (mysqli_query($con, $sql)) {
+        $sql_update_account = "UPDATE Accounts 
+                               SET AccountName='$accountName' 
+                               WHERE AccountID = (SELECT AccountID FROM Employee WHERE EmployeeID='$employeeID')";
+    
+        if (mysqli_query($con, $sql_update_account)) {
             // Update the Employee_Details table
             $sql_update_employee_details = "UPDATE Employee_Details 
                                             SET EmployeeSpecialty='$specialty', RoomNumber='$roomNumber' 
                                             WHERE EmployeeID='$employeeID'";
-
+    
             if (mysqli_query($con, $sql_update_employee_details)) {
-                echo "Doctor details updated successfully";
+                // Update the Employee_Schedule table
+                $sql_update_schedule = "UPDATE Employee_Schedule 
+                                        SET StartTime='$startTime', EndTime='$endTime' 
+                                        WHERE EmployeeID='$employeeID'";
+    
+                if (mysqli_query($con, $sql_update_schedule)) {
+                    echo "Doctor details updated successfully";
+                } else {
+                    echo "Error updating doctor schedule: " . mysqli_error($con);
+                }
             } else {
                 echo "Error updating doctor details: " . mysqli_error($con);
             }
@@ -742,7 +781,7 @@ session_start();
             echo "Error updating account: " . mysqli_error($con);
         }
     }
-
+    
 
     ?>
 </body>
