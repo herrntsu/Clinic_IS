@@ -144,7 +144,7 @@ if (!tableExists($conn, 'Customer')) {
 if (!tableExists($conn, 'Patient_Record')) {
     $sql_patientrecord = "CREATE TABLE Patient_Record (
         CustomerID INT(10) PRIMARY KEY,
-        CustomerRecord VARCHAR(500),
+        CustomerRecord VARCHAR(500) NULL,
         FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID) ON DELETE CASCADE
     )";
 
