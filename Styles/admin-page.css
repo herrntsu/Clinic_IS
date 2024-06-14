@@ -164,6 +164,7 @@ h3 {
     justify-content: center;
     align-items: flex-start;
     margin: 2.5rem;
+    border: #0000ff solid;
     overflow-y: auto;
 }
 
@@ -200,7 +201,6 @@ h3 {
 /*testing*/
 .dropdown-container {
     margin-left: auto;
-    border-radius: 5px;
     cursor: pointer;
     border: 2px solid;
     border-color: #012d61;
@@ -245,17 +245,8 @@ h3 {
 .filterbtn {
     padding-top: 10px;
     cursor: pointer;
-    border: 2px solid black;
     color: white;
     background-color: #23487d;
-}
-
-.sort {
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 2px solid;
-    border-color: #012d61;
 }
 
 table {

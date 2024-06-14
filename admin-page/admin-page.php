@@ -494,6 +494,7 @@ session_start();
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="employee_username" placeholder="Username" required>
                 <input type="password" name="employee_password" placeholder="Password" required>
+                <input type="file" name="employeePicture" accept="image/*">
                 <input type="submit" name="addDoctor" value="Add Doctor">
             </form>
         </div>
@@ -522,8 +523,17 @@ session_start();
             $email = $_POST['email'];
             $employee_username = $_POST['employee_username'];
             $employee_password = $_POST['employee_password'];
-            addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password);
+
+            // Check if file is uploaded
+            if (isset($_FILES['employeePicture']) && $_FILES['employeePicture']['error'] === UPLOAD_ERR_OK) {
+                // Read file contents
+                $employeePicture = file_get_contents($_FILES['employeePicture']['tmp_name']);
+            } else {
+                $employeePicture = null;
+            }
+            addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password, $employeePicture);
         }
+
 
         if (isset($_POST['editAccount'])) {
             $accountID = $_POST['accountID'];
