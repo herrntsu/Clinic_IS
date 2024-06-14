@@ -73,7 +73,7 @@ if (!$con) {
         // Check if fields are filled
         if (isset($_POST['username']) && isset($_POST['password'])) {
             // Initialize variables for queries and POST method
-            $un = mysqli_real_escape_string($con, $_POST['username']); // Clean email text
+            $_SESSION[$un = mysqli_real_escape_string($con, $_POST['username'])]; // Clean email text
             $pw = mysqli_real_escape_string($con, $_POST['password']); // Clean password text
 
             // Check if the email exists in the database
@@ -97,7 +97,7 @@ if (!$con) {
                     if ($row["AccountType"] == "customer") {
                         header("Location: /CLINIC_IS/customer-page/welcome-page.php");
                     } elseif ($row["AccountType"] == "admin") {
-                        header("Location: /CLINIC_IS/admin-page/admin-tableview.php");
+                        header("Location: /CLINIC_IS/admin-page/admin-page.php");
                     } elseif ($row["AccountType"] == "employee") {
                         header("Location: /CLINIC_IS/employees-page/employee-page.php");
                     }

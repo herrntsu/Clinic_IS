@@ -18,9 +18,9 @@ session_start();
 
 <body>
     <div class="return">
-        <a onclick="history.back()"> <span class="material-symbols-outlined">
+        <a href="/CLINIC_IS/customer-page/welcome-page.php"> <span class="material-symbols-outlined">
                 arrow_back_ios
-            </span>Go Back</a>
+            </span>Go Back Home</a>
     </div>
     <div class="container">
         <form id="account-form" action="" method="post" class="form-group">

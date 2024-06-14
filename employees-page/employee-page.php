@@ -1,5 +1,4 @@
 <?php
-include('../Database/database.php'); // Ensure the correct path
 
 // Handle update patient information
 if (isset($_POST['update'])) {
@@ -27,6 +26,7 @@ $scheduleResult = mysqli_query($conn, $scheduleQuery);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,39 +45,52 @@ $scheduleResult = mysqli_query($conn, $scheduleQuery);
         body {
             font-family: 'Raleway', sans-serif;
         }
+
         .container {
             padding: 20px;
         }
+
         .card {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             padding: 20px;
         }
+
         .card h2 {
             margin-top: 0;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 1px solid black;
         }
-        th, td {
+
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
+
         .update-form {
             display: flex;
             flex-direction: column;
         }
-        .update-form input, .update-form button {
+
+        .update-form input,
+        .update-form button {
             margin-bottom: 10px;
         }
+
         .update-form button {
             padding: 10px;
             background-color: #4CAF50;
@@ -85,19 +98,22 @@ $scheduleResult = mysqli_query($conn, $scheduleQuery);
             border: none;
             cursor: pointer;
         }
+
         .update-form button:hover {
             background-color: #45a049;
         }
+
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 3em;
             margin-bottom: 20px;
             text-align: center;
             color: #333;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
+
 <body>
     <div class="navigation-bar">
         <div class="logo-text">
@@ -170,7 +186,8 @@ $scheduleResult = mysqli_query($conn, $scheduleQuery);
             </div>
             <div class="footer-column">
                 <a href="#">FAQs</a>
-                <a href="../privacy-policy.php" class="link">Support: <a href="mailto:anchormed@support.com">anchormed@support.com</a></a>
+                <a href="../privacy-policy.php" class="link">Support: <a
+                        href="mailto:anchormed@support.com">anchormed@support.com</a></a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -187,4 +204,5 @@ $scheduleResult = mysqli_query($conn, $scheduleQuery);
         </div>
     </footer>
 </body>
+
 </html>

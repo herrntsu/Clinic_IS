@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-header("Location: /CLINIC_IS/home-page.php");
- exit();
+    header("Location: /CLINIC_IS/home-page.php");
+    exit();
 }
 ?>
 
@@ -613,19 +613,22 @@ header("Location: /CLINIC_IS/home-page.php");
         }
     }
     function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password)
-{
-    $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
-    if (mysqli_query($con, $sql_accounts)) {
-        $accountID = mysqli_insert_id($con);
-        $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
-        if (mysqli_query($con, $sql_employee)) {
-            $employeeID = mysqli_insert_id($con);
-            // Insert into Employee_Details table
-            $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
-            if (mysqli_query($con, $sql_employee_details)) {
-                $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
-                if (mysqli_query($con, $sql_accdata)) {
-                    echo "New doctor added successfully";
+    {
+        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
+        if (mysqli_query($con, $sql_accounts)) {
+            $accountID = mysqli_insert_id($con);
+            $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
+            if (mysqli_query($con, $sql_employee)) {
+                $employeeID = mysqli_insert_id($con);
+                // Insert into Employee_Details table
+                $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
+                if (mysqli_query($con, $sql_employee_details)) {
+                    $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
+                    if (mysqli_query($con, $sql_accdata)) {
+                        echo "New doctor added successfully";
+                    } else {
+                        echo "Error: " . mysqli_error($con);
+                    }
                 } else {
                     echo "Error: " . mysqli_error($con);
                 }
@@ -635,10 +638,7 @@ header("Location: /CLINIC_IS/home-page.php");
         } else {
             echo "Error: " . mysqli_error($con);
         }
-    } else {
-        echo "Error: " . mysqli_error($con);
     }
-}
 
     function deleteAccount($con, $accountID)
     {

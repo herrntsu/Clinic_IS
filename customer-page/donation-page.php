@@ -16,9 +16,9 @@
 <body>
 
     <div class="return">
-        <a onclick="history.back()"> <span class="material-symbols-outlined">
+        <a href="/CLINIC_IS/customer-page/welcome-page.php"> <span class="material-symbols-outlined">
                 arrow_back_ios
-            </span>Go Back</a>
+            </span>Go back to home</a>
     </div>
     <div class="container">
         <div class="left-rectangle">
@@ -116,6 +116,10 @@
             if (validateForm()) {
                 modal.style.display = "block";
             }
+        }
+
+        function redirectToHome() {
+            windows.location.href = "/CLINIC_IS/customer-page/welcome-page.php";
         }
 
     </script>

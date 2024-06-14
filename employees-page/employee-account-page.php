@@ -49,6 +49,13 @@ session_start();
         </form>
     </div>
 
+    <div class="upload-container">
+        <h2>Upload Profile Picture</h2>
+        <form id="uploadForm" enctype="multipart/form-data" method="post" action="">
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
     <!-- modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -175,4 +182,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 // Close the connection
 mysqli_close($con);
+?>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "clinic_website";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["profilePicture"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Allow certain file formats
+    if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif"
+    ) {
+        echo alert("Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // If everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file)) {
+            $sql = "INSERT INTO employeedetails (EmployeePicture) VALUES ('$target_file')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "The file " . basename($_FILES["profilePicture"]["name"]) . " has been uploaded.";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+}
+
+$conn->close();
 ?>

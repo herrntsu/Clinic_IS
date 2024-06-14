@@ -20,7 +20,7 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Welcome to AnchorMed</title>
 </head>
 
@@ -92,43 +92,60 @@ if (!isset($_SESSION['username'])) {
                     in
                     a welcoming and supportive environment.</p>
             </div>
-            <div class="info-wrapper">
+            <div class="info-wrapper" data-aos="fade-up" data-aos-duration="800">
                 <h1>World-class care for global patients</h1>
                 <p>We make it easy for patients around the world to get care from AnchorMed</p>
                 <button onclick="redirectToDoctors()">Request Appointment</button>
             </div>
-            <img class="img2" src="/CLINIC_IS/media/world-class-care.avif" alt="World class care">
+            <img class="img2" data-aos="fade-up" data-aos-duration="800" src="/CLINIC_IS/media/world-class-care.avif"
+                alt="World class care">
+            <img class="img3" data-aos="fade-up" data-aos-duration="800" src="/CLINIC_IS/media/donate-tab.jfif"
+                alt="Doctor with patient">
+            <div class="info-wrapper" data-aos="fade-up" data-aos-duration="800">
+                <h1>Transform Lives with Your Donation</h1>
+                <p>Your generosity can change lives. At AnchorMed, we are committed to providing top-notch
+                    healthcare to everyone in our community, but we can't do it alone. Each donation helps us deliver
+                    critical medical services, acquire state-of-the-art equipment, and expand our reach to those who
+                    need us most. Your support ensures that no one is left without the care they need, regardless of
+                    their financial circumstances. Stand with us in making a profound impact.</p>
+                <button onclick="redirectToDonate()">Donate Now</button>
+
+            </div>
         </div>
     </section>
 
-    <div id="locations" class="location-header">
+    <div id="locations" class="location-header" data-aos="fade-up" data-aos-duration="800">
         <hr>
         <h1>Branches</h1>
-        <div class="wrapper">
-            <div class="box">
+        <div class="wrapper" data-aos="fade-up" data-aos-duration="600">
+            <div class="box" data-aos="fade-up" data-aos-duration="600">
                 <p>SM Trece</p>
-                <img class="img1" src="/CLINIC_IS/media/SM-TRECE-MARTIRES.jpg" alt="SM Trece Martires">
+                <img class="img1" data-aos="fade-up" data-aos-duration="600"
+                    src="/CLINIC_IS/media/SM-TRECE-MARTIRES.jpg" alt="SM Trece Martires">
                 <a
                     href="https://www.google.com/maps/place/SM+City+Trece+Martires/@14.2815268,120.8632611,17.17z/data=!4m6!3m5!1s0x33bd813bfbee1f1d:0xbb55deff518446ca!8m2!3d14.281569!4d120.8659103!16s%2Fg%2F11bxd8cb4h?entry=ttu">
                     Check Directions ></a>
             </div>
-            <div class="box">
+            <div class="box" data-aos="fade-up" data-aos-duration="600">
                 <p>Robinsons Antipolo</p>
-                <img class="img2" src="/CLINIC_IS/media/rob-antipolo.jpg" alt="Robinsons Antipolo">
+                <img class="img2" data-aos="fade-up" data-aos-duration="600" src="/CLINIC_IS/media/rob-antipolo.jpg"
+                    alt="Robinsons Antipolo">
                 <a
                     href="https://www.google.com/maps/place/Robinsons+Antipolo,+Brgy+Sumulong+Hwy,+Antipolo,+1870+Metro+Manila/@14.5953122,121.1725881,17z/data=!4m6!3m5!1s0x3397bf4d3c34fb97:0xa4addd730b3e7214!8m2!3d14.594579!4d121.1722829!16s%2Fg%2F11s8m6j5pk?entry=ttu">
                     Check Directions ></a>
             </div>
-            <div class="box">
+            <div class="box" data-aos="fade-up" data-aos-duration="600">
                 <p>General Trias M-Hub</p>
-                <img class="img1" src="/CLINIC_IS/media/mhub.png" alt="General Trias M-Hub">
+                <img class="img1" data-aos="fade-up" data-aos-duration="600" src="/CLINIC_IS/media/mhub.png"
+                    alt="General Trias M-Hub">
                 <a
                     href="https://www.google.com/maps/place/1928+10th+Ave,+Taguig,+Metro+Manila/@14.5603903,121.0538097,18.5z/data=!4m19!1m12!4m11!1m3!2m2!1d121.050854!2d14.5460964!1m6!1m2!1s0x3397c8f3fa2994af:0x89c988af4760e40a!2sBonifacio+Global+City,+Taguig,+Metro+Manila!2m2!1d121.0503183!2d14.5408671!3m5!1s0x3397c85fc0d8128d:0x97d0450b97af3bcc!8m2!3d14.5599984!4d121.0551872!16s%2Fg%2F11gjt0bj_j?entry=ttu">
                     Check Directions ></a>
             </div>
-            <div class="box">
+            <div class="box" data-aos="fade-up" data-aos-duration="600">
                 <p>District Mall Imus by Ayala Malls</p>
-                <img class="img1" src="/CLINIC_IS/media/district-mall.png" alt="District Mall Imus by Ayala Malls">
+                <img class="img1" data-aos="fade-up" data-aos-duration="600" src="/CLINIC_IS/media/district-mall.png"
+                    alt="District Mall Imus by Ayala Malls">
                 <a
                     href="https://www.google.com/maps/place/The+District+Imus+by+Ayala+Malls/@14.3807524,120.9480511,14.17z/data=!4m15!1m8!3m7!1s0x32559173e462e30f:0x9befb54ef959f073!2sMarawi+City,+Lanao+del+Sur!3b1!8m2!3d8.0106213!4d124.297718!16zL20vMDNrOWNi!3m5!1s0x3397d37faef3495b:0x2271700d622a3f58!8m2!3d14.3706045!4d120.939236!16s%2Fg%2F11f405bsr5?entry=ttu">
                     Check Directions ></a>
@@ -203,6 +220,15 @@ if (!isset($_SESSION['username'])) {
             const element = document.getElementById("hero-section");
             element.scrollIntoView();
         }
+
+        function redirectToDonate() {
+            window.location.href = "/CLINIC_IS/customer-page/donation-page.php"
+        }
+
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 
