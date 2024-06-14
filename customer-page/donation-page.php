@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Divisions</title>
+    <title>Donate</title>
     <link rel="stylesheet" href="/CLINIC_IS/Styles/donation-page-style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap">
@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
     <div class="return">
         <a onclick="history.back()"> <span class="material-symbols-outlined">
                 arrow_back_ios
@@ -25,43 +26,50 @@
                 <img src="/CLINIC_IS/media/donation-image.webp" alt="Image">
                 <div class="card-content">
                     <div class="logo-with-header">
-                        <img src="/CLINIC_IS/media/logo-removebg-preview.png" type="png" class="logo">
                         <h2>You Can Make a Difference Right Now</h2>
                     </div>
                     <p>Your contribution has the power to change lives. By donating today, you're not just giving
-                        money—you're giving hope, support, and opportunities to those in need. Your generosity fuels our
+                        money—you're giving hope, support, and opportunities to those in need. Your generosity fuels
+                        our
                         mission and makes a tangible impact where it matters most. Join us in making a difference.
-                        Together, we can create a brighter future for all. Donate now and be the catalyst for positive
+                        Together, we can create a brighter future for all. Donate now and be the catalyst for
+                        positive
                         change.</p>
                 </div>
             </div>
         </div>
         <div class="right-rectangle">
             <form class="donation-form" id="account-form" method="post">
-                <h2>Donate</h2>
-                <div class="form-group">
-                    <input type="text" id="name" name="name" class="input-field" placeholder="Enter Name" required>
-                    <label for="input-field" class="input-label"></label>
-                    <span class="input-highlight"></span>
+                <div class="logo-header">
+                    <img src="/CLINIC_IS/media/logo-removebg-preview.png" type="png" class="logo">
+                    <p>AnchorMed</p>
                 </div>
-                <div class="form-group">
-                    <input type="text" id="email" name="email" class="input-field" placeholder="Enter Email"
-                        required><label for="input-field" class="input-label"></label>
+                <div class="main-content">
+                    <h2>Donate</h2>
 
-                    <span class="input-highlight"></span>
-                </div>
-                <div class="form-group">
-                    <input type="number" id="amount" name="amount" class="input-field" placeholder="Enter Amount"
-                        required>
-                    <label for="input-field" class="input-label"></label>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" class="input-field" placeholder="Enter Name" required>
+                        <label for="input-field" class="input-label"></label>
+                        <span class="input-highlight"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="email" name="email" class="input-field" placeholder="Enter Email"
+                            required><label for="input-field" class="input-label"></label>
 
-                    <span class="input-highlight"></span>
-                </div>
-                <button type="submit" class="submit-btn" id="submit-btn">Donate</button>
+                        <span class="input-highlight"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="amount" name="amount" class="input-field" placeholder="Enter Amount"
+                            required>
+                        <label for="input-field" class="input-label"></label>
+
+                        <span class="input-highlight"></span>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submit-btn">Donate</button>
             </form>
         </div>
     </div>
-
+    </div>
     <!-- modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">

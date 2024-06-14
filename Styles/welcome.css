@@ -286,7 +286,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 74.3%;
+  height: 80.3%;
   object-fit: cover;
   z-index: -1;
 }
@@ -296,7 +296,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 74.3%;
+  height: 80.3%;
   background: linear-gradient(180deg, rgba(36, 35, 35, 0), rgba(0, 0, 0, 1));
   z-index: 0;
   pointer-events: none;
@@ -679,8 +679,8 @@ h3 {
 }
 
 .box a:hover:after {
-  left: 33%;
-  width: 32.5%;
+  left: 16.5%;
+  width: 60.5%;
 }
 
 .box img {
@@ -824,5 +824,3 @@ p {
   color: #ffffff;
   text-align: center;
 }
-
-/* Donation Modal */

@@ -28,14 +28,11 @@ html {
 }
 
 
-/* Return CSS */
 .return {
     display: flex;
     gap: 1rem;
     place-self: flex-start;
-    /* Align items to the start (left) of the flex container */
     align-items: center;
-    /* Center vertically within the flex container */
     animation: fadeInTranslate 0.7s forwards;
     margin: 1rem;
     cursor: pointer;
@@ -53,7 +50,6 @@ html {
         font-size: 20px;
     }
 }
-
 
 .container {
     display: flex;
@@ -131,9 +127,29 @@ html {
     overflow: hidden;
 }
 
+/* Logo-Header */
+.logo-header {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+
+    & p {
+        font-size: 3rem;
+    }
+}
+
+
 /* form-group styles */
 .donation-form {
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.donation-form img {
+    width: 25%;
 }
 
 .form-group {
@@ -170,7 +186,7 @@ html {
 }
 
 .submit-btn:active {
-    background-color: #0b2d3d;
+    background-color: rgb(1, 45, 97);
     box-shadow: 0 44x #666;
     transform: translateY(3px);
 }
@@ -237,7 +253,7 @@ html {
 /* Input container */
 .form-group {
     position: relative;
-    margin: 20px;
+    margin-top: 1rem;
 }
 
 /* 
