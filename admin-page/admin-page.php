@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-header("Location: /CLINIC_IS/home-page.php");
- exit();
-}
+//if (!isset($_SESSION['username'])) {
+//header("Location: /CLINIC_IS/home-page.php");
+// exit();
+//}
 ?>
 
 <!DOCTYPE html>
@@ -332,6 +332,8 @@ header("Location: /CLINIC_IS/home-page.php");
                                     <th>Doctor Name</th>
                                     <th>Doctor Specialty</th>
                                     <th>Room Number</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -350,6 +352,8 @@ header("Location: /CLINIC_IS/home-page.php");
                                         echo "<td>" . $row['AccountName'] . "</td>";
                                         echo "<td>" . $row['EmployeeSpecialty'] . "</td>";
                                         echo "<td>" . $row['RoomNumber'] . "</td>";
+                                        echo "<td>" . $row['StartTime'] . "</td>"; 
+                                        echo "<td>" . $row['EndTime'] . "</td>";
                                         echo "<td>
                                     <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "'>Edit</button>
                                     <button class='delDocBtn' data-account-id='" . $row['AccountID'] . "' data-doctor-id='" . $row['EmployeeID'] . "'>Delete</button>
@@ -574,8 +578,9 @@ header("Location: /CLINIC_IS/home-page.php");
 
     function getDoctors($con)
     {
-        $sql = "SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber
+        $sql = "SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber, Employee_Schedule.StartTime, Employee_Schedule.EndTime
                FROM Employee
+               LEFT JOIN Employee_Schedule ON Employee.EmployeeID = Employee_Schedule.EmployeeID
                INNER JOIN Employee_Details ON Employee.EmployeeID = Employee_Details.EmployeeID
                INNER JOIN Accounts ON Employee.AccountID = Accounts.AccountID
                ORDER BY Accounts.AccountID ASC";
