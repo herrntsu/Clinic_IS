@@ -1,9 +1,9 @@
 <?php
-//session_start();
-//if (!isset($_SESSION['username'])) {
-//header("Location: /CLINIC_IS/home-page.php");
-// exit();
-//}
+session_start();
+if (!isset($_SESSION['username'])) {
+header("Location: /CLINIC_IS/home-page.php");
+ exit();
+}
 ?>
 
 <!DOCTYPE html>
