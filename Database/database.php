@@ -70,7 +70,7 @@ if (!$con) {
         EmployeeID INT(10) PRIMARY KEY,
         EmployeeSpecialty VARCHAR(100) NOT NULL,
         RoomNumber INT NOT NULL,
-        EmployeePicture BLOB,
+        EmployeePicture VARCHAR (255) NOT NULL,
         FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
     )";
 
@@ -87,8 +87,8 @@ if (!$con) {
     $sql_employeeschedule = "CREATE TABLE Employee_Schedule  (
         EmployeeID INT(10),
         DayofWeek VARCHAR(100) NOT NULL,
-        StartTime TIME NOT NULL,
-        EndTime TIME NOT NULL,
+        StartTime VARCHAR (100) NOT NULL,
+        EndTime VARCHAR (100) NOT NULL,
         PRIMARY KEY (EmployeeID, DayofWeek),
         FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
     )";

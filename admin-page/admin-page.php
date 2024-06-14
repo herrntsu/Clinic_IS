@@ -1,7 +1,7 @@
 <?php
-session_start();
+//session_start();
 //if (!isset($_SESSION['username'])) {
-// header("Location: /CLINIC_IS/home-page.php");
+//header("Location: /CLINIC_IS/home-page.php");
 // exit();
 //}
 ?>
@@ -12,7 +12,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CLINIC_IS/Styles/admin-page.css">
+    <link rel="stylesheet" href="/CLINIC_IS/Styles/admin.css">
     <link rel="icon" type="png" href="/CLINIC_IS/media/logo-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -494,7 +494,6 @@ session_start();
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="employee_username" placeholder="Username" required>
                 <input type="password" name="employee_password" placeholder="Password" required>
-                <input type="file" name="employeePicture" accept="image/*">
                 <input type="submit" name="addDoctor" value="Add Doctor">
             </form>
         </div>
@@ -523,15 +522,7 @@ session_start();
             $email = $_POST['email'];
             $employee_username = $_POST['employee_username'];
             $employee_password = $_POST['employee_password'];
-
-            // Check if file is uploaded
-            if (isset($_FILES['employeePicture']) && $_FILES['employeePicture']['error'] === UPLOAD_ERR_OK) {
-                // Read file contents
-                $employeePicture = file_get_contents($_FILES['employeePicture']['tmp_name']);
-            } else {
-                $employeePicture = null;
-            }
-            addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password, $employeePicture);
+            addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password);
         }
 
 
@@ -626,22 +617,19 @@ session_start();
         }
     }
     function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password)
-    {
-        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
-        if (mysqli_query($con, $sql_accounts)) {
-            $accountID = mysqli_insert_id($con);
-            $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
-            if (mysqli_query($con, $sql_employee)) {
-                $employeeID = mysqli_insert_id($con);
-                // Insert into Employee_Details table
-                $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
-                if (mysqli_query($con, $sql_employee_details)) {
-                    $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
-                    if (mysqli_query($con, $sql_accdata)) {
-                        echo "New doctor added successfully";
-                    } else {
-                        echo "Error: " . mysqli_error($con);
-                    }
+{
+    $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
+    if (mysqli_query($con, $sql_accounts)) {
+        $accountID = mysqli_insert_id($con);
+        $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
+        if (mysqli_query($con, $sql_employee)) {
+            $employeeID = mysqli_insert_id($con);
+            // Insert into Employee_Details table
+            $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
+            if (mysqli_query($con, $sql_employee_details)) {
+                $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
+                if (mysqli_query($con, $sql_accdata)) {
+                    echo "New doctor added successfully";
                 } else {
                     echo "Error: " . mysqli_error($con);
                 }
@@ -651,7 +639,10 @@ session_start();
         } else {
             echo "Error: " . mysqli_error($con);
         }
+    } else {
+        echo "Error: " . mysqli_error($con);
     }
+}
 
     function deleteAccount($con, $accountID)
     {
