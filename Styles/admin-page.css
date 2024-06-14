@@ -12,77 +12,150 @@ h1 {
     margin-top: 1.5rem;
 }
 
-/*navbar*/
+/* Navigation Bar CSS */
+
+/* Wrapper CSS for Navigation Bar */
 .navigation-bar {
     background-color: white;
     display: flex;
     align-items: center;
-    /* Center items vertically */
-    width: 100%;
     justify-content: space-between;
-    box-shadow: 0 4px 70px 10px rgba(0, 0, 0, 0.2), 0 6px 40px 10px rgba(0, 0, 0, 0.19);
-
-    .user-section {
-        z-index: 2;
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        color: black;
-        margin-right: 2.5rem;
-
-        & a {
-            color: #000000;
-            text-transform: uppercase;
-            text-decoration: none;
-            letter-spacing: 0.15em;
-            font-family: Playfair Display;
-            font-weight: 500;
-            display: inline-block;
-            position: relative;
-        }
-
-        a:after {
-            background: none repeat scroll 0 0 transparent;
-            bottom: 0;
-            content: "";
-            display: block;
-            height: 2px;
-            left: 50%;
-            position: absolute;
-            background: #000000;
-            transition: width 0.3s ease 0s, left 0.3s ease 0s;
-            width: 0;
-        }
-
-        a:hover:after {
-            width: 100%;
-            left: 0;
-        }
-
-        @media screen and (max-height: 300px) {
-            ul {
-                margin-top: 40px;
-            }
-        }
-    }
+    box-shadow: 0 4px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px 2px rgba(0, 0, 0, 0.19);
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 2.5rem;
 }
-/*end of navbar*/
 
+h3 {
+    color: black;
+    font-family: 'Raleway', serif;
+    font-weight: bold;
+}
 
+.topnav {
+    color: black;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 23px;
+    font-family: 'Raleway', serif;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-element,
+.navdropbtn {
+    margin: 0 0.75rem;
+}
+
+.navdropbtn {
+    background: none;
+    border: none;
+    font-family: 'Raleway', serif;
+    font-size: 16px;
+    color: black;
+    margin: 0;
+    padding: 20px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.navdropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    /* Adjusted min-width to fit the content */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navdropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    /* Adjusted padding to remove extra space */
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.navdropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .navdropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specific CSS for the logo */
 .logo-text {
     display: grid;
-    grid-template-columns: repeat(8, 100px);
+    grid-template-columns: repeat(6, 100px);
+    cursor: pointer;
+    font-family: "Raleway", serif;
+}
 
-    img {
-        max-width: 95%;
-        grid-column-start: 3;
-        grid-column-end: 4;
-    }
+.logo-text a {
+    grid-column-start: 4;
+    grid-column-end: 7;
+    align-self: center;
+    font-family: 'Raleway', serif;
+    font-size: 35px;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+    text-decoration: none;
+}
 
-    h3 {
-        grid-column-start: 4;
-        grid-column-end: 7;
-        align-self: center;
+.website-logo {
+    height: 100px;
+    margin-right: 10px;
+}
+
+/* User profile button */
+.profile-btn .material-symbols-outlined {
+    font-size: 48px;
+    color: black;
+    border: none !important;
+}
+
+.solo {
+    margin-top: 0.3rem;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-family: 'Raleway', serif;
+    font-size: 20px;
+    color: black;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.logo-text img {
+    max-width: 95%;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+.user-side {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 330px;
+    border: none !important;
+
+    & .profile-btn {
+        background-color: white;
     }
 }
 
@@ -91,8 +164,7 @@ h1 {
     justify-content: center;
     align-items: flex-start;
     margin: 2.5rem;
-    border: #0000ff solid;
-    overflow-y:auto;
+    overflow-y: auto;
 }
 
 
@@ -103,11 +175,11 @@ h1 {
     flex-direction: column;
     align-items: center;
     position: relative;
-   
+
 }
 
 .scrollable-table {
-    max-height: 400px; 
+    max-height: 400px;
     overflow-y: auto;
     width: 100%;
 }
@@ -123,7 +195,6 @@ h1 {
     display: flex;
     justify-content: flex-start;
     align-self: flex-start;
-    border: 3px solid;
 }
 
 /*testing*/
@@ -132,8 +203,9 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     border: 2px solid;
-    border-color: #012d61; 
+    border-color: #012d61;
 }
+
 .dropbtn {
     background-color: #012d61;
     color: white;
@@ -143,33 +215,35 @@ h1 {
     cursor: pointer;
     margin-left: auto;
     width: 100%;
-  }
+}
 
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn:hover,
+.dropbtn:focus {
     background-color: #1a4c8a;
-  }
+}
 
-  .dropdown {
+.dropdown {
     position: relative;
     display: inline-block;
-  }
+}
 
-  .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     width: inherit;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 3;
     flex-direction: column;
-  }
+}
 
-  .show {display: flex;}
-  
-  .filterbtn {
+.show {
+    display: flex;
+}
+
+.filterbtn {
     padding-top: 10px;
-    padding-bottom: 10px;
     cursor: pointer;
     border: 2px solid black;
     color: white;
@@ -199,16 +273,16 @@ table {
     top: 0;
     background-color: #34689c;
     z-index: 1;
-    
+
 }
 
 #doctors,
-#customers{
-    display:none;
+#customers {
+    display: none;
 }
 
 .accounts {
-    display:block;
+    display: block;
 }
 
 table thead tr {
@@ -216,7 +290,7 @@ table thead tr {
     color: #ffffff;
     text-align: left;
     font-weight: bold;
-    
+
 }
 
 table th,

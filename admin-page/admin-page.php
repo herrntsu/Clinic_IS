@@ -1,8 +1,8 @@
 <?php
 session_start();
 //if (!isset($_SESSION['username'])) {
-   // header("Location: /CLINIC_IS/home-page.php");
-   // exit();
+// header("Location: /CLINIC_IS/home-page.php");
+// exit();
 //}
 ?>
 
@@ -27,237 +27,18 @@ session_start();
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap">
     <title>Admin</title>
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        //Add Customer Btns
-        var addCustomerModal = document.getElementById("addCustomerModal");
-        var addCustomerBtn = document.querySelectorAll(".addCustomerBtn");
-        var addCustomerSpan = addCustomerModal.querySelector(".close");
-
-        addCustomerBtn.forEach(function(btn) {
-            btn.onclick = function () {
-                addCustomerModal.style.display = "block";
-            };
-        });
-
-        addCustomerSpan.onclick = function () {
-            addCustomerModal.style.display = "none";
-        };
-
-        //Add Doctor Btns
-        var addDoctorModal = document.getElementById("addDoctorModal");
-        var addDoctorBtns = document.querySelectorAll(".addDoctorBtn");
-        var addDoctorSpan = addDoctorModal.querySelector(".close");
-
-        addDoctorBtns.forEach(function(btn) {
-            btn.onclick = function () {
-                addDoctorModal.style.display = "block";
-            };
-        });
-
-        addDoctorSpan.onclick = function () {
-            addDoctorModal.style.display = "none";
-        };
-
-        //Edit Btns
-        var editAccModal = document.getElementById("editAccModal");
-        var editAccSpan = editAccModal.querySelector(".close");
-        var editBtns = document.querySelectorAll(".editBtn");
-
-        var editDocModal = document.getElementById("editDocModal");
-        var editDocSpan = editDocModal.querySelector(".close");
-        var editDocBtns = document.querySelectorAll(".editDocBtn");
-
-        for (var i = 0; i < editBtns.length; i++) {
-            editBtns[i].onclick = function () {
-                var accountID = this.getAttribute("data-id");
-                var accountName = this.getAttribute("data-name");
-                var accountType = this.getAttribute("data-type");
-                var accountEmail = this.getAttribute("data-email");
-                var accountUsername = this.getAttribute("data-username");
-                var accountPassword = this.getAttribute("data-password");
-
-                document.getElementById("editAccountID").value = accountID;
-                document.getElementById("editAccountName").value = accountName;
-                document.getElementById("editAccountType").value = accountType;
-                document.getElementById("editAccountEmail").value = accountEmail;
-                document.getElementById("editAccountUsername").value = accountUsername;
-                document.getElementById("editAccountPassword").value = accountPassword;
-
-                editAccModal.style.display = "block";
-            }
-        }
-
-        for (var i = 0; i < editDocBtns.length; i++) {
-            editDocBtns[i].onclick = function () {
-                var employeeID = this.getAttribute("data-id");
-                var accountName = this.getAttribute("data-name");
-                var specialty = this.getAttribute("data-specialty");
-                var roomNumber = this.getAttribute("data-room");
-
-                document.getElementById("editEmployeeID").value = employeeID;
-                document.getElementById("editDoctorName").value = accountName;
-                document.getElementById("editDoctorSpecialty").value = specialty;
-                document.getElementById("editDoctorRoomNumber").value = roomNumber;
-
-                editDocModal.style.display = "block";
-            }
-        }
-
-        editAccSpan.onclick = function () {
-            editAccModal.style.display = "none";
-        };
-
-        editDocSpan.onclick = function () {
-            editDocModal.style.display = "none";
-        };
-
-        window.onclick = function (event) {
-            if (event.target == addCustomerModal) {
-                addCustomerModal.style.display = "none";
-            }
-            if (event.target == addDoctorModal) {
-                addDoctorModal.style.display = "none";
-            }
-            if (event.target == editAccModal) {
-                editAccModal.style.display = "none";
-            }
-            if (event.target == editDocModal) {
-                editDocModal.style.display = "none";
-            }
-        };
-
-        //Del Btns
-        var delBtns = document.querySelectorAll(".delAccBtn");
-        var delDocBtns = document.querySelectorAll(".delDocBtn");
-
-        for (var i = 0; i < delBtns.length; i++) {
-            delBtns[i].onclick = function () {
-                var accountID = this.getAttribute("data-id");
-                if (confirm("Are you sure you want to delete this account?")) {
-                    var form = document.createElement("form");
-                    form.method = "post";
-                    form.action = "admin-page.php";
-
-                    var input = document.createElement("input");
-                    input.type = "hidden";
-                    input.name = "deleteAccountID";
-                    input.value = accountID;
-                    form.appendChild(input);
-
-                    document.body.appendChild(form);
-                    form.submit();
-                }
-            }
-        }
-
-        for (var i = 0; i < delDocBtns.length; i++) {
-            delDocBtns[i].onclick = function () {
-                var accountID = this.getAttribute("data-account-id");
-                var employeeID = this.getAttribute("data-doctor-id");
-                if (confirm("Are you sure you want to delete this doctor and their account?")) {
-                    var form = document.createElement("form");
-                    form.method = "post";
-                    form.action = "admin-page.php";
-
-                    var inputAccount = document.createElement("input");
-                    inputAccount.type = "hidden";
-                    inputAccount.name = "deleteAccountID";
-                    inputAccount.value = accountID;
-                    form.appendChild(inputAccount);
-
-                    var inputDoctor = document.createElement("input");
-                    inputDoctor.type = "hidden";
-                    inputDoctor.name = "deleteDoctorID";
-                    inputDoctor.value = employeeID;
-                    form.appendChild(inputDoctor);
-
-                    document.body.appendChild(form);
-                    form.submit();
-                }
-            }
-        }
-    });
-
-    function filterAccountsAll() {
-        var allAccountsTable = document.getElementById("all-accounts");
-        var doctorsTable = document.getElementById("doctors");
-        var customersTable = document.getElementById("customers");
-
-        doctorsTable.style.display = "none";
-        customersTable.style.display = "none";
-        allAccountsTable.style.display = "block";
-
-        document.getElementById("myDropdown").classList.toggle("show");
-        document.getElementById("table-title").innerHTML = "All Accounts";
-}
-
-function filterAccountsDoctor() {
-        var allAccountsTable = document.getElementById("all-accounts");
-        var doctorsTable = document.getElementById("doctors");
-        var customersTable = document.getElementById("customers");
-
-        customersTable.style.display = "none";
-        allAccountsTable.style.display = "none";
-        doctorsTable.style.display = "block";
-
-        document.getElementById("myDropdown").classList.toggle("show");
-        document.getElementById("table-title").innerHTML = "Doctors";
-}
-
-function filterAccountsCustomer() {
-        var allAccountsTable = document.getElementById("all-accounts");
-        var doctorsTable = document.getElementById("doctors");
-        var customersTable = document.getElementById("customers");
-
-        allAccountsTable.style.display = "none";
-        doctorsTable.style.display = "none";
-        customersTable.style.display = "block";
-
-        document.getElementById("myDropdown").classList.toggle("show");
-        document.getElementById("table-title").innerHTML = "Customers";
-}
-
-function DropdownFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-</script>
-
-
-</head>
-
-<body>
-<section>
+    <section>
         <div class="navigation-bar">
-            <div onclick="redirecttoHome()" class="logo-text">
+            <div class="logo-text">
                 <img class="website-logo" src="/CLINIC_IS/media/logo-removebg-preview.png" alt="Logo">
-                <a href="/CLINIC_IS/customer-page/welcome-page.php">AnchorMed</a>
+                <a>AnchorMed</a>
             </div>
             <div class="user-side">
-                <button onclick="redirecttoHome()" class="dropbtn solo">Home</button>
-                <div class="dropdown">
-                    <button class="dropbtn">Clinics <span
-                            class="material-symbols-outlined">arrow_drop_down</span></button>
-                    <div class="dropdown-content">
-                        <a href="#locations">Branches</a>
-                        <a href="#footer">Contacts</a>
-                        <a href="#">Info</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Doctors <span
-                            class="material-symbols-outlined">arrow_drop_down</span></button>
-                    <div class="dropdown-content">
-                        <a href="available-doctors.php">View Doctors</a>
-                    </div>
-                </div>
-                <button class="dropbtn solo" onclick="redirectToDonate()">Donate</button>
                 <div class="dropdown">
                     <button class="profile-btn">
                         <span class="material-symbols-outlined">account_circle</span>
                     </button>
-                    <div class="dropdown-content">
+                    <div class="navdropdown-content">
                         <a href="/CLINIC_IS/account-page.php">Account</a>
                         <a href="/CLINIC_IS/logout.php">Logout</a>
                     </div>
@@ -265,183 +46,386 @@ function DropdownFunction() {
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            //Add Customer Btns
+            var addCustomerModal = document.getElementById("addCustomerModal");
+            var addCustomerBtn = document.querySelectorAll(".addCustomerBtn");
+            var addCustomerSpan = addCustomerModal.querySelector(".close");
+
+            addCustomerBtn.forEach(function (btn) {
+                btn.onclick = function () {
+                    addCustomerModal.style.display = "block";
+                };
+            });
+
+            addCustomerSpan.onclick = function () {
+                addCustomerModal.style.display = "none";
+            };
+
+            //Add Doctor Btns
+            var addDoctorModal = document.getElementById("addDoctorModal");
+            var addDoctorBtns = document.querySelectorAll(".addDoctorBtn");
+            var addDoctorSpan = addDoctorModal.querySelector(".close");
+
+            addDoctorBtns.forEach(function (btn) {
+                btn.onclick = function () {
+                    addDoctorModal.style.display = "block";
+                };
+            });
+
+            addDoctorSpan.onclick = function () {
+                addDoctorModal.style.display = "none";
+            };
+
+            //Edit Btns
+            var editAccModal = document.getElementById("editAccModal");
+            var editAccSpan = editAccModal.querySelector(".close");
+            var editBtns = document.querySelectorAll(".editBtn");
+
+            var editDocModal = document.getElementById("editDocModal");
+            var editDocSpan = editDocModal.querySelector(".close");
+            var editDocBtns = document.querySelectorAll(".editDocBtn");
+
+            for (var i = 0; i < editBtns.length; i++) {
+                editBtns[i].onclick = function () {
+                    var accountID = this.getAttribute("data-id");
+                    var accountName = this.getAttribute("data-name");
+                    var accountType = this.getAttribute("data-type");
+                    var accountEmail = this.getAttribute("data-email");
+                    var accountUsername = this.getAttribute("data-username");
+                    var accountPassword = this.getAttribute("data-password");
+
+                    document.getElementById("editAccountID").value = accountID;
+                    document.getElementById("editAccountName").value = accountName;
+                    document.getElementById("editAccountType").value = accountType;
+                    document.getElementById("editAccountEmail").value = accountEmail;
+                    document.getElementById("editAccountUsername").value = accountUsername;
+                    document.getElementById("editAccountPassword").value = accountPassword;
+
+                    editAccModal.style.display = "block";
+                }
+            }
+
+            for (var i = 0; i < editDocBtns.length; i++) {
+                editDocBtns[i].onclick = function () {
+                    var employeeID = this.getAttribute("data-id");
+                    var accountName = this.getAttribute("data-name");
+                    var specialty = this.getAttribute("data-specialty");
+                    var roomNumber = this.getAttribute("data-room");
+
+                    document.getElementById("editEmployeeID").value = employeeID;
+                    document.getElementById("editDoctorName").value = accountName;
+                    document.getElementById("editDoctorSpecialty").value = specialty;
+                    document.getElementById("editDoctorRoomNumber").value = roomNumber;
+
+                    editDocModal.style.display = "block";
+                }
+            }
+
+            editAccSpan.onclick = function () {
+                editAccModal.style.display = "none";
+            };
+
+            editDocSpan.onclick = function () {
+                editDocModal.style.display = "none";
+            };
+
+            window.onclick = function (event) {
+                if (event.target == addCustomerModal) {
+                    addCustomerModal.style.display = "none";
+                }
+                if (event.target == addDoctorModal) {
+                    addDoctorModal.style.display = "none";
+                }
+                if (event.target == editAccModal) {
+                    editAccModal.style.display = "none";
+                }
+                if (event.target == editDocModal) {
+                    editDocModal.style.display = "none";
+                }
+            };
+
+            //Del Btns
+            var delBtns = document.querySelectorAll(".delAccBtn");
+            var delDocBtns = document.querySelectorAll(".delDocBtn");
+
+            for (var i = 0; i < delBtns.length; i++) {
+                delBtns[i].onclick = function () {
+                    var accountID = this.getAttribute("data-id");
+                    if (confirm("Are you sure you want to delete this account?")) {
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "admin-page.php";
+
+                        var input = document.createElement("input");
+                        input.type = "hidden";
+                        input.name = "deleteAccountID";
+                        input.value = accountID;
+                        form.appendChild(input);
+
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                }
+            }
+
+            for (var i = 0; i < delDocBtns.length; i++) {
+                delDocBtns[i].onclick = function () {
+                    var accountID = this.getAttribute("data-account-id");
+                    var employeeID = this.getAttribute("data-doctor-id");
+                    if (confirm("Are you sure you want to delete this doctor and their account?")) {
+                        var form = document.createElement("form");
+                        form.method = "post";
+                        form.action = "admin-page.php";
+
+                        var inputAccount = document.createElement("input");
+                        inputAccount.type = "hidden";
+                        inputAccount.name = "deleteAccountID";
+                        inputAccount.value = accountID;
+                        form.appendChild(inputAccount);
+
+                        var inputDoctor = document.createElement("input");
+                        inputDoctor.type = "hidden";
+                        inputDoctor.name = "deleteDoctorID";
+                        inputDoctor.value = employeeID;
+                        form.appendChild(inputDoctor);
+
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                }
+            }
+        });
+
+        function filterAccountsAll() {
+            var allAccountsTable = document.getElementById("all-accounts");
+            var doctorsTable = document.getElementById("doctors");
+            var customersTable = document.getElementById("customers");
+
+            doctorsTable.style.display = "none";
+            customersTable.style.display = "none";
+            allAccountsTable.style.display = "block";
+
+            document.getElementById("myDropdown").classList.toggle("show");
+            document.getElementById("table-title").innerHTML = "All Accounts";
+        }
+
+        function filterAccountsDoctor() {
+            var allAccountsTable = document.getElementById("all-accounts");
+            var doctorsTable = document.getElementById("doctors");
+            var customersTable = document.getElementById("customers");
+
+            customersTable.style.display = "none";
+            allAccountsTable.style.display = "none";
+            doctorsTable.style.display = "block";
+
+            document.getElementById("myDropdown").classList.toggle("show");
+            document.getElementById("table-title").innerHTML = "Doctors";
+        }
+
+        function filterAccountsCustomer() {
+            var allAccountsTable = document.getElementById("all-accounts");
+            var doctorsTable = document.getElementById("doctors");
+            var customersTable = document.getElementById("customers");
+
+            allAccountsTable.style.display = "none";
+            doctorsTable.style.display = "none";
+            customersTable.style.display = "block";
+
+            document.getElementById("myDropdown").classList.toggle("show");
+            document.getElementById("table-title").innerHTML = "Customers";
+        }
+
+        function DropdownFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+    </script>
+
+
+</head>
+
+<body>
 
     <div class="container">
         <div class="table-container">
-            <div class = "accounts">
-                <div class = "title-container">
-                    <h2 id = "table-title">All Accounts</h2>
+            <div class="accounts">
+                <div class="title-container">
+                    <h2 id="table-title">All Accounts</h2>
                     <div class="dropdown-container">
                         <button onclick="DropdownFunction()" class="dropbtn">Filters</button>
                         <div id="myDropdown" class="dropdown-content">
-                            <button id = "all-acc-btn" class = "filterbtn" onclick="filterAccountsAll()">All Accounts</button>
-                            <button id = "doctor-btn" class = "filterbtn" onclick="filterAccountsDoctor()">Doctors</button>
-                            <button id = "customer-btn" class = "filterbtn" onclick = "filterAccountsCustomer()">Customers</button>
+                            <button id="all-acc-btn" class="filterbtn" onclick="filterAccountsAll()">All
+                                Accounts</button>
+                            <button id="doctor-btn" class="filterbtn" onclick="filterAccountsDoctor()">Doctors</button>
+                            <button id="customer-btn" class="filterbtn"
+                                onclick="filterAccountsCustomer()">Customers</button>
                         </div>
                     </div>
-        </div>
+                </div>
 
-            
-            
-            <!--Start of All Accounts table-->
-            <div id = "all-accounts">
-            <div class = "scrollable-table">
-                <table border="1">
-                    <thead>
-                    <tr>
-                        <th>Account ID</th>
-                        <th>Account Name</th>
-                        <th>Account Type</th>
-                        <th>Account Email</th>
-                        <th>Account Username</th>
-                        <th>Account Password</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $con = mysqli_connect("localhost", "root", "", "clinic_website");
-                    if (!$con) {
-                        die("Connection Failed: " . mysqli_connect_error());
-                    }
 
-                    $result = getAllAccounts($con);
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['AccountID'] . "</td>";
-                            echo "<td>" . $row['AccountName'] . "</td>";
-                            echo "<td>" . $row['AccountType'] . "</td>";
-                            echo "<td>" . $row['AccountEmail'] . "</td>";
-                            echo "<td>" . $row['AccountUsername'] . "</td>";
-                            echo "<td>" . $row['AccountPass'] . "</td>";
-                            echo "<td>
+
+                <!--Start of All Accounts table-->
+                <div id="all-accounts">
+                    <div class="scrollable-table">
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>Account ID</th>
+                                    <th>Account Name</th>
+                                    <th>Account Type</th>
+                                    <th>Account Email</th>
+                                    <th>Account Username</th>
+                                    <th>Account Password</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $con = mysqli_connect("localhost", "root", "", "clinic_website");
+                                if (!$con) {
+                                    die("Connection Failed: " . mysqli_connect_error());
+                                }
+
+                                $result = getAllAccounts($con);
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row['AccountID'] . "</td>";
+                                        echo "<td>" . $row['AccountName'] . "</td>";
+                                        echo "<td>" . $row['AccountType'] . "</td>";
+                                        echo "<td>" . $row['AccountEmail'] . "</td>";
+                                        echo "<td>" . $row['AccountUsername'] . "</td>";
+                                        echo "<td>" . $row['AccountPass'] . "</td>";
+                                        echo "<td>
                                     <button class ='editBtn' data-id='" . $row['AccountID'] . "' data-name='" . $row['AccountName'] . "' data-type='" . $row['AccountType'] . "' data-email='" . $row['AccountEmail'] . "' data-username='" . $row['AccountUsername'] . "' data-password='" . $row['AccountPass'] . "'>Edit</button>
                                     <button class='delAccBtn' data-id='" . $row['AccountID'] . "'>Delete</button>
                                 </td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='7'>No accounts found</td></tr>";
-                    }
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='7'>No accounts found</td></tr>";
+                                }
 
-                    mysqli_close($con);
-                    ?>
-                    </tbody>
-                </table>
-            </div>
-             
-                <div class="button-container">
-                    <button class="addCustomerBtn">Add Customer</button>
-                    <button class="addDoctorBtn">Add Doctor</button>
-                </div>
-            </div>
-            <!--End of All Accounts table-->
-            
-            <!--Start of Doctors table-->
-            <div id = "doctors">
-            <div class = "scrollable-table">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Employee ID</th>
-                            <th>Doctor Name</th>
-                            <th>Doctor Specialty</th>
-                            <th>Room Number</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $con = mysqli_connect("localhost", "root", "", "clinic_website");
-                    if (!$con) {
-                        die("Connection Failed: " . mysqli_connect_error());
-                    }
-
-                    $result = getDoctors($con);
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['EmployeeID'] . "</td>";
-                            echo "<td>" . $row['AccountName'] . "</td>";
-                            echo "<td>" . $row['EmployeeSpecialty'] . "</td>";
-                            echo "<td>" . $row['RoomNumber'] . "</td>";
-                            echo "<td>
-                                    <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "'>Edit</button>
-                                    <button class='delDocBtn' data-account-id='" . $row['AccountID'] . "' data-doctor-id='" . $row['EmployeeID'] . "'>Delete</button>
-                                </td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='7'>No accounts found</td></tr>";
-                    }
-
-                    mysqli_close($con);
-                    ?>
-                    </tbody>
-                </table>
-                        <div class="button-container">
-                        <button class="addDoctorBtn">Add Doctor</button>
-                        </div>
-                </div>
-            </div>
-            <!--End of Doctors table-->
-
-            <!--Start of Customer table-->
-            <div id = "customers">
-                    <div class = "scrollable-table">
-                    <table border="1">
-                        <thead>
-                        <tr>
-                            <th>Customer ID</th>
-                            <th>Customer Name</th>
-                            <th>Customer Email</th>
-                            <th>Account Username</th>
-                            <th>Account Password</th>
-                            <th>Records</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $con = mysqli_connect("localhost", "root", "", "clinic_website");
-                        if (!$con) {
-                            die("Connection Failed: " . mysqli_connect_error());
-                        }
-
-                        $result = getCustomers($con);
-                        if ($result && mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td>" . $row['CustomerID'] . "</td>";
-                                echo "<td>" . $row['AccountName'] . "</td>";
-                                echo "<td>" . $row['AccountEmail'] . "</td>";
-                                echo "<td>" . $row['AccountUsername'] . "</td>";
-                                echo "<td>" . $row['AccountPass'] . "</td>";
-                                echo "<td>" . $row['CustomerRecord'] . "</td>";
-                                echo "<td>
-                                        <button class ='editBtn' data-id='" . $row['AccountID'] . "' data-name='" . $row['AccountName'] . "' data-type='" . $row['AccountType'] . "' data-email='" . $row['AccountEmail'] . "' data-username='" . $row['AccountUsername'] . "' data-password='" . $row['AccountPass'] . "'>Edit</button>
-                                        <button class='delAccBtn' data-id='" . $row['AccountID'] . "'>Delete</button>
-                                    </td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='7'>No accounts found</td></tr>";
-                        }
-
-                        mysqli_close($con);
-                        ?>
-                        </tbody>
-                        
-                    </table>
+                                mysqli_close($con);
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="button-container">
-                            <button class="addCustomerBtn">Add Customer</button>
+                        <button class="addCustomerBtn">Add Customer</button>
+                        <button class="addDoctorBtn">Add Doctor</button>
                     </div>
-            </div>
-            <!--End of Customers table-->
-           
+                </div>
+                <!--End of All Accounts table-->
+
+                <!--Start of Doctors table-->
+                <div id="doctors">
+                    <div class="scrollable-table">
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Doctor Name</th>
+                                    <th>Doctor Specialty</th>
+                                    <th>Room Number</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $con = mysqli_connect("localhost", "root", "", "clinic_website");
+                                if (!$con) {
+                                    die("Connection Failed: " . mysqli_connect_error());
+                                }
+
+                                $result = getDoctors($con);
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row['EmployeeID'] . "</td>";
+                                        echo "<td>" . $row['AccountName'] . "</td>";
+                                        echo "<td>" . $row['EmployeeSpecialty'] . "</td>";
+                                        echo "<td>" . $row['RoomNumber'] . "</td>";
+                                        echo "<td>
+                                    <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "'>Edit</button>
+                                    <button class='delDocBtn' data-account-id='" . $row['AccountID'] . "' data-doctor-id='" . $row['EmployeeID'] . "'>Delete</button>
+                                </td>";
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='7'>No accounts found</td></tr>";
+                                }
+
+                                mysqli_close($con);
+                                ?>
+                            </tbody>
+                        </table>
+                        <div class="button-container">
+                            <button class="addDoctorBtn">Add Doctor</button>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Doctors table-->
+
+                <!--Start of Customer table-->
+                <div id="customers">
+                    <div class="scrollable-table">
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Customer Email</th>
+                                    <th>Account Username</th>
+                                    <th>Account Password</th>
+                                    <th>Records</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $con = mysqli_connect("localhost", "root", "", "clinic_website");
+                                if (!$con) {
+                                    die("Connection Failed: " . mysqli_connect_error());
+                                }
+
+                                $result = getCustomers($con);
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row['CustomerID'] . "</td>";
+                                        echo "<td>" . $row['AccountName'] . "</td>";
+                                        echo "<td>" . $row['AccountEmail'] . "</td>";
+                                        echo "<td>" . $row['AccountUsername'] . "</td>";
+                                        echo "<td>" . $row['AccountPass'] . "</td>";
+                                        echo "<td>" . $row['CustomerRecord'] . "</td>";
+                                        echo "<td>
+                                        <button class ='editBtn' data-id='" . $row['AccountID'] . "' data-name='" . $row['AccountName'] . "' data-type='" . $row['AccountType'] . "' data-email='" . $row['AccountEmail'] . "' data-username='" . $row['AccountUsername'] . "' data-password='" . $row['AccountPass'] . "'>Edit</button>
+                                        <button class='delAccBtn' data-id='" . $row['AccountID'] . "'>Delete</button>
+                                    </td>";
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='7'>No accounts found</td></tr>";
+                                }
+
+                                mysqli_close($con);
+                                ?>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <div class="button-container">
+                        <button class="addCustomerBtn">Add Customer</button>
+                    </div>
+                </div>
+                <!--End of Customers table-->
+
             </div>
             <!--End of tables-->
 
@@ -469,19 +453,19 @@ function DropdownFunction() {
     </div>
 
     <!-- Edit Doctor Modal -->
-<div id="editDocModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Edit Doctor</h2>
-        <form method="post" action="admin-page.php">
-            <input type="hidden" name="employeeID" id="editEmployeeID">
-            <input type="text" name="accountName" id="editDoctorName" placeholder="Doctor Name" required>
-            <input type="text" name="specialty" id="editDoctorSpecialty" placeholder="Specialty" required>
-            <input type="number" name="roomNumber" id="editDoctorRoomNumber" placeholder="Room Number" required>
-            <input type="submit" name="editDoctor" value="Save Changes">
-        </form>
+    <div id="editDocModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Doctor</h2>
+            <form method="post" action="admin-page.php">
+                <input type="hidden" name="employeeID" id="editEmployeeID">
+                <input type="text" name="accountName" id="editDoctorName" placeholder="Doctor Name" required>
+                <input type="text" name="specialty" id="editDoctorSpecialty" placeholder="Specialty" required>
+                <input type="number" name="roomNumber" id="editDoctorRoomNumber" placeholder="Room Number" required>
+                <input type="submit" name="editDoctor" value="Save Changes">
+            </form>
+        </div>
     </div>
-</div>
 
     <!-- Add Customer Modal -->
     <div id="addCustomerModal" class="modal">
@@ -527,7 +511,7 @@ function DropdownFunction() {
             $customerEmail = $_POST['customerEmail'];
             $customerUsername = $_POST['customerUsername'];
             $customerPassword = $_POST['customerPassword'];
-            addCustomer ($con, $customerName, $customerEmail, $customerUsername, $customerPassword);
+            addCustomer($con, $customerName, $customerEmail, $customerUsername, $customerPassword);
 
         }
 
@@ -551,7 +535,7 @@ function DropdownFunction() {
             editAccount($con, $accountID, $accountName, $accountType, $accountEmail, $accountUsername, $accountPassword);
         }
 
-        if (isset($_POST['editDoctor'])){
+        if (isset($_POST['editDoctor'])) {
             $employeeID = $_POST['employeeID'];
             $accountName = $_POST['accountName'];
             $specialty = $_POST['specialty'];
@@ -587,8 +571,9 @@ function DropdownFunction() {
         return $result;
     }
 
-    function getDoctors($con)   {
-        $sql ="SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber
+    function getDoctors($con)
+    {
+        $sql = "SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber
                FROM Employee
                INNER JOIN Employee_Details ON Employee.EmployeeID = Employee_Details.EmployeeID
                INNER JOIN Accounts ON Employee.AccountID = Accounts.AccountID
@@ -597,8 +582,9 @@ function DropdownFunction() {
         return $result;
     }
 
-    function getCustomers($con)   {
-        $sql ="SELECT Customer.CustomerID, Accounts.AccountName, Accounts.AccountType, Accounts.AccountID, AccData.AccountEmail, AccData.AccountUsername, AccData.AccountPass, Patient_Record.CustomerRecord
+    function getCustomers($con)
+    {
+        $sql = "SELECT Customer.CustomerID, Accounts.AccountName, Accounts.AccountType, Accounts.AccountID, AccData.AccountEmail, AccData.AccountUsername, AccData.AccountPass, Patient_Record.CustomerRecord
                FROM Customer
                INNER JOIN Accounts ON Customer.AccountID = Accounts.AccountID
                INNER JOIN AccData ON Customer.AccountID = AccData.AccountID
@@ -608,12 +594,13 @@ function DropdownFunction() {
         return $result;
     }
 
-    function addCustomer($con, $customerName, $customerEmail, $customerUsername, $customerPassword) {
+    function addCustomer($con, $customerName, $customerEmail, $customerUsername, $customerPassword)
+    {
         $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$customerName', 'customer')";
-            if (mysqli_query($con, $sql_accounts)) {
-                $accountID = mysqli_insert_id($con);
-                $sql_customer = "INSERT INTO Customer (AccountID) VALUES ($accountID)";
-                if (mysqli_query($con, $sql_customer)) {
+        if (mysqli_query($con, $sql_accounts)) {
+            $accountID = mysqli_insert_id($con);
+            $sql_customer = "INSERT INTO Customer (AccountID) VALUES ($accountID)";
+            if (mysqli_query($con, $sql_customer)) {
                 // Insert into AccData table
                 $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$customerEmail', '$customerUsername', '$customerPassword')";
                 if (mysqli_query($con, $sql_accdata)) {
@@ -625,23 +612,26 @@ function DropdownFunction() {
                 echo "Error: " . mysqli_error($con);
             }
         } else {
-            echo "Error: " . mysqli_error($con); 
+            echo "Error: " . mysqli_error($con);
         }
     }
     function addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password)
-{
-    $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
-    if (mysqli_query($con, $sql_accounts)) {
-        $accountID = mysqli_insert_id($con);
-        $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
-        if (mysqli_query($con, $sql_employee)) {
-            $employeeID = mysqli_insert_id($con);
-            // Insert into Employee_Details table
-            $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
-            if (mysqli_query($con, $sql_employee_details)) {
-                $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
-                if (mysqli_query($con, $sql_accdata)) {
-                    echo "New doctor added successfully";
+    {
+        $sql_accounts = "INSERT INTO Accounts (AccountName, AccountType) VALUES ('$accountName', 'employee')";
+        if (mysqli_query($con, $sql_accounts)) {
+            $accountID = mysqli_insert_id($con);
+            $sql_employee = "INSERT INTO Employee (AccountID) VALUES ('$accountID')";
+            if (mysqli_query($con, $sql_employee)) {
+                $employeeID = mysqli_insert_id($con);
+                // Insert into Employee_Details table
+                $sql_employee_details = "INSERT INTO Employee_Details (EmployeeID, EmployeeSpecialty, RoomNumber) VALUES ('$employeeID', '$specialty', '$roomNumber')";
+                if (mysqli_query($con, $sql_employee_details)) {
+                    $sql_accdata = "INSERT INTO AccData (AccountID, AccountEmail, AccountUsername, AccountPass) VALUES ('$accountID', '$email', '$employee_username', '$employee_password')";
+                    if (mysqli_query($con, $sql_accdata)) {
+                        echo "New doctor added successfully";
+                    } else {
+                        echo "Error: " . mysqli_error($con);
+                    }
                 } else {
                     echo "Error: " . mysqli_error($con);
                 }
@@ -651,10 +641,7 @@ function DropdownFunction() {
         } else {
             echo "Error: " . mysqli_error($con);
         }
-    } else {
-        echo "Error: " . mysqli_error($con);
     }
-}
 
     function deleteAccount($con, $accountID)
     {
@@ -693,23 +680,23 @@ function DropdownFunction() {
 
     function deleteAccountAndDoctor($con, $accountID, $employeeID)
     {
-            mysqli_begin_transaction($con);
+        mysqli_begin_transaction($con);
 
-            try {
-                // Delete the doctor
-                $sql_delete_doctor = "DELETE FROM Employee_Details WHERE EmployeeID = $employeeID";
-                mysqli_query($con, $sql_delete_doctor);
+        try {
+            // Delete the doctor
+            $sql_delete_doctor = "DELETE FROM Employee_Details WHERE EmployeeID = $employeeID";
+            mysqli_query($con, $sql_delete_doctor);
 
-                // Delete the account
-                $sql_delete_account = "DELETE FROM Accounts WHERE AccountID = $accountID";
-                mysqli_query($con, $sql_delete_account);
+            // Delete the account
+            $sql_delete_account = "DELETE FROM Accounts WHERE AccountID = $accountID";
+            mysqli_query($con, $sql_delete_account);
 
-                mysqli_commit($con);
-            } catch (mysqli_sql_exception $exception) {
-                mysqli_rollback($con);
-                echo "Error: " . $exception->getMessage();
-            }
+            mysqli_commit($con);
+        } catch (mysqli_sql_exception $exception) {
+            mysqli_rollback($con);
+            echo "Error: " . $exception->getMessage();
         }
+    }
 
     function editAccount($con, $accountID, $accountName, $accountType, $accountEmail, $accountUsername, $accountPassword)
     {
@@ -727,18 +714,19 @@ function DropdownFunction() {
         }
     }
 
-    function editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber) {
+    function editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber)
+    {
         // Update the AccountName in the Accounts table
         $sql = "UPDATE Accounts 
                 SET AccountName='$accountName' 
                 WHERE AccountID = (SELECT AccountID FROM Employee WHERE EmployeeID='$employeeID')";
-        
+
         if (mysqli_query($con, $sql)) {
             // Update the Employee_Details table
             $sql_update_employee_details = "UPDATE Employee_Details 
                                             SET EmployeeSpecialty='$specialty', RoomNumber='$roomNumber' 
                                             WHERE EmployeeID='$employeeID'";
-            
+
             if (mysqli_query($con, $sql_update_employee_details)) {
                 echo "Doctor details updated successfully";
             } else {
