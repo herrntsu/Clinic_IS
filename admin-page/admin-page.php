@@ -109,11 +109,15 @@ if (!isset($_SESSION['username'])) {
                     var accountName = this.getAttribute("data-name");
                     var specialty = this.getAttribute("data-specialty");
                     var roomNumber = this.getAttribute("data-room");
+                    var starttime = this.getAttribute("data-start");
+                    var endtime = this.getAttribute("data-end");
 
                     document.getElementById("editEmployeeID").value = employeeID;
                     document.getElementById("editDoctorName").value = accountName;
                     document.getElementById("editDoctorSpecialty").value = specialty;
                     document.getElementById("editDoctorRoomNumber").value = roomNumber;
+                    document.getElementById("editDoctorStartTime").value = starttime;
+                    document.getElementById("editDoctorEndTime").value = endtime;
 
                     editDocModal.style.display = "block";
                 }
@@ -328,6 +332,8 @@ if (!isset($_SESSION['username'])) {
                                     <th>Doctor Name</th>
                                     <th>Doctor Specialty</th>
                                     <th>Room Number</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -346,8 +352,10 @@ if (!isset($_SESSION['username'])) {
                                         echo "<td>" . $row['AccountName'] . "</td>";
                                         echo "<td>" . $row['EmployeeSpecialty'] . "</td>";
                                         echo "<td>" . $row['RoomNumber'] . "</td>";
+                                        echo "<td>" . $row['StartTime'] . "</td>";
+                                        echo "<td>" . $row['EndTime'] . "</td>";
                                         echo "<td>
-                                    <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "'>Edit</button>
+                                    <button class='editDocBtn' data-id='" . $row['EmployeeID'] . "' data-name='" . $row['AccountName'] . "' data-specialty='" . $row['EmployeeSpecialty'] . "' data-room='" . $row['RoomNumber'] . "' data-start='" . $row['StartTime'] . "' data-end='" . $row['EndTime'] . "'>Edit</button>
                                     <button class='delDocBtn' data-account-id='" . $row['AccountID'] . "' data-doctor-id='" . $row['EmployeeID'] . "'>Delete</button>
                                 </td>";
                                         echo "</tr>";
@@ -458,6 +466,8 @@ if (!isset($_SESSION['username'])) {
                 <input type="text" name="accountName" id="editDoctorName" placeholder="Doctor Name" required>
                 <input type="text" name="specialty" id="editDoctorSpecialty" placeholder="Specialty" required>
                 <input type="number" name="roomNumber" id="editDoctorRoomNumber" placeholder="Room Number" required>
+                <input type="text" name="starttime" id="editDoctorStartTime" placeholder="Start Time" required>
+                <input type="text" name="endtime" id="editDoctorEndTime" placeholder="End Time" required>
                 <input type="submit" name="editDoctor" value="Save Changes">
             </form>
         </div>
@@ -487,6 +497,8 @@ if (!isset($_SESSION['username'])) {
                 <input type="text" name="accountName" placeholder="Account Name" required>
                 <input type="text" name="specialty" placeholder="Specialty" required>
                 <input type="number" name="roomNumber" placeholder="Room Number" required>
+                <input type="text" name="starttime" placeholder="Start Time" required>
+                <input type="text" name="endtime" placeholder="End Time" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="employee_username" placeholder="Username" required>
                 <input type="password" name="employee_password" placeholder="Password" required>
@@ -515,10 +527,12 @@ if (!isset($_SESSION['username'])) {
             $accountName = $_POST['accountName'];
             $specialty = $_POST['specialty'];
             $roomNumber = $_POST['roomNumber'];
+            $startTime = $_POST['starttime'];
+            $endTime = $_POST['endtime'];
             $email = $_POST['email'];
             $employee_username = $_POST['employee_username'];
             $employee_password = $_POST['employee_password'];
-            addDoctor($con, $accountName, $specialty, $roomNumber, $email, $employee_username, $employee_password);
+            addDoctor($con, $accountName, $specialty, $roomNumber, $startTime, $endTime, $email, $employee_username, $employee_password);
         }
 
 
@@ -537,7 +551,9 @@ if (!isset($_SESSION['username'])) {
             $accountName = $_POST['accountName'];
             $specialty = $_POST['specialty'];
             $roomNumber = $_POST['roomNumber'];
-            editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber);
+            $startTime = $_POST['starttime'];
+            $endTime = $_POST['endtime'];
+            editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber, $startTime, $endTime);
         }
 
         if (isset($_POST['deleteAccountID'])) {
@@ -570,8 +586,9 @@ if (!isset($_SESSION['username'])) {
 
     function getDoctors($con)
     {
-        $sql = "SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber
+        $sql = "SELECT Employee.EmployeeID, Accounts.AccountName, Accounts.AccountID, Employee_Details.EmployeeSpecialty, Employee_Details.RoomNumber, Employee_Schedule.StartTime, Employee_Schedule.EndTime
                FROM Employee
+               LEFT JOIN Employee_Schedule ON Employee.EmployeeID = Employee_Schedule.EmployeeID
                INNER JOIN Employee_Details ON Employee.EmployeeID = Employee_Details.EmployeeID
                INNER JOIN Accounts ON Employee.AccountID = Accounts.AccountID
                ORDER BY Accounts.AccountID ASC";
@@ -711,21 +728,30 @@ if (!isset($_SESSION['username'])) {
         }
     }
 
-    function editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber)
+    function editDoctor($con, $employeeID, $accountName, $specialty, $roomNumber, $startTime, $endTime)
     {
         // Update the AccountName in the Accounts table
-        $sql = "UPDATE Accounts 
-                SET AccountName='$accountName' 
-                WHERE AccountID = (SELECT AccountID FROM Employee WHERE EmployeeID='$employeeID')";
+        $sql_update_account = "UPDATE Accounts 
+                               SET AccountName='$accountName' 
+                               WHERE AccountID = (SELECT AccountID FROM Employee WHERE EmployeeID='$employeeID')";
 
-        if (mysqli_query($con, $sql)) {
+        if (mysqli_query($con, $sql_update_account)) {
             // Update the Employee_Details table
             $sql_update_employee_details = "UPDATE Employee_Details 
                                             SET EmployeeSpecialty='$specialty', RoomNumber='$roomNumber' 
                                             WHERE EmployeeID='$employeeID'";
 
             if (mysqli_query($con, $sql_update_employee_details)) {
-                echo "Doctor details updated successfully";
+                // Update the Employee_Schedule table
+                $sql_update_schedule = "UPDATE Employee_Schedule 
+                                        SET StartTime='$startTime', EndTime='$endTime' 
+                                        WHERE EmployeeID='$employeeID'";
+
+                if (mysqli_query($con, $sql_update_schedule)) {
+                    echo "Doctor details updated successfully";
+                } else {
+                    echo "Error updating doctor schedule: " . mysqli_error($con);
+                }
             } else {
                 echo "Error updating doctor details: " . mysqli_error($con);
             }
