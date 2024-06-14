@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Edit Account Information</title>
-    <link rel="stylesheet" href="/CLINIC_IS/Styles/admin-page.css">
+    <link rel="stylesheet" href="/CLINIC_IS/Styles/admin-account.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
     <link rel="icon" type="png" href="media\logo-removebg-preview.png">
     <link rel="stylesheet"
@@ -18,9 +18,9 @@ session_start();
 
 <body>
     <div class="return">
-        <a href="javascript:history.back()"> <span class="material-symbols-outlined">
+        <a href="/CLINIC_IS/admin-page/admin-page.php"> <span class="material-symbols-outlined">
                 arrow_back_ios
-            </span>Go back</a>
+            </span>Go Back</a>
     </div>
     <div class="container">
         <form id="account-form" action="" method="post" class="form-group">

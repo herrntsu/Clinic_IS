@@ -70,7 +70,7 @@ if (!$con) {
         EmployeeID INT(10) PRIMARY KEY,
         EmployeeSpecialty VARCHAR(100) NOT NULL,
         RoomNumber INT NOT NULL,
-        EmployeePicture VARCHAR (255) NOT NULL,
+        EmployeePicture BLOB,
         FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
     )";
 
